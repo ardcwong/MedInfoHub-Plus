@@ -16,4 +16,3 @@ scikit-llm
 scipy
 spacy-streamlit
 sentence-transformers
-chromadb==0.5.3
