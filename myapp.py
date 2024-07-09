@@ -42,7 +42,7 @@ def contactus():
 role = st.session_state.role
 
 logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
-about_us = st.Page(contactus, title="Contact Us", icon=":material/contact-mail:")
+about_us = st.Page(contactus, title="Contact Us", icon="✉️")
 
 
 
