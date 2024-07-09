@@ -16,3 +16,6 @@ scikit-llm
 scipy
 spacy-streamlit
 sentence-transformers
+chromadb
+torch
+torchvision
