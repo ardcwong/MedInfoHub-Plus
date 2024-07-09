@@ -15,8 +15,8 @@ import subprocess
 import time
 import numpy as np
 import ast #built in
-# import chromadb
-# from chromadb.utils import embedding_functions
+import chromadb
+from chromadb.utils import embedding_functions
 
 
 api_key = st.secrets['api_key']
