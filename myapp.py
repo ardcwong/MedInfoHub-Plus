@@ -71,9 +71,9 @@ if st.session_state.role in ["Requester", "Admin"]:
 # if st.session_state.role == "Admin":
 #     page_dict["Admin"] = admin_pages
 
-# if len(page_dict) > 0:
-#     pg = st.navigation({"Account": account_pages} | page_dict)
-# else:
-#     pg = st.navigation([st.Page(login)])
+if len(page_dict) > 0:
+    pg = st.navigation({"Account": account_pages} | page_dict)
+else:
+    pg = st.navigation([st.Page(login)])
 
 pg.run()
