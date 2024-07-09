@@ -19,3 +19,4 @@ sentence-transformers
 chromadb
 torch
 torchvision
+pysqlite3-binary
