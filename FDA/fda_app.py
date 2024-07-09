@@ -45,3 +45,4 @@ collection = client_chromadb.get_or_create_collection(
 )
 
 st.write(collection.count())
+st.write(collection.get(ids=['1000']))
