@@ -4,10 +4,7 @@ import streamlit as st
 st.set_page_config(layout='wide')
 
 
-st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
-col1, col2,col3 = st.columns([1,2,1])
-col2.image('data/MIHv2.png')
-col2.image('data/art.png')
+
 # col2.write("")
 
 # # col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
@@ -21,7 +18,10 @@ ROLES = ["", "Patient", "Health Care Provider", "Neither"]
 
 
 def login():
-
+    st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
+    col1, col2,col3 = st.columns([1,2,1])
+    col2.image('data/MIHv2.png')
+    col2.image('data/art.png')
     st.header("Log in")
     role = st.selectbox("Choose your role", ROLES)
 
@@ -122,6 +122,6 @@ if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
 if len(page_dict) > 0:
     pg = st.navigation({"Account": account_pages} | page_dict)
 else:
-    pg = st.navigation([st.Page(login)])
+    pg = st.navigation([st.Page(login)]) #defaults to login page if no acceptable role is selected
 
 pg.run()
