@@ -30,7 +30,7 @@ logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
 # settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
 request_1 = st.Page(
     "MedQuAd/medquad.py",
-    title="Search for a Health Condition",
+    title="MedInfoHub",
     icon=":material/help:",
     default=(role == "Patient"),
 )
