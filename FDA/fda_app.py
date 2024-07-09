@@ -136,7 +136,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
     return formatted_output
 
-st.write(role)
+st.write(st.session_state.role)
 
 query_text = st.text_input("Please enter a medical condition or drug name: ")
 # Example usage
