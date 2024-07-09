@@ -6,7 +6,7 @@ st.set_page_config(layout='wide')
 if "role" not in st.session_state:
     st.session_state.role = None
 
-ROLES = [None, "Patient", "Health Care Provider", "Neither"]
+ROLES = ["", "Patient", "Health Care Provider", "Neither"]
 
 
 def login():
