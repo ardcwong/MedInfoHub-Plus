@@ -15,6 +15,6 @@ scikit-learn-intelex
 scikit-llm
 scipy
 spacy-streamlit
-numpy
+numpy==1.24.4
 sentence-transformers
 chromadb
