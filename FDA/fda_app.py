@@ -136,10 +136,12 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
     return formatted_output
 
+
+query_text = st.text_input("Please enter a medical condition or drug name: ")
 # Example usage
-user_profile = "healthcare_provider" # patient or healthcare_provider
+user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
-user_input = input("Please enter a medical condition or drug name: ")
-print(generate_user_conversational_response(user_input, collection, user_profile))
+
+print(generate_user_conversational_response(query_text, collection, user_profile))
 
 
