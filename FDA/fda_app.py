@@ -13,7 +13,7 @@ from openai import OpenAI
 from wordcloud import WordCloud
 import subprocess
 import time
-import numpy as np
+# import numpy as np
 import ast #built in
 import chromadb
 from chromadb.utils import embedding_functions
