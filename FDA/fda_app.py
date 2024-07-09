@@ -26,8 +26,9 @@ from chromadb.utils import embedding_functions
 
 
 api_key = st.secrets['api_key']
+openai.api_key = api_key
 client = OpenAI(api_key=api_key)
-SKLLMConfig.set_openai_key(api_key)
+# SKLLMConfig.set_openai_key(api_key)
 # Constants
 CHROMA_DATA_PATH = 'fda_drugs'
 COLLECTION_NAME = "fda_drugs_embeddings"
