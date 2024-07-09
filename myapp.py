@@ -24,19 +24,18 @@ def logout():
     st.rerun()
 
 def contactus():
-    st.sidebar.title('MedInfoHub')
-    with st.sidebar:
-        # st.subheader("WHAT WE OFFER")
-        # st.image('data/use.png')
-        st.subheader("CONTACT US")
-        st.write('For any concerns or suggestions, you may reach out to us through the following:')
-        contactinfo = """
-        Facebook: facebook.com/medinfohub
-        Twitter: twitter.com/medinfohub
-        Instagram: instagram.com/medinfohub
-        """
-        # Display formatted text with st.markdown
-        st.markdown(contactinfo, unsafe_allow_html=True)
+    st.title('MedInfoHub')
+    # st.subheader("WHAT WE OFFER")
+    # st.image('data/use.png')
+    st.subheader("CONTACT US")
+    st.write('For any concerns or suggestions, you may reach out to us through the following:')
+    contactinfo = """
+    Facebook: facebook.com/medinfohub
+    Twitter: twitter.com/medinfohub
+    Instagram: instagram.com/medinfohub
+    """
+    # Display formatted text with st.markdown
+    st.markdown(contactinfo, unsafe_allow_html=True)
 
     
 role = st.session_state.role
@@ -102,6 +101,8 @@ about_us_pages = [about_us]
 page_dict = {}
 if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
     page_dict["Application"] = request_pages
+if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
+    page_dict["About Us"] = about_us_pages
 # if st.session_state.role in ["Responder", "Admin"]:
 #     page_dict["Respond"] = respond_pages
 # if st.session_state.role == "Admin":
@@ -109,7 +110,6 @@ if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
 
 if len(page_dict) > 0:
     pg = st.navigation({"Account": account_pages} | page_dict)
-    au = st.navigation({"About Us": about_us_pages} | page_dict)
 else:
     pg = st.navigation([st.Page(login)])
 
