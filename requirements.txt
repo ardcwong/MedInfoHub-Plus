@@ -17,4 +17,3 @@ scipy
 spacy-streamlit
 sentence-transformers
 chromadb
-transformer
