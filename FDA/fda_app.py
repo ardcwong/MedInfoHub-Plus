@@ -95,9 +95,9 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     if not relevant_drug_name:
         return "I couldn't find any relevant drug based on your input."
 
-    if user_profile == "patient":
+    if user_profile == "Patient":
         user_tone = "Explain the information in layman terms, focusing on the essential points a patient should know."
-    elif user_profile == "healthcare_provider":
+    elif user_profile == "Healthcare_provider":
         user_tone = "Provide detailed and technical information suitable for a healthcare provider."
     else:
         return "Please input healthcare_provider or patient."
@@ -136,6 +136,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
     return formatted_output
 
+st.write(role)
 
 query_text = st.text_input("Please enter a medical condition or drug name: ")
 # Example usage
