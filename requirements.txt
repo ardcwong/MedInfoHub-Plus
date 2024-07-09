@@ -2,7 +2,7 @@ contractions
 joblib
 matplotlib
 nltk
-numpy==1.24.4
+numpy
 openai
 pandas
 scikit_learn
