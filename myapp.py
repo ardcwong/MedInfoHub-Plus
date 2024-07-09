@@ -81,7 +81,7 @@ request_pages = [request_1, request_2]
 
 page_dict = {}
 if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
-    page_dict["Request"] = request_pages
+    page_dict["Application"] = request_pages
 # if st.session_state.role in ["Responder", "Admin"]:
 #     page_dict["Respond"] = respond_pages
 # if st.session_state.role == "Admin":
