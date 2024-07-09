@@ -35,7 +35,7 @@ request_1 = st.Page(
     default=(role == "Requester"),
 )
 request_2 = st.Page(
-    "FDA/fda_app.py", title="Request 2", icon=":material/bug_report:"
+    "FDA/fda_app.py", title="PharmaPal", icon=":material/bug_report:"
 )
 
 
