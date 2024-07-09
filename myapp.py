@@ -28,18 +28,18 @@ role = st.session_state.role
 
 logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
 about_us = st.sidebar.title('MedInfoHub')
-        with st.sidebar:
-            # st.subheader("WHAT WE OFFER")
-            # st.image('data/use.png')
-            st.subheader("CONTACT US")
-            st.write('For any concerns or suggestions, you may reach out to us through the following:')
-            contactinfo = """
-            Facebook: facebook.com/medinfohub
-            Twitter: twitter.com/medinfohub
-            Instagram: instagram.com/medinfohub
-            """
-            # Display formatted text with st.markdown
-            st.markdown(contactinfo, unsafe_allow_html=True)
+with st.sidebar:
+    # st.subheader("WHAT WE OFFER")
+    # st.image('data/use.png')
+    st.subheader("CONTACT US")
+    st.write('For any concerns or suggestions, you may reach out to us through the following:')
+    contactinfo = """
+    Facebook: facebook.com/medinfohub
+    Twitter: twitter.com/medinfohub
+    Instagram: instagram.com/medinfohub
+    """
+    # Display formatted text with st.markdown
+    st.markdown(contactinfo, unsafe_allow_html=True)
 # settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
 request_1 = st.Page(
     "MedQuAd/medquad.py",
