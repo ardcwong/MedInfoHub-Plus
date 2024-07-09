@@ -44,4 +44,4 @@ collection = client_chromadb.get_or_create_collection(
     metadata={"hnsw:space": "cosine"}
 )
 
-st.write(len(collection))
+st.write(collection.count())
