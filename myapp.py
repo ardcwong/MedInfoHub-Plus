@@ -50,7 +50,7 @@ request_1 = st.Page(
     "MedQuAd/medquad.py",
     title="HealthPlus",
     icon="⚕️",
-    default=(role == "Patient"),
+    # default=(role == "Patient"),
 )
 request_2 = st.Page(
     "FDA/fda_app.py", title="PharmaPal", icon="👩🏻‍⚕️"
