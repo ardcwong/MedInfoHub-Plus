@@ -62,19 +62,20 @@ account_pages = [logout_page]
 request_pages = [request_1, request_2]
 # respond_pages = [respond_1, respond_2]
 # admin_pages = [admin_1, admin_2]
-st.sidebar.title('MedInfoHub')
-with st.sidebar:
-    # st.subheader("WHAT WE OFFER")
-    # st.image('data/use.png')
-    st.subheader("CONTACT US")
-    st.write('For any concerns or suggestions, you may reach out to us through the following:')
-    contactinfo = """
-    Facebook: facebook.com/medinfohub
-    Twitter: twitter.com/medinfohub
-    Instagram: instagram.com/medinfohub
-    """
-    # Display formatted text with st.markdown
-    st.markdown(contactinfo, unsafe_allow_html=True)
+
+# st.sidebar.title('MedInfoHub')
+# with st.sidebar:
+#     # st.subheader("WHAT WE OFFER")
+#     # st.image('data/use.png')
+#     st.subheader("CONTACT US")
+#     st.write('For any concerns or suggestions, you may reach out to us through the following:')
+#     contactinfo = """
+#     Facebook: facebook.com/medinfohub
+#     Twitter: twitter.com/medinfohub
+#     Instagram: instagram.com/medinfohub
+#     """
+#     # Display formatted text with st.markdown
+#     st.markdown(contactinfo, unsafe_allow_html=True)
 # st.title("Request manager")
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
 
