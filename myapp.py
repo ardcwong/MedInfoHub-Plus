@@ -3,6 +3,18 @@ import streamlit as st
 
 st.set_page_config(layout='wide')
 
+
+st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
+
+st.image('data/MIHv2.png')
+col1, col2 = st.columns([1,1])
+col1.image('data/art.png')
+col2.write("")
+
+# # col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
+# col2.write("*Do you agree that ")
+# col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
+
 if "role" not in st.session_state:
     st.session_state.role = None
 
