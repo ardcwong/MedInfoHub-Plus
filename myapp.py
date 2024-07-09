@@ -32,7 +32,7 @@ request_1 = st.Page(
     "MedQuAd/medquad.py",
     title="Search for a Health Condition",
     icon=":material/help:",
-    default=(role == "Requester"),
+    default=(role == "Patient"),
 )
 request_2 = st.Page(
     "FDA/fda_app.py", title="PharmaPal", icon=":material/bug_report:"
