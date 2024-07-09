@@ -6,7 +6,7 @@ st.set_page_config(layout='wide')
 if "role" not in st.session_state:
     st.session_state.role = None
 
-ROLES = [None, "Requester", "Responder", "Admin"]
+ROLES = [None, "Patient", "Health Care Provider", "Neither"]
 
 
 def login():
@@ -67,7 +67,7 @@ request_pages = [request_1, request_2]
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
 
 page_dict = {}
-if st.session_state.role in ["Requester", "Admin"]:
+if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
     page_dict["Request"] = request_pages
 # if st.session_state.role in ["Responder", "Admin"]:
 #     page_dict["Respond"] = respond_pages
