@@ -14,7 +14,7 @@ st.set_page_config(layout='wide')
 if "role" not in st.session_state:
     st.session_state.role = None
 
-ROLES = ["", "Patient", "Health Care Provider", "Neither"]
+ROLES = ["", "Patient", "Healthcare Provider", "Neither"]
 
 
 def login():
@@ -128,9 +128,9 @@ data_apps = [medquad, fda_app]
 
 page_dict = {}
 
-if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
+if st.session_state.role in ["Patient", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
-if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
+if st.session_state.role in ["Patient", "Healthcare Provider", "Neither"]:
     page_dict["MedInfoHub+"] = about_us_pages
 
 # if st.session_state.role in ["Responder", "Admin"]:
