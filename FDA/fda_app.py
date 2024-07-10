@@ -68,7 +68,7 @@ def return_best_drug(user_input, collection, n_results=1):
     # print("\nRecommendation:")
     # print("----------------")
     
-    return top_result_metadata.get('drug', 'Unknown Drug'), top_result_document
+    return top_result_metadata.get('drug', 'Unknown Drug'), top_result_document, top_result_id
 
 # Extracting keywords function
 def extract_keywords(drug_document):
@@ -89,7 +89,7 @@ def extract_keywords(drug_document):
 
 # Summary and usage guidelines function based on user input and profile
 def generate_user_conversational_response(user_input, collection, user_profile):
-    relevant_drug_name, relevant_drug_document = return_best_drug(user_input, collection)
+    relevant_drug_name, relevant_drug_document,top_result_id = return_best_drug(user_input, collection)
     
     if not relevant_drug_name:
         return "I couldn't find any relevant drug based on your input."
@@ -133,7 +133,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     keywords = extract_keywords(relevant_drug_document)
 
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
-    return formatted_output
+    return formatted_output, top_result_id
 
 
 #-------------MAIN PROGRAM---------------#
@@ -175,9 +175,9 @@ with tab3:
     user_profile = st.session_state.role # patient or healthcare_provider
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
     if query_text:
-        formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
+        formatted_output,top_result_id = generate_user_conversational_response(query_text, collection, user_profile)
         st.write(formatted_output)
-
+        st.write(top_result_id)
     st.write(collection.count())
     st.write(collection.get(ids=['1000']))
 
