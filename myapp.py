@@ -77,10 +77,10 @@ medquad = st.Page(
     icon="⚕️",
 )
 fda_app = st.Page(
-    "FDA/fda_app.py", title="PharmaPal", icon="👩🏻‍⚕️"
+    "FDA/fda_app.py", title="PharmaPal", icon="➕"
 )
 
-
+# 👩🏻‍⚕️
 # respond_1 = st.Page(
 #     "respond/respond_1.py",
 #     title="Respond 1",
