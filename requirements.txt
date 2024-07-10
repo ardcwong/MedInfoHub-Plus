@@ -20,3 +20,4 @@ chromadb
 torch
 torchvision
 pysqlite3-binary
+st-annotated-text
