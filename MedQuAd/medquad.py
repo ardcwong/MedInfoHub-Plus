@@ -369,7 +369,7 @@ def telemedicine():
 # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
 st.subheader("Welcome to ⚕️HealthPlus!")
 
-tab1, tab2 = st.tabs(["About HealthPlus    ", "How to Use    "])
+tab1, tab2, tab3 = st.tabs(["About HealthPlus    ", "How to Use    ","Search    "])
 with tab1:
     col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
@@ -397,8 +397,7 @@ with tab2:
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
 # st.write("Instructions:", help = "(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area")
 
-search = st.tabs(["Search"])
-if search:
+if tab3:
     a, b, c = st.columns([1,1,1])
     
     keyword = a.text_input("Enter a keyword to search:", help = 'Type the keyword you want to search for. (e.g. headache, stomach, cancer, psoriasis, ...)' )
