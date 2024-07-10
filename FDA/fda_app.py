@@ -96,7 +96,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
 
     if user_profile == "Patient":
         user_tone = "Explain the information in layman terms, focusing on the essential points a patient should know."
-    elif user_profile == "Healthcare_provider":
+    elif user_profile == "Healthcare Provider":
         user_tone = "Provide detailed and technical information suitable for a healthcare provider."
     else:
         return "Please input healthcare_provider or patient."
