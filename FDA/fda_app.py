@@ -141,7 +141,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
 ## GENERAL INFO AND INSTRUCTIONS
 st.subheader("Welcome to ⚕️HealthPlus!")
 
-tab1, tab2 = st.tabs(["About PharmaPal    ", "How to Use    "])
+tab1, tab2 = st.tabs(["About the App    ", "How to Use    ","Ask PharmaPal"])
 with tab1:
     col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
@@ -165,22 +165,19 @@ with tab2:
     """
     col2.markdown(content_inst, unsafe_allow_html=True)
 
-search = st.tabs(["Search"])
-a, b, c = st.columns([1,1,1])
-
-
-
-
-
-st.write(st.session_state.role)
-
-query_text = st.text_input("Please enter a medical condition or drug name: ")
-# Example usage
-user_profile = st.session_state.role # patient or healthcare_provider
-# on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
-if query_text:
-    formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
-    st.write(formatted_output)
+with tab3:
+    a, b, c = st.columns([1,1,1])
+    
+    
+    st.write(st.session_state.role)
+    
+    query_text = st.text_input("Please enter a medical condition or drug name: ")
+    # Example usage
+    user_profile = st.session_state.role # patient or healthcare_provider
+    # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
+    if query_text:
+        formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
+        st.write(formatted_output)
 
 
 
