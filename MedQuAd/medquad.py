@@ -397,7 +397,7 @@ with tab2:
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
 # st.write("Instructions:", help = "(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area")
 
-if tab3:
+with tab3:
     a, b, c = st.columns([1,1,1])
     
     keyword = a.text_input("Enter a keyword to search:", help = 'Type the keyword you want to search for. (e.g. headache, stomach, cancer, psoriasis, ...)' )
