@@ -174,9 +174,10 @@ with tab3:
     user_profile = st.session_state.role # patient or healthcare_provider
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
     if query_text:
+        relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
         formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
         st.write(formatted_output)
-        # st.write(top_result_id)
+        st.write(top_result_id)
     st.write(collection.count())
     st.write(collection.get(ids=['1000']))
 
