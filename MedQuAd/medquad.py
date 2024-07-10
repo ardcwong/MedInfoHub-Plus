@@ -334,18 +334,18 @@ def telemedicine():
     st.markdown(text, unsafe_allow_html=True)
 
 #---------------------MAIN PROGRAM----------------------#
-st.image('data/MIHv2.png')
-col1, col2 = st.columns([1,1])
-col1.image('data/art.png')
-col2.write("")
-col2.write("")
-content = """
-<b style='color:#0C3974;'>MedInfoHub</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
-"""
-col2.markdown(content, unsafe_allow_html=True)
-# col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
-col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
-col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
+# st.image('data/MIHv2.png')
+# col1, col2 = st.columns([1,1])
+# col1.image('data/art.png')
+# col2.write("")
+# col2.write("")
+# content = """
+# <b style='color:#0C3974;'>MedInfoHub</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
+# """
+# col2.markdown(content, unsafe_allow_html=True)
+# # col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
+# col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
+# col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
 
 
 #0C3974
@@ -353,53 +353,54 @@ col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub
 
 # Displaying the button with custom style
 # col_start1, col_start2, col_start3 = st.columns([1,1,1])
-on = col2.toggle("Activate MedInfoHub Engine")
+# on = col2.toggle("Activate MedInfoHub Engine")
 
 # START SESSION
-if not on:
-    st.session_state['initialized'] = False
+# if not on:
+#     st.session_state['initialized'] = False
 
-elif on:
-      # Check if initializing has been run
-    if 'initialized' not in st.session_state:
-        st.session_state['initialized'] = False
+# elif on:
+#       # Check if initializing has been run
+#     if 'initialized' not in st.session_state:
+#         st.session_state['initialized'] = False
 
-    if not st.session_state['initialized']:
-        initializing()
-        st.session_state['initialized'] = True
+#     if not st.session_state['initialized']:
+#         initializing()
+#         st.session_state['initialized'] = True
 
-    # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
-    st.subheader("Search Keyword Focus Area")
-    a, b, c = st.columns([1,1,1])
+# ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
+st.subheader("Welcome to HealthPlus!")
+st.caption("Instructions:")
+a, b, c = st.columns([1,1,1])
 
-    keyword = a.text_input("Enter a keyword to search:")
-    st.title(keyword)
-    if keyword:
+keyword = a.text_input("Enter a keyword to search:")
+st.title(keyword)
+if keyword:
 
-        choose_method = b.selectbox(
-                "Choose Keyword Search Method",
-                ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
+    choose_method = b.selectbox(
+            "Choose Keyword Search Method",
+            ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
 
-        if choose_method == 'Exact Word':
-            filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
-            focus_area_choose = c.selectbox(
-                    "Choose (1) from matched Focus Area/s",
-                    filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
-            if focus_area_choose:
-                focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
-                select_questions(filtered_df)
-                # doctor_recommendation = specialty_doctor_recommendation(summary)
-                # column2.markdown(doctor_recommendation)
-                telemedicine()
-            else:
-                st.info("Please choose a focus area.")
-        elif choose_method == 'Best Match':
-            # # Filter questions containing the keyword
-            # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-            best_match_focus_area = search_keyword(keyword, df['focus_area'])
-            focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+    if choose_method == 'Exact Word':
+        filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
+        focus_area_choose = c.selectbox(
+                "Choose (1) from matched Focus Area/s",
+                filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
+        if focus_area_choose:
+            focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
             select_questions(filtered_df)
+            # doctor_recommendation = specialty_doctor_recommendation(summary)
+            # column2.markdown(doctor_recommendation)
             telemedicine()
+        else:
+            st.info("Please choose a focus area.")
+    elif choose_method == 'Best Match':
+        # # Filter questions containing the keyword
+        # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+        best_match_focus_area = search_keyword(keyword, df['focus_area'])
+        focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+        select_questions(filtered_df)
+        telemedicine()
 
-    else:
-        st.info("Please enter a keyword to search.")
+else:
+    st.info("Please enter a keyword to search.")
