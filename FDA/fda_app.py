@@ -130,10 +130,9 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     summary = summary.replace("Summary:", "").strip()
 
     # Extract top five keywords from the relevant_drug_document
-    keywords = extract_keywords(relevant_drug_document)
 
-    formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
-    return formatted_output
+    keywords = extract_keywords(relevant_drug_document)
+    return summary, usage_guidelines, keywords
 
 #-------------MAIN PROGRAM---------------#
 ## GENERAL INFO AND INSTRUCTIONS
@@ -173,13 +172,18 @@ with tab3:
     # Example usage
     user_profile = st.session_state.role # patient or healthcare_provider
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
+
     if query_text:
-        relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
-        formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
-        st.write(formatted_output)
-        st.write(top_result_id)
-    # st.write(collection.count())
-        st.write(collection.get(ids=[str(top_result_id)]))
+        summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
+        st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+    
+    # if query_text:
+    #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
+    #     formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
+    #     st.write(formatted_output)
+    #     st.write(top_result_id)
+    # # st.write(collection.count())
+    #     st.write(collection.get(ids=[str(top_result_id)]))
 
 
 
