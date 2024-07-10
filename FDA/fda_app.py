@@ -143,7 +143,7 @@ query_text = st.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 if query_text:
-    formatted_output, keywords = generate_user_conversational_response(query_text, collection, user_profile)
+    formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
     st.write(formatted_output)
     st.write(keywords)
 
