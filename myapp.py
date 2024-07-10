@@ -51,12 +51,12 @@ def contactus():
     st.markdown(contactinfo, unsafe_allow_html=True)
 def medinfohubplus():
     st.title('MedInfoHub+')
-    hp = st.button('HealthPlus')
-    pp = st.button('PharmaPal')
-    if hp:
-        medquad.run()
-    if pp:
-        fda_app.run()
+    # hp = st.button('HealthPlus')
+    # pp = st.button('PharmaPal')
+    # if hp:
+    #     medquad.run()
+    # if pp:
+    #     fda_app.run()
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
     # st.subheader("CONTACT US")
