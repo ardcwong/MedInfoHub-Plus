@@ -138,7 +138,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
 
 #-------------MAIN PROGRAM---------------#
 ## GENERAL INFO AND INSTRUCTIONS
-st.subheader("Welcome to :female-doctor:PharmaPal!")
+st.subheader("Welcome to :female-doctor: PharmaPal!")
 
 tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","Ask PharmaPal"])
 with tab1:
