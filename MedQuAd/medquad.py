@@ -369,7 +369,7 @@ def telemedicine():
 # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
 st.subheader("Welcome to ⚕️HealthPlus!")
 
-tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","HealthPlus    "])
+tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","HealthPlus Search    "])
 with tab1:
     col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
