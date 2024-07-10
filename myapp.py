@@ -123,10 +123,11 @@ data_apps = [medquad, fda_app]
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
 
 page_dict = {}
-if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
-    page_dict["MedInfoHub+"] = about_us_pages
+
 if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
     page_dict["Application"] = data_apps
+if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
+    page_dict["MedInfoHub+"] = about_us_pages
 
 # if st.session_state.role in ["Responder", "Admin"]:
 #     page_dict["Respond"] = respond_pages
