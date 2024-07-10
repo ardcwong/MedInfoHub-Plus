@@ -89,7 +89,7 @@ def extract_keywords(drug_document):
 
 # Summary and usage guidelines function based on user input and profile
 def generate_user_conversational_response(user_input, collection, user_profile):
-    relevant_drug_name, relevant_drug_document,top_result_id = return_best_drug(user_input, collection)
+    relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(user_input, collection)
     
     if not relevant_drug_name:
         return "I couldn't find any relevant drug based on your input."
@@ -175,7 +175,7 @@ with tab3:
     user_profile = st.session_state.role # patient or healthcare_provider
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
     if query_text:
-        formatted_output,top_result_id = generate_user_conversational_response(query_text, collection, user_profile)
+        formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
         st.write(formatted_output)
         st.write(top_result_id)
     st.write(collection.count())
