@@ -374,14 +374,14 @@ st.subheader("Welcome to HealthPlus!")
 tab1, tab2 = st.tabs(["About HealthPlus", "How to Use"])
 with tab1:
     content = """
-<b style='color:#0C3974;'>MedInfoHub</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
+<b style='color:#0C3974;'>HealthPlus</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
 """
     st.markdown(content, unsafe_allow_html=True)
     st.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
 with tab2:
     st.subheader("Instructions:")
     content_inst = """
-    (1) Enter a Keyword to Search \n(2) Choose Keyword Search Method \n(3) Choose Focus Area (Applicable for Exact Word Search Method \n(4) Retrieve Information about Focus Area
+    (1) Enter a Keyword to Search<br>(2) Choose Keyword Search Method<br>(3) Choose Focus Area (Applicable for Exact Word Search Method<br>(4) Retrieve Information about Focus Area
     """
     st.markdown(content_inst, unsafe_allow_html=True)
 # inst1, inst2 = st.columns([1,10])
