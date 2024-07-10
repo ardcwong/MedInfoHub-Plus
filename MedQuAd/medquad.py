@@ -370,7 +370,7 @@ def telemedicine():
 
 # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
 st.subheader("Welcome to HealthPlus!")
-inst1, inst2 = st.columns([1,20])
+inst1, inst2 = st.columns([1,10])
 inst1.caption("Instructions:")
 inst2.caption("1 | Enter a Keyword to Search: In the search box labeled \"Enter a keyword to search\", type the keyword you want to search for. In this example, the keyword \"stomach\" is already entered.")
 a, b, c = st.columns([1,1,1])
