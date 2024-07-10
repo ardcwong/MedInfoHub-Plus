@@ -43,6 +43,11 @@ def contactus():
     st.subheader("CONTACT US")
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
     contactinfo = """
+    Email us:
+    General Inquiries: info@medinfohub.com
+    Support: support@medinfohub.com
+
+    Follow us on Social Media Platforms:
     Facebook: facebook.com/medinfohub
     Twitter: twitter.com/medinfohub
     Instagram: instagram.com/medinfohub
