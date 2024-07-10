@@ -393,8 +393,8 @@ with tab2:
     col2.title("Instructions:")
     content_inst = """
     (1) Enter a Keyword to Search<br>(2) Choose Keyword Search Method<br>(3) Choose Focus Area (Applicable for Exact Word Search Method<br>(4) Retrieve Information about Focus Area<br><br>
-    """
-    col2.markdown(content_inst+annotated_text(("Focus Area", ""),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.",), unsafe_allow_html=True)
+    """,annotated_text(("Focus Area", ""),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.",)
+    col2.markdown(content_inst, unsafe_allow_html=True)
 
 
     annotated_text(("Focus Area", ""),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.",)
