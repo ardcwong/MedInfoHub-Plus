@@ -44,8 +44,7 @@ collection = client_chromadb.get_or_create_collection(
     metadata={"hnsw:space": "cosine"}
 )
 
-st.write(collection.count())
-st.write(collection.get(ids=['1000']))
+
 
 def return_best_drug(user_input, collection, n_results=1):
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
@@ -178,6 +177,9 @@ with tab3:
     if query_text:
         formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
         st.write(formatted_output)
+
+    st.write(collection.count())
+    st.write(collection.get(ids=['1000']))
 
 
 
