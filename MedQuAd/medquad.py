@@ -379,7 +379,7 @@ with tab1:
     st.markdown(content, unsafe_allow_html=True)
     st.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
 with tab2:
-   st.subheader("Instructions:")
+    st.subheader("Instructions:")
     content_inst = """
     (1) Enter a Keyword to Search \n(2) Choose Keyword Search Method \n(3) Choose Focus Area (Applicable for Exact Word Search Method \n(4) Retrieve Information about Focus Area
     """
