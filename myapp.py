@@ -19,15 +19,15 @@ ROLES = ["", "Patient", "Health Care Provider", "Neither"]
 
 def login():
     st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
-    col1, col2,col3 = st.columns([1,2,1])
-    col2.image('data/MIHv2.png')
-    col2.image('data/art.png')
-    st.header("Log in")
-    role = st.selectbox("Choose your role", ROLES)
+    col1, col2 = st.columns([1,2])
+    col1.image('data/MIHv2.png')
+    col1.image('data/art.png')
+    # st.header("Log in")
+    role = col2.selectbox("Choose your role", ROLES)
 
-    if st.button("Log in"):
-        st.session_state.role = role
-        st.rerun()
+    if col2.button("Enter MedInfoHub+"):
+        col2.session_state.role = role
+        col2.rerun()
 
 
 def logout():
@@ -63,7 +63,7 @@ def medinfohubplus():
     
 role = st.session_state.role
 
-logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
+logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
 medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="📱", default=(role == role))
 
@@ -132,7 +132,7 @@ if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
 #     page_dict["Admin"] = admin_pages
 
 if len(page_dict) > 0:
-    pg = st.navigation({"Account": account_pages} | page_dict)
+    pg = st.navigation({"Session": account_pages} | page_dict)
 else:
     pg = st.navigation([st.Page(login)]) #defaults to login page if no acceptable role is selected
 
