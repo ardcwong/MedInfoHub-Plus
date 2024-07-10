@@ -26,8 +26,8 @@ def login():
     role = col2.selectbox("Choose your role", ROLES)
 
     if col2.button("Enter MedInfoHub+"):
-        col2.session_state.role = role
-        col2.rerun()
+        st.session_state.role = role
+        st.rerun()
 
 
 def logout():
