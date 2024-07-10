@@ -136,6 +136,42 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
     return formatted_output
 
+
+#-------------MAIN PROGRAM---------------#
+## GENERAL INFO AND INSTRUCTIONS
+st.subheader("Welcome to ⚕️HealthPlus!")
+
+tab1, tab2 = st.tabs(["About PharmaPal    ", "How to Use    "])
+with tab1:
+    col1, col2 = st.columns([1,1])
+    col1.image('data/art.png')
+    col2.write("")
+    col2.write("")
+    col2.write("")
+    content = """
+<b style='color:#0C3974;'>HealthPlus</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
+"""
+    col2.markdown(content, unsafe_allow_html=True)
+    col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
+with tab2:
+    col1, col2 = st.columns([1,1])
+    col1.image('data/art.png')
+    col2.write("")
+    col2.write("")
+    col2.write("")
+    col2.title("Instructions:")
+    content_inst = """
+    (1) Enter a Keyword to Search<br>(2) Choose Keyword Search Method<br>(3) Choose Focus Area (Applicable for Exact Word Search Method<br>(4) Retrieve Information about Focus Area<br><br>Focus Area: A category or specific subject within a broader topic that helps refine and target the search results more effectively.
+    """
+    col2.markdown(content_inst, unsafe_allow_html=True)
+
+search = st.tabs(["Search"])
+a, b, c = st.columns([1,1,1])
+
+
+
+
+
 st.write(st.session_state.role)
 
 query_text = st.text_input("Please enter a medical condition or drug name: ")
@@ -145,6 +181,6 @@ user_profile = st.session_state.role # patient or healthcare_provider
 if query_text:
     formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
     st.write(formatted_output)
-    st.write(keywords)
+
 
 
