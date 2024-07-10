@@ -30,7 +30,7 @@ SKLLMConfig.set_openai_key(api_key)
 st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
 
 # disable?
-x = "No"
+x = "Yes"
 
 # @st.experimental_dialog("Cast your vote")
 # def vote(item):
