@@ -393,7 +393,7 @@ with tab2:
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
 # st.write("Instructions:", help = "(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area")
 
-search = st.tabs(["Search"])
+search = st.tabs([":mag: Search"])
 # with search:
 a, b, c = st.columns([1,1,1])
 
