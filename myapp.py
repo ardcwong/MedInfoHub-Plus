@@ -52,9 +52,9 @@ def contactus():
 def medinfohubplus():
     st.title('MedInfoHub+')
     if st.button('HealthPlus'):
-        st.switch_page("medquad.py")
+        st.switch_page("MedQuAd/medquad.py")
     if st.button('PharmaPal'):
-        st.switch_page("fda_app.py")
+        st.switch_page("FDA/fda_app.py")
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
     # st.subheader("CONTACT US")
