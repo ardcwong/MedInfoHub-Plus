@@ -79,7 +79,7 @@ def extract_keywords(drug_document):
             messages=[
                 {"role": "system", "content": "You are a medical assistant bot tasked to extract keywords from the retrieved drug information."},
                 {"role": "assistant", "content": f"This is the retrieved information about the drug: {json.dumps(drug_document)}"},
-                {"role": "user", "content": f"Extract the five most crucial keywords from the retrieved drug information. Extracted keywords must be listed in a comma-separated list.{json.dumps(drug_document)}"}
+                {"role": "user", "content": "Extract the five most crucial keywords from the retrieved drug information. Extracted keywords must be listed in a comma-separated list."}
             ]
         )
         top_keywords = response.choices[0].message.content
@@ -134,7 +134,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     keywords = extract_keywords(relevant_drug_document)
 
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
-    return formatted_output, keywords
+    return formatted_output
 
 st.write(st.session_state.role)
 
