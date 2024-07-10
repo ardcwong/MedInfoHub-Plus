@@ -377,23 +377,29 @@ with tab1:
     col1.image('data/art.png')
     col2.write("")
     col2.write("")
+    col2.write("")
     content = """
 <b style='color:#0C3974;'>HealthPlus</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
 """
     col2.markdown(content, unsafe_allow_html=True)
     col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
 with tab2:
-    st.subheader("Instructions:")
+    col1, col2 = st.columns([1,1])
+    col1.image('data/art.png')
+    col2.write("")
+    col2.write("")
+    col2.write("")
+    col2.title("Instructions:")
     content_inst = """
     (1) Enter a Keyword to Search<br>(2) Choose Keyword Search Method<br>(3) Choose Focus Area (Applicable for Exact Word Search Method<br>(4) Retrieve Information about Focus Area
     """
-    st.markdown(content_inst, unsafe_allow_html=True)
+    col2.markdown(content_inst, unsafe_allow_html=True)
 # inst1, inst2 = st.columns([1,10])
 # inst1.caption("Instructions:")
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
 # st.write("Instructions:", help = "(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area")
 
-search = st.tabs([":mag: Search"])
+search = st.tabs(["Search"])
 # with search:
 a, b, c = st.columns([1,1,1])
 
