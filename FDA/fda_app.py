@@ -133,8 +133,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     keywords = extract_keywords(relevant_drug_document)
 
     formatted_output = f"\nSummary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}"
-    return formatted_output, top_result_id
-
+    return formatted_output
 
 #-------------MAIN PROGRAM---------------#
 ## GENERAL INFO AND INSTRUCTIONS
