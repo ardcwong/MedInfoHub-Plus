@@ -179,7 +179,7 @@ with tab3:
         st.write(formatted_output)
         st.write(top_result_id)
     # st.write(collection.count())
-    st.write(collection.get(ids=[str(top_result_id)]))
+        st.write(collection.get(ids=[str(top_result_id)]))
 
 
 
