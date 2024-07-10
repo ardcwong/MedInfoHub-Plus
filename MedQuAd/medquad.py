@@ -397,7 +397,7 @@ with tab2:
     col2.markdown(content_inst, unsafe_allow_html=True)
 
 
-    annotated_text(("Focus Area"),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.")
+    annotated_text(("Focus Area", ""),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.",)
     
 # inst1, inst2 = st.columns([1,10])
 # inst1.caption("Instructions:")
