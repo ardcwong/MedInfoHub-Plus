@@ -14,7 +14,7 @@ st.set_page_config(layout='wide')
 if "role" not in st.session_state:
     st.session_state.role = None
 
-ROLES = ["", "Patient", "Healthcare Provider", "Neither"]
+ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
 
 def login():
@@ -24,8 +24,8 @@ def login():
     # col1.image('data/art.png')
     # st.header("Log in")
     col2.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
-    
-    role = col2.selectbox("Choose your role", ROLES)
+    role = col2.radio("Choose your role", ROLES)
+    # role = col2.selectbox("Choose your role", ROLES)
 
     if col2.button("Enter MedInfoHub+"):
         st.session_state.role = role
@@ -133,9 +133,9 @@ data_apps = [medquad, fda_app]
 
 page_dict = {}
 
-if st.session_state.role in ["Patient", "Healthcare Provider", "Neither"]:
+if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
-if st.session_state.role in ["Patient", "Healthcare Provider", "Neither"]:
+if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["MedInfoHub+"] = about_us_pages
 
 # if st.session_state.role in ["Responder", "Admin"]:
