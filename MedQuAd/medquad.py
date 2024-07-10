@@ -15,6 +15,7 @@ import subprocess
 import time
 import numpy as np
 import ast #built in
+from annotated_text import annotated_text
 # Custom function to download NLTK data
 nltk.download('punkt', quiet=True)
 nltk.download('wordnet', quiet=True)
@@ -394,6 +395,10 @@ with tab2:
     (1) Enter a Keyword to Search<br>(2) Choose Keyword Search Method<br>(3) Choose Focus Area (Applicable for Exact Word Search Method<br>(4) Retrieve Information about Focus Area<br><br>Focus Area: A category or specific subject within a broader topic that helps refine and target the search results more effectively.
     """
     col2.markdown(content_inst, unsafe_allow_html=True)
+
+
+    annotated_text(("Focus Area"),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.")
+    
 # inst1, inst2 = st.columns([1,10])
 # inst1.caption("Instructions:")
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
