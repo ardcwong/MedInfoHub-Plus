@@ -141,7 +141,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
 ## GENERAL INFO AND INSTRUCTIONS
 st.subheader("Welcome to ⚕️HealthPlus!")
 
-tab1, tab2 = st.tabs(["About the App    ", "How to Use    ","Ask PharmaPal"])
+tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","Ask PharmaPal"])
 with tab1:
     col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
