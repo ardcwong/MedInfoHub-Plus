@@ -18,11 +18,13 @@ ROLES = ["", "Patient", "Health Care Provider", "Neither"]
 
 
 def login():
-    st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
     col1, col2, col3 = st.columns([1,3,1])
+    
     col2.image('data/MIHv2.png')
     # col1.image('data/art.png')
     # st.header("Log in")
+    col2.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
+    
     role = col2.selectbox("Choose your role", ROLES)
 
     if col2.button("Enter MedInfoHub+"):
