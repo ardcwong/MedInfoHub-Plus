@@ -54,9 +54,9 @@ def medinfohubplus():
     hp = st.button('HealthPlus')
     pp = st.button('PharmaPal')
     if hp:
-        medquad
+        medquad.run()
     if pp:
-        fda_app
+        fda_app.run()
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
     # st.subheader("CONTACT US")
