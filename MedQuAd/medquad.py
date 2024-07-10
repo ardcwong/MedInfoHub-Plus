@@ -372,7 +372,7 @@ def telemedicine():
 st.subheader("Welcome to HealthPlus!")
 inst1, inst2 = st.columns([1,10])
 inst1.caption("Instructions:")
-inst2.info("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area, (4) Retrieve Information about Focus Area""")
+inst2.info.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area, (4) Retrieve Information about Focus Area""")
 
 
 a, b, c = st.columns([1,1,1])
