@@ -65,17 +65,16 @@ role = st.session_state.role
 
 logout_page = st.Page(logout, title="Log out", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
-medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="📱")
+medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="📱", default=(role == role))
 
 
 # settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
-request_1 = st.Page(
+medquad = st.Page(
     "MedQuAd/medquad.py",
     title="HealthPlus",
     icon="⚕️",
-    default=(role == role),
 )
-request_2 = st.Page(
+fda_app = st.Page(
     "FDA/fda_app.py", title="PharmaPal", icon="👩🏻‍⚕️"
 )
 
@@ -100,7 +99,7 @@ request_2 = st.Page(
 # admin_2 = st.Page("admin/admin_2.py", title="Admin 2", icon=":material/security:")
 about_us_pages = [medinfohubplus_info,about_us]
 account_pages = [logout_page]
-request_pages = [request_1, request_2]
+data_apps = [medquad, fda_app]
 
 # respond_pages = [respond_1, respond_2]
 # admin_pages = [admin_1, admin_2]
@@ -123,9 +122,10 @@ request_pages = [request_1, request_2]
 
 page_dict = {}
 if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
-    page_dict["Application"] = request_pages
-if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
     page_dict["MedInfoHub+"] = about_us_pages
+if st.session_state.role in ["Patient", "Health Care Provider", "Neither"]:
+    page_dict["Application"] = data_apps
+
 # if st.session_state.role in ["Responder", "Admin"]:
 #     page_dict["Respond"] = respond_pages
 # if st.session_state.role == "Admin":
