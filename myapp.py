@@ -74,10 +74,10 @@ medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="
 medquad = st.Page(
     "MedQuAd/medquad.py",
     title="HealthPlus",
-    icon="⚕️",
+    icon="➕",
 )
 fda_app = st.Page(
-    "FDA/fda_app.py", title="PharmaPal", icon="➕"
+    "FDA/fda_app.py", title="PharmaPal", icon="⚕️"
 )
 
 # 👩🏻‍⚕️
