@@ -44,12 +44,12 @@ def contactus():
     st.write('For any concerns or suggestions, you may reach out to us through the following:')
     contactinfo = """
     Email us:
-    General Inquiries: info@medinfohub.com
-    Support: support@medinfohub.com
+    General Inquiries: info@medinfohub.com<br>
+    Support: support@medinfohub.com<br>
 
     Follow us on Social Media Platforms:
-    Facebook: facebook.com/medinfohub
-    Twitter: twitter.com/medinfohub
+    Facebook: facebook.com/medinfohub<br>
+    Twitter: twitter.com/medinfohub<br>
     Instagram: instagram.com/medinfohub
     """
     # Display formatted text with st.markdown
