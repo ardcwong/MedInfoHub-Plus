@@ -377,7 +377,7 @@ inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method
 
 a, b, c = st.columns([1,1,1])
 
-keyword = a.text_input("Enter a keyword to search:",help = 'Exact Word: Returns every focus area' )
+keyword = a.text_input("Enter a keyword to search:", help = 'Type the keyword you want to search for. (e.g. headache, stomach, cancer, psoriasis, ...)' )
 st.title(keyword)
 if keyword:
 
@@ -389,7 +389,7 @@ if keyword:
         filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
         focus_area_choose = c.selectbox(
                 "Choose (1) from matched Focus Area/s",
-                filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
+                filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = 'Select one of the focus areas that match your search keyword. This is only applicable for Exact Word search method')
         if focus_area_choose:
             focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
             select_questions(filtered_df)
