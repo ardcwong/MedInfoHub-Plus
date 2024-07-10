@@ -178,8 +178,8 @@ with tab3:
         formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
         st.write(formatted_output)
         st.write(top_result_id)
-    st.write(collection.count())
-    st.write(collection.get(ids=['1000']))
+    # st.write(collection.count())
+    st.write(collection.get(ids=[str(top_result_id)]))
 
 
 
