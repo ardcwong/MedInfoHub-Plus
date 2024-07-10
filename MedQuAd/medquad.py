@@ -325,9 +325,7 @@ def telemedicine():
     text = """
     For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
 
-    <b>NowServing</b>: https://nowserving.ph/ \n
-    <b>Konsulta MD</b>: https://konsulta.md/ \n
-    <b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
+    <b>NowServing</b>: https://nowserving.ph/<br><b>Konsulta MD</b>: https://konsulta.md/<br><b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
     """
 
     # Display formatted text with st.markdown
