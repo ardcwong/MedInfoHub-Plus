@@ -16,13 +16,13 @@ if "role" not in st.session_state:
 
 ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
-@st.experimental_dialog("Important Reminder",width="large")
-def vote():
-    st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
-    reason = st.text_input("Because...")
-    if st.button("Submit"):
-        st.session_state.vote = {"reason": reason}
-        st.rerun()
+# @st.experimental_dialog("Important Reminder",width="large")
+# def vote():
+#     st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
+#     reason = st.text_input("Because...")
+#     if st.button("Submit"):
+#         st.session_state.vote = {"reason": reason}
+#         st.rerun()
             #     else:
             # f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
         
@@ -32,16 +32,12 @@ def login():
     col2.image('data/MIHv2.png')
     # col1.image('data/art.png')
     # st.header("Log in")
-    col2.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
+    col2.markdown('<p style="font-size: 18px; color: black;"><strong> While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here. </strong></p>', unsafe_allow_html=True)
     role = col2.radio("Choose your role", ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
-    if "vote" not in st.session_state:
-            vote()
-    else:
-        col2.button("Enter MedInfoHub+")
-
-        st.session_state.role = role
-        st.rerun()
+    col2.button("Enter MedInfoHub+")
+    st.session_state.role = role
+    st.rerun()
 
 
 def logout():
