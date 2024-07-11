@@ -112,7 +112,7 @@ def extract_keywords(text):
                 model='gpt-3.5-turbo',
                 messages=[
                     {"role": "system", "content": "You are a medical assistant bot tasked to extract keywords from the retrieved drug information."},
-                    {"role": "assistant", "content": f"This is the retrieved information about the drug: {json.dumps(drug_document)}"},
+                    {"role": "assistant", "content": f"This is the retrieved information about the drug: {text}"},
                     {"role": "user", "content": "Extract the five most crucial keywords from the retrieved drug information. Extracted keywords must be listed in a comma-separated list."}
                 ]
             )
