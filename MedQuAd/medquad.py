@@ -354,13 +354,13 @@ with tab3:
         filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
 
         focus_area_choose = c.selectbox(
-                        "Choose (1) from matched Focus Area/s",
-                        filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = 'Select one of the focus areas that match your search keyword. This is only applicable for Exact Word search method.')
+            "Choose (1) from matched Focus Area/s",
+            filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = 'Select one of the focus areas that match your search keyword. This is only applicable for Exact Word search method.')
    
     if st.button("Search"):
     
         if keyword:
-           if choose_method == 'Exact Word':
+            if choose_method == 'Exact Word':
             
                 if focus_area_choose:
                     focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
