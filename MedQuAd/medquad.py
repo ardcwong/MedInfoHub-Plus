@@ -349,19 +349,19 @@ with tab3:
     choose_method = b.selectbox(
                 "Choose Keyword Search Method",
                 ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
-   
+    search = st.button("Search")
     if choose_method == 'Exact Word':
         filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
 
         focus_area_choose = c.selectbox(
             "Choose (1) from matched Focus Area/s",
             filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = 'Select one of the focus areas that match your search keyword. This is only applicable for Exact Word search method.')
-   
-    if st.button("Search"):
+
+    if search: 
     
-        if keyword.empty:
-            st.info("Please enter a keyword to search.")
-        else:
+        if keyword:
+            
+        
             if choose_method == 'Exact Word':
             
                 if focus_area_choose:
@@ -379,6 +379,6 @@ with tab3:
                 focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
                 select_questions(filtered_df)
                 telemedicine()
-        
-        
+        else:
+            st.info("Please enter a keyword to search.")
             
