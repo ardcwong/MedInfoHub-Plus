@@ -232,12 +232,11 @@ if search:
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
-            (df["Drug_Name"]), help = f'Drug Names related to {query_text}')
-
-    if choose:
-        Retrieving Resu
-    st.write(df.iloc[0]["Details"])
-    keywords = extract_keywords(df.iloc[0]["Details"])
+            (drug_names), help = f'Drug Names related to {query_text}')
+    selected_drug_details = df[df["Drug_Name"] == choose]
+    
+    st.write(selected_drug_details)
+    keywords = extract_keywords(selected_drug_details["Details"])
     st.write(keywords)
 
         
