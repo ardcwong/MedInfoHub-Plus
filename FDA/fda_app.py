@@ -191,8 +191,8 @@ with tab3:
         df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
         drug_names = df["Drug_Name"].tolist()
         choose = b.selectbox(
-                "Results",
-                (drug_names), help = f'Drug Names related to{query_text}')
+                f'Results Related to {query_text}',
+                (drug_names), help = f'Drug Names related to {query_text}')
 
 
         
