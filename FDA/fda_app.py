@@ -257,9 +257,9 @@ if st.session_state.options_selected:
     st.write("You selected:", st.session_state.options_selected)
 
 
-search = st.button("Search")
-st.session_state.keep = keep_query(search)
-st.write(st.session_state.keep)
+# search = st.button("Search")
+# st.session_state.keep = keep_query(search)
+# st.write(st.session_state.keep)
 # if st.session_state.keep:
 #     top_results = return_best_drugs(st.session_state.keep, collection)
 
