@@ -176,7 +176,7 @@ with tab3:
     # else:
     #     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
     
-    a, b, c = st.columns([1,1,1])
+    a, b = st.columns([1,2])
        
     st.write(st.session_state.role)
     
@@ -192,7 +192,7 @@ with tab3:
         drug_names = df["Drug_Name"].tolist()
         choose = b.selectbox(
                 "Results",
-                (drug_names), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
+                (drug_names), help = f'Drug Names related to{query_text}')
 
 
         
