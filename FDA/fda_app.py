@@ -177,7 +177,7 @@ with tab2:
     #     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
 with st.container(border = True):  
     aa, bb, cc = st.columns([1,3,1])
-    bb.title("Ask ⚕️PharmaPal")
+    bb.title("h1 {text-align: center;}Ask ⚕️PharmaPal")
     a, b = st.columns([1,2])
        
     st.write(st.session_state.role)
