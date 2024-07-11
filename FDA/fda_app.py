@@ -224,9 +224,7 @@ query_text = a.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
-top_results = return_best_drugs(query_text, collection)
-df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-drug_names = df["Drug_Name"].tolist()
+
 
 # Initialize session state variables
 if "search_clicked" not in st.session_state:
@@ -238,6 +236,9 @@ if "options_selected" not in st.session_state:
 # Search button
 if st.button("Search"):
     st.session_state.search_clicked = True
+    top_results = return_best_drugs(query_text, collection)
+    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+    drug_names = df["Drug_Name"].tolist()
 
 # Display the select box if the search button is clicked
 if st.session_state.search_clicked:
