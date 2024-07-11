@@ -234,43 +234,43 @@ if query_text:
     selected_drug_details = df[df["Drug_Name"] == choose]
 
 
-# Initialize session state variables
-if "search_clicked" not in st.session_state:
-    st.session_state.search_clicked = False
-if "options_selected" not in st.session_state:
-    st.session_state.options_selected = []
+# # Initialize session state variables
+# if "search_clicked" not in st.session_state:
+#     st.session_state.search_clicked = False
+# if "options_selected" not in st.session_state:
+#     st.session_state.options_selected = []
 
 
-# Search button
-if st.button("Search"):
-    st.session_state.search_clicked = True
+# # Search button
+# if st.button("Search"):
+#     st.session_state.search_clicked = True
 
 
-# Display the select box if the search button is clicked
-if st.session_state.search_clicked:
-    top_results = return_best_drugs(query_text, collection)
-    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    drug_names = df["Drug_Name"].tolist()
-    choose = b.selectbox(
-            f'Results Related to "***{query_text}***"',
-            (drug_names), help = f'Any Info', index = None)
-    selected_drug_details = df[df["Drug_Name"] == choose]
-    # selected_options = st.multiselect("Select up to 3 options", selectbox_items, max_selections=3)
+# # Display the select box if the search button is clicked
+# if st.session_state.search_clicked:
+#     top_results = return_best_drugs(query_text, collection)
+#     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+#     drug_names = df["Drug_Name"].tolist()
+#     choose = b.selectbox(
+#             f'Results Related to "***{query_text}***"',
+#             (drug_names), help = f'Any Info', index = None)
+#     selected_drug_details = df[df["Drug_Name"] == choose]
+#     # selected_options = st.multiselect("Select up to 3 options", selectbox_items, max_selections=3)
 
-    # Save the selected options to the session state
-    st.session_state.options_selected = choose
-    if choose:
-        view = st.button("View")
-        if view: 
-            st.write(selected_drug_details)
-            keywords = extract_keywords(selected_drug_details["Details"])
-            drug_name = list(selected_drug_details["Drug_Name"])
-            drug_document = list(selected_drug_details["Details"])
+#     # Save the selected options to the session state
+#     st.session_state.options_selected = choose
+#     if choose:
+#         view = st.button("View")
+#         if view: 
+#             st.write(selected_drug_details)
+#             keywords = extract_keywords(selected_drug_details["Details"])
+#             drug_name = list(selected_drug_details["Drug_Name"])
+#             drug_document = list(selected_drug_details["Details"])
     
         
-            # st.write(keywords)
-            summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-            st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+#             # st.write(keywords)
+#             summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+#             st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
 
 
 
