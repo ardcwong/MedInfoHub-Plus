@@ -216,8 +216,8 @@ st.write(st.session_state.role)
 def keep_query(search):
     if search:
         query_text_keep = query_text
-        st.sessionstate.keep = query_text_keep
-        return st.sessionstate.keep 
+        st.session_state.keep = query_text_keep
+        return st.session_state.keep 
 
 query_text = a.text_input("Please enter a medical condition or drug name: ")
 # Example usage
@@ -225,8 +225,8 @@ user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
 search = st.button("Search")
-st.sessionstate.keep = keep_query(search)
-st.write(st.sessionstate.keep)
+st.session_state.keep = keep_query(search)
+st.write(st.session_state.keep)
 if query_text_keep:
     top_results = return_best_drugs(query_text_keep, collection)
 
