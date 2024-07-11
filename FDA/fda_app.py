@@ -175,7 +175,7 @@ with tab2:
     #     vote()    
     # else:
     #     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
-with st.container:  
+with st.container(border = True):  
     aa, bb, cc = st.columns([1,3,1])
     bb.title("Ask ⚕️PharmaPal")
     a, b = st.columns([1,2])
