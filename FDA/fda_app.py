@@ -213,47 +213,48 @@ st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow
 a, b = st.columns([1,2])
    
 st.write(st.session_state.role)
-
-query_text = a.text_input("Please enter a medical condition or drug name: ")
-# Example usage
-user_profile = st.session_state.role # patient or healthcare_provider
-# on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
-
 def keep_query():
     search = st.button("Search")
     if search:
         query_text_keep = query_text
     return query_text_keep 
 
-query_text_keep = keep_query()
-    if query_text_keep:
-        top_results = return_best_drugs(query_text_keep, collection)
-    
-         
-        # st.write(top_results)
-        df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-        
-        
-        drug_names = df["Drug_Name"].tolist()
-        choose = b.selectbox(
-                f'Results Related to "***{query_text}***"',
-                (drug_names), help = f'Any Info', index = None)
-        selected_drug_details = df[df["Drug_Name"] == choose]
+query_text = a.text_input("Please enter a medical condition or drug name: ")
+# Example usage
+user_profile = st.session_state.role # patient or healthcare_provider
+# on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
+
+query_text_keep = keep_query()
+
+if query_text_keep:
+    top_results = return_best_drugs(query_text_keep, collection)
+
+     
+    # st.write(top_results)
+    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     
-        if choose:
-            view = st.button("View")
-            if view: 
-                st.write(selected_drug_details)
-                keywords = extract_keywords(selected_drug_details["Details"])
-                drug_name = list(selected_drug_details["Drug_Name"])
-                drug_document = list(selected_drug_details["Details"])
+    
+    drug_names = df["Drug_Name"].tolist()
+    choose = b.selectbox(
+            f'Results Related to "***{query_text}***"',
+            (drug_names), help = f'Any Info', index = None)
+    selected_drug_details = df[df["Drug_Name"] == choose]
+
+
+    if choose:
+        view = st.button("View")
+        if view: 
+            st.write(selected_drug_details)
+            keywords = extract_keywords(selected_drug_details["Details"])
+            drug_name = list(selected_drug_details["Drug_Name"])
+            drug_document = list(selected_drug_details["Details"])
+    
         
-            
-                # st.write(keywords)
-                summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-                st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
-    
+            # st.write(keywords)
+            summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+            st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+
     # if query_text:
     #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
     #     formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
