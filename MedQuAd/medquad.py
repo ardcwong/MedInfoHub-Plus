@@ -349,7 +349,7 @@ with tab3:
     choose_method = b.selectbox(
                 "Choose Keyword Search Method",
                 ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
-    search = st.button("Search")
+    # search = st.button("Search")
     if choose_method == 'Exact Word':
         filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
 
@@ -357,28 +357,26 @@ with tab3:
             "Choose (1) from matched Focus Area/s",
             filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = 'Select one of the focus areas that match your search keyword. This is only applicable for Exact Word search method.')
 
-    if search: 
+    # if search: 
     
-        if keyword:
-            
+    if keyword:
+        if choose_method == 'Exact Word':
         
-            if choose_method == 'Exact Word':
-            
-                if focus_area_choose:
-                    focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
-                    select_questions(filtered_df)
-                    # doctor_recommendation = specialty_doctor_recommendation(summary)
-                    # column2.markdown(doctor_recommendation)
-                    telemedicine()
-                else:
-                    st.info("Please choose a focus area.")
-            elif choose_method == 'Best Match':
-                # # Filter questions containing the keyword
-                # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-                best_match_focus_area = search_keyword(keyword, df['focus_area'])
-                focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+            if focus_area_choose:
+                focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
                 select_questions(filtered_df)
+                # doctor_recommendation = specialty_doctor_recommendation(summary)
+                # column2.markdown(doctor_recommendation)
                 telemedicine()
-        else:
-            st.info("Please enter a keyword to search.")
+            else:
+                st.info("Please choose a focus area.")
+        elif choose_method == 'Best Match':
+            # # Filter questions containing the keyword
+            # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+            best_match_focus_area = search_keyword(keyword, df['focus_area'])
+            focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+            select_questions(filtered_df)
+            telemedicine()
+    else:
+        st.info("Please enter a keyword to search.")
             
