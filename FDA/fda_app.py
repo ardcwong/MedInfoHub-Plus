@@ -213,19 +213,17 @@ st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow
 a, b = st.columns([1,2])
    
 st.write(st.session_state.role)
-def keep_query():
-    search = st.button("Search")
+def keep_query(search):
     if search:
         query_text_keep = query_text
-    else: None
-    return query_text_keep 
+        return query_text_keep 
 
 query_text = a.text_input("Please enter a medical condition or drug name: ")
 # Example usage
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
-
+search = st.button("Search")
 query_text_keep = keep_query()
 
 if query_text_keep:
