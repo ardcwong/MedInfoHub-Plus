@@ -49,18 +49,18 @@ collection = client_chromadb.get_or_create_collection(
     embedding_function=openai_ef,
     metadata={"hnsw:space": "cosine"}
 )
-
-query_result = collection.query(query_texts=["zombie"], n_results=10)
-flattened_data = {
-    'ids': query_result['ids'][0],
-    'openfda_generic_name': [item['openfda_generic_name'] for item in query_result['metadatas'][0]],
-    'distances': query_result['distances'][0],
-    'documents': [item['document'] for item in query_result['metadatas'][0]],
-}
-
-flattened_data = pd.DataFrame(flattened_data)
-
-st.write(flattened_data)
+def return_best_drugs(user_input, collection, n_results=5):
+    query_result = collection.query(query_texts=["zombie"], n_results=10)
+    flattened_data = {
+        'ids': query_result['ids'][0],
+        'openfda_generic_name': [item['openfda_generic_name'] for item in query_result['metadatas'][0]],
+        'distances': query_result['distances'][0],
+        'documents': [item['document'] for item in query_result['metadatas'][0]],
+    }
+    
+    flattened_data = pd.DataFrame(flattened_data)
+    return flattened_data
+# st.write(flattened_data)
 
 # def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
 #     query_result = collection.query(query_texts=[user_input], n_results=n_results)
@@ -239,7 +239,7 @@ user_profile = st.session_state.role # patient or healthcare_provider
 
 if query_text:
     top_results = return_best_drugs(query_text, collection)
-    # # st.write(top_results)
+    st.write(top_results)
     # df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     # st.write(df)
     # drug_names = df["Drug_Name"].tolist()
