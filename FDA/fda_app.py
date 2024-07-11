@@ -226,7 +226,7 @@ user_profile = st.session_state.role # patient or healthcare_provider
 
 if query_text:
     top_results = return_best_drugs(query_text, collection)
-    st.write(top_results)
+    # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     st.write(df)
     drug_names = df["Drug_Name"].tolist()
