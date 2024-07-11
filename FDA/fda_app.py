@@ -33,6 +33,9 @@ client = OpenAI(api_key=api_key)
 CHROMA_DATA_PATH = 'fda_drugs'
 COLLECTION_NAME = "fda_drugs_embeddings"
 
+st.markdown('<p style="font-size: 18px; color: red;"><strong>:warning: PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. :warning:</strong></p>', unsafe_allow_html=True)
+
+
 # Initialize ChromaDB client
 client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
 openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
