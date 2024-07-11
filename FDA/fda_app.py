@@ -100,7 +100,7 @@ def disable_openai(x):
         disable = 0
     return disable
 
-def extract_keywords(text):
+def extract_keywords(drug_document):
     x = "No"
 
     disable = disable_openai(x)
@@ -112,7 +112,7 @@ def extract_keywords(text):
                 model='gpt-3.5-turbo',
                 messages=[
                     {"role": "system", "content": "You are a medical assistant bot tasked to extract keywords from the retrieved drug information."},
-                    {"role": "assistant", "content": f"This is the retrieved information about the drug: {text}"},
+                    {"role": "assistant", "content": f"This is the retrieved information about the drug: {drug_document}"},
                     {"role": "user", "content": "Extract the five most crucial keywords from the retrieved drug information. Extracted keywords must be listed in a comma-separated list."}
                 ]
             )
@@ -223,8 +223,7 @@ search = st.button("Search")
 if search:
     top_results = return_best_drugs(query_text, collection)
 
-    
-    
+     
     # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     
@@ -237,12 +236,9 @@ if search:
     
     st.write(selected_drug_details)
     keywords = extract_keywords(selected_drug_details["Details"])
-    st.write(keywords)
-
-        
-        
-        # summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
-        # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+    # st.write(keywords)
+    summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
+    st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
     
     # if query_text:
     #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
