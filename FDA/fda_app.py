@@ -23,7 +23,7 @@ import numpy as np
 import ast #built in
 import chromadb
 from chromadb.utils import embedding_functions
-
+from annotated_text import annotated_text
 
 api_key = st.secrets['api_key']
 openai.api_key = api_key
@@ -191,7 +191,7 @@ with tab3:
         df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
         drug_names = df["Drug_Name"].tolist()
         choose = b.selectbox(
-                f'Results Related to {query_text}',
+                f'Results Related to {annotated_text(query_text,"")}',
                 (drug_names), help = f'Drug Names related to {query_text}')
 
 
