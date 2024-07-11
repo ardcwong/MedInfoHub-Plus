@@ -217,6 +217,7 @@ def keep_query():
     search = st.button("Search")
     if search:
         query_text_keep = query_text
+    else: None
     return query_text_keep 
 
 query_text = a.text_input("Please enter a medical condition or drug name: ")
