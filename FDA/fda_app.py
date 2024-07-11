@@ -33,7 +33,7 @@ client = OpenAI(api_key=api_key)
 CHROMA_DATA_PATH = 'fda_drugs'
 COLLECTION_NAME = "fda_drugs_embeddings"
 
-st.markdown('<p style="font-size: 18px; color: red;"><strong>:warning: PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. :warning:</strong></p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. ⚠️</strong></p>', unsafe_allow_html=True)
 
 
 # Initialize ChromaDB client
@@ -166,9 +166,21 @@ with tab2:
     col2.markdown(content_inst, unsafe_allow_html=True)
 
 with tab3:
+    @st.experimental_dialog("Important Reminder",width="large")
+    def vote():
+        st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
+        reason = st.text_input("Because...")
+        if st.button("Submit"):
+            st.session_state.vote = {"reason": reason}
+            st.rerun()
+    
+    if "vote" not in st.session_state:
+        vote()    
+    else:
+        f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
+    
     a, b, c = st.columns([1,1,1])
-    
-    
+       
     st.write(st.session_state.role)
     
     query_text = st.text_input("Please enter a medical condition or drug name: ")
