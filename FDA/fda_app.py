@@ -227,7 +227,7 @@ user_profile = st.session_state.role # patient or healthcare_provider
 search = st.button("Search")
 st.session_state.keep = keep_query(search)
 st.write(st.session_state.keep)
-if query_text_keep:
+if st.session_state.keep:
     top_results = return_best_drugs(query_text_keep, collection)
 
      
