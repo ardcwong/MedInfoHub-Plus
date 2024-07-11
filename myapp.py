@@ -29,6 +29,21 @@ def login():
 
     if col2.button("Enter MedInfoHub+"):
         st.session_state.role = role
+
+        @st.experimental_dialog("Important Reminder",width="large")
+        def vote():
+            st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
+            reason = st.text_input("Because...")
+            if st.button("Submit"):
+                st.session_state.vote = {"reason": reason}
+                st.rerun()
+        
+        if tab3:
+            vote()    
+        else:
+            f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
+
+        
         st.rerun()
 
 
