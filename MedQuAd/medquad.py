@@ -359,7 +359,7 @@ with tab3:
    
     if st.button("Search"):
     
-        if not in keyword:
+        if keyword.empty:
             st.info("Please enter a keyword to search.")
         else:
             if choose_method == 'Exact Word':
