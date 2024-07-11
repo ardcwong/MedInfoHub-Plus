@@ -50,7 +50,7 @@ collection = client_chromadb.get_or_create_collection(
     metadata={"hnsw:space": "cosine"}
 )
 
-query_result = collection.query(query_texts=["panic attack"], n_results=10)
+query_result = collection.query(query_texts=["zombie"], n_results=10)
 flattened_data = {
     'ids': query_result['ids'][0],
     'openfda_generic_name': [item['openfda_generic_name'] for item in query_result['metadatas'][0]],
@@ -70,7 +70,7 @@ def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
         return []  # No results found
 
     top_results = []
-
+    
     for i in range(min(n_results, len(query_result['ids'][0]))):  # UPDATED
         result_id = query_result['ids'][0][i]
         result_metadata = query_result['metadatas'][0][i]
