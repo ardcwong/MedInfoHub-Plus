@@ -138,7 +138,7 @@ def generate_user_conversational_response(drug_name, drug_document, user_profile
 ## GENERAL INFO AND INSTRUCTIONS
 st.subheader("Welcome to ⚕️PharmaPal!")
 
-tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","Ask PharmaPal"])
+tab1, tab2= st.tabs(["About the App    ", "How to Use    "])
 with tab1:
     col1, col2 = st.columns([1,1])
     col1.image('data/Pharma.png')
@@ -162,7 +162,7 @@ with tab2:
     """
     col2.markdown(content_inst, unsafe_allow_html=True)
 
-with tab3:
+# with tab3:
     # @st.experimental_dialog("Important Reminder",width="large")
     # def vote():
     #     st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
@@ -175,7 +175,9 @@ with tab3:
     #     vote()    
     # else:
     #     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
-    
+with st.container:  
+    aa, bb, cc = st.columns([1,3,1])
+    bb.title("Ask ⚕️PharmaPal")
     a, b = st.columns([1,2])
        
     st.write(st.session_state.role)
