@@ -241,9 +241,9 @@ if search:
         drug_document = list(selected_drug_details["Details"])
 
     
-    # st.write(keywords)
-    summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-    st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+        # st.write(keywords)
+        summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+        st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
     
     # if query_text:
     #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
