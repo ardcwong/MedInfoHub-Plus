@@ -224,8 +224,9 @@ query_text = a.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
-# Text input field
-user_input = st.text_input("Enter some text")
+top_results = return_best_drugs(query_text, collection)
+df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+drug_names = df["Drug_Name"].tolist()
 
 # Initialize session state variables
 if "search_clicked" not in st.session_state:
@@ -233,8 +234,6 @@ if "search_clicked" not in st.session_state:
 if "options_selected" not in st.session_state:
     st.session_state.options_selected = []
 
-# Define the items for the select box
-selectbox_items = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5']
 
 # Search button
 if st.button("Search"):
@@ -242,46 +241,51 @@ if st.button("Search"):
 
 # Display the select box if the search button is clicked
 if st.session_state.search_clicked:
-    selected_options = st.multiselect("Select up to 3 options", selectbox_items, max_selections=3)
+
+    choose = b.selectbox(
+            f'Results Related to "***{query_text}***"',
+            (drug_names), help = f'Any Info', index = None)
+    selected_drug_details = df[df["Drug_Name"] == choose]
+    # selected_options = st.multiselect("Select up to 3 options", selectbox_items, max_selections=3)
 
     # Save the selected options to the session state
-    st.session_state.options_selected = selected_options
+    st.session_state.options_selected = choose
 
 # Display the selected options
 if st.session_state.options_selected:
     st.write("You selected:", st.session_state.options_selected)
 
 
-# search = st.button("Search")
-# st.session_state.keep = keep_query(search)
-# st.write(st.session_state.keep)
-# if st.session_state.keep:
-#     top_results = return_best_drugs(st.session_state.keep, collection)
+search = st.button("Search")
+st.session_state.keep = keep_query(search)
+st.write(st.session_state.keep)
+if st.session_state.keep:
+    top_results = return_best_drugs(st.session_state.keep, collection)
 
      
-#     # st.write(top_results)
-#     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+    # st.write(top_results)
+    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     
     
-#     drug_names = df["Drug_Name"].tolist()
-#     choose = b.selectbox(
-#             f'Results Related to "***{query_text}***"',
-#             (drug_names), help = f'Any Info', index = None)
-#     selected_drug_details = df[df["Drug_Name"] == choose]
+    drug_names = df["Drug_Name"].tolist()
+    choose = b.selectbox(
+            f'Results Related to "***{query_text}***"',
+            (drug_names), help = f'Any Info', index = None)
+    selected_drug_details = df[df["Drug_Name"] == choose]
 
 
-#     if choose:
-#         view = st.button("View")
-#         if view: 
-#             st.write(selected_drug_details)
-#             keywords = extract_keywords(selected_drug_details["Details"])
-#             drug_name = list(selected_drug_details["Drug_Name"])
-#             drug_document = list(selected_drug_details["Details"])
+    if choose:
+        view = st.button("View")
+        if view: 
+            st.write(selected_drug_details)
+            keywords = extract_keywords(selected_drug_details["Details"])
+            drug_name = list(selected_drug_details["Drug_Name"])
+            drug_document = list(selected_drug_details["Details"])
     
         
-#             # st.write(keywords)
-#             summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-#             st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+            # st.write(keywords)
+            summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+            st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
 
     # if query_text:
     #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
