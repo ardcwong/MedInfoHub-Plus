@@ -359,7 +359,9 @@ with tab3:
    
     if st.button("Search"):
     
-        if keyword:
+        if not in keyword:
+            st.info("Please enter a keyword to search.")
+        else:
             if choose_method == 'Exact Word':
             
                 if focus_area_choose:
@@ -378,5 +380,5 @@ with tab3:
                 select_questions(filtered_df)
                 telemedicine()
         
-        else:
-            st.info("Please enter a keyword to search.")
+        
+            
