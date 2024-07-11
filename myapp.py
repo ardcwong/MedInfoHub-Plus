@@ -35,15 +35,13 @@ def login():
     col2.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ This app is not intended for self-diagnosis or self-treatment. Always consult a qualified healthcare professional for medical advice and diagnosis. ⚠️</strong></p>', unsafe_allow_html=True)
     role = col2.radio("Choose your role", ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
-    if col2.button(f"I am a {role}."):
-        if "vote" not in st.session_state:
+    if "vote" not in st.session_state:
             vote()
-        else:
-    
-            if col2.button("Enter MedInfoHub+"):
+    else:
+        col2.button("Enter MedInfoHub+"):
 
-                st.session_state.role = role
-                st.rerun()
+        st.session_state.role = role
+        st.rerun()
 
 
 def logout():
