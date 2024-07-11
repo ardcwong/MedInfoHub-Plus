@@ -37,8 +37,9 @@ def login():
     # role = col2.selectbox("Choose your role", ROLES)
 
     if col2.button("Enter MedInfoHub+"):
+        vote()
         st.session_state.role = role
-        vote()    
+            
 
 
         
