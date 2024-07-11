@@ -50,7 +50,17 @@ collection = client_chromadb.get_or_create_collection(
     metadata={"hnsw:space": "cosine"}
 )
 
+query_result = collection.query(query_texts=["panic attack"], n_results=10)
+flattened_data = {
+    'ids': query_result['ids'][0],
+    'openfda_generic_name': [item['openfda_generic_name'] for item in query_result['metadatas'][0]],
+    'distances': query_result['distances'][0],
+    'documents': [item['document'] for item in query_result['metadatas'][0]],
+}
 
+flattened_data = pd.DataFrame(flattened_data)
+
+st.write(flattened_data)
 
 def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
