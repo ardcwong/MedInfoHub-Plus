@@ -175,26 +175,26 @@ with tab2:
     #     vote()    
     # else:
     #     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
-with st.divider()
-    aa, bb, cc = st.columns([1,3,1])
-    st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
-    a, b = st.columns([1,2])
-       
-    st.write(st.session_state.role)
-    
-    query_text = a.text_input("Please enter a medical condition or drug name: ")
-    # Example usage
-    user_profile = st.session_state.role # patient or healthcare_provider
-    # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
-    search = st.button("Search")
-    if search:
-        top_results = return_best_drugs(query_text, collection)
-        # st.write(top_results)
-        df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-        drug_names = df["Drug_Name"].tolist()
-        choose = b.selectbox(
-                f'Results Related to "***{query_text}***"',
-                (drug_names), help = f'Drug Names related to {query_text}')
+st.divider()
+aa, bb, cc = st.columns([1,3,1])
+st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
+a, b = st.columns([1,2])
+   
+st.write(st.session_state.role)
+
+query_text = a.text_input("Please enter a medical condition or drug name: ")
+# Example usage
+user_profile = st.session_state.role # patient or healthcare_provider
+# on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
+search = st.button("Search")
+if search:
+    top_results = return_best_drugs(query_text, collection)
+    # st.write(top_results)
+    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+    drug_names = df["Drug_Name"].tolist()
+    choose = b.selectbox(
+            f'Results Related to "***{query_text}***"',
+            (drug_names), help = f'Drug Names related to {query_text}')
 
 
         
