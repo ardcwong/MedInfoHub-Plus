@@ -226,8 +226,8 @@ if search:
     
     # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    st.write(df.iloc[0]["Details"].tolist())
-    keywords = extract_keywords(df.iloc[0]["Details"].tolist())
+    st.write(df.iloc[0]["Details"])
+    keywords = extract_keywords(df.iloc[0]["Details"])
     st.write(keywords)
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
