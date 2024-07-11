@@ -95,12 +95,7 @@ def extract_keywords(drug_document):
         return []
 
 # Summary and usage guidelines function based on user input and profile
-def generate_user_conversational_response(user_input, collection, user_profile):
-    relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(user_input, collection)
-    
-    if not relevant_drug_name:
-        return "I couldn't find any relevant drug based on your input."
-
+def generate_user_conversational_response(drug_name, drug_document, user_profile):  # UPDATED
     if user_profile == "Patient":
         user_tone = "Explain the information in layman terms, focusing on the essential points a patient should know."
     elif user_profile == "Healthcare Provider":
@@ -111,8 +106,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     # Combined prompts for generating both the summary and usage guidelines based on user tone
     combined_messages = [
         {"role": "system", "content": "You are a medical assistant bot that generates both a summary and usage guidelines based on retrieved drug information."},
-        {"role": "user", "content": user_input},
-        {"role": "assistant", "content": f"This is the retrieved information about the drug {relevant_drug_name}: {relevant_drug_document}"},
+        {"role": "user", "content": f"This is the retrieved information about the drug {drug_name}: {drug_document}"},
         {"role": "user", "content": user_tone + " Generate both a summary and usage guidelines without any unnecessary formatting."}
     ]
     
@@ -137,8 +131,7 @@ def generate_user_conversational_response(user_input, collection, user_profile):
     summary = summary.replace("Summary:", "").strip()
 
     # Extract top five keywords from the relevant_drug_document
-
-    keywords = extract_keywords(relevant_drug_document)
+    keywords = extract_keywords(drug_document)
     return summary, usage_guidelines, keywords
 
 #-------------MAIN PROGRAM---------------#
