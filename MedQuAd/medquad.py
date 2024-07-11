@@ -341,27 +341,22 @@ with tab2:
 # st.write("Instructions:", help = "(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area")
 
 with tab3:
+    
     a, b, c = st.columns([1,1,1])
-    
-    keyword = a.text_input("Enter a keyword to search:", help = 'Type the keyword you want to search for. (e.g. headache, stomach, cancer, psoriasis, ...)' )
+
+    keyword = a.text_input("Enter a keyword to search:")
     st.title(keyword)
-    
-    choose_method = b.selectbox(
+    if keyword:
+
+        choose_method = b.selectbox(
                 "Choose Keyword Search Method",
                 ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
-    # search = st.button("Search")
-    if choose_method == 'Exact Word':
-        filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
 
-        focus_area_choose = c.selectbox(
-            "Choose (1) from matched Focus Area/s",
-            filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = 'Select one of the focus areas that match your search keyword. This is only applicable for Exact Word search method.')
-
-    # if search: 
-    
-    if keyword:
         if choose_method == 'Exact Word':
-        
+            filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
+            focus_area_choose = c.selectbox(
+                    "Choose (1) from matched Focus Area/s",
+                    filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
             if focus_area_choose:
                 focus_area, summary, filtered_df = process_keyword(keyword, df, focus_area_choose)
                 select_questions(filtered_df)
@@ -377,6 +372,7 @@ with tab3:
             focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
             select_questions(filtered_df)
             telemedicine()
+
     else:
         st.info("Please enter a keyword to search.")
             
