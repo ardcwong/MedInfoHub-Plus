@@ -141,7 +141,7 @@ st.subheader("Welcome to ⚕️PharmaPal!")
 tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","Ask PharmaPal"])
 with tab1:
     col1, col2 = st.columns([1,1])
-    col1.image('data/art.png')
+    col1.image('data/Pharma.png')
     col2.write("")
     col2.write("")
     col2.write("")
