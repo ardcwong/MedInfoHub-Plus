@@ -223,10 +223,11 @@ if search:
     top_results = return_best_drugs(query_text, collection)
 
     
-    st.write(keywords)
+    
     # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     keywords = extract_keywords(df.iloc[0]["Details"])
+    st.write(keywords)
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
