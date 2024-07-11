@@ -174,7 +174,7 @@ with tab3:
             st.session_state.vote = {"reason": reason}
             st.rerun()
     
-    if "vote" not in st.session_state:
+    if tab3:
         vote()    
     else:
         f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
