@@ -224,16 +224,16 @@ query_text = a.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
-# if query_text:
-#     top_results = return_best_drugs(query_text, collection)
-#     # st.write(top_results)
-#     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-#     st.write(df)
-#     drug_names = df["Drug_Name"].tolist()
-#     choose = b.selectbox(
-#             f'Results Related to "***{query_text}***"',
-#             (drug_names), help = f'Any Info', index = None)
-#     selected_drug_details = df[df["Drug_Name"] == choose]
+if query_text:
+    top_results = return_best_drugs(query_text, collection)
+    # st.write(top_results)
+    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+    st.write(df)
+    drug_names = df["Drug_Name"].tolist()
+    choose = b.selectbox(
+            f'Results Related to "***{query_text}***"',
+            (drug_names), help = f'Any Info', index = None)
+    selected_drug_details = df[df["Drug_Name"] == choose]
 
 
 # # Initialize session state variables
