@@ -166,9 +166,8 @@ with tab2:
     col2.markdown(content_inst, unsafe_allow_html=True)
 
 with tab3:
-    
+    @st.experimental_dialog("Important Reminder",width="large")
     def vote():
-        @st.experimental_dialog("Important Reminder",width="large")
         st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
         reason = st.text_input("Because...")
         if st.button("Submit"):
