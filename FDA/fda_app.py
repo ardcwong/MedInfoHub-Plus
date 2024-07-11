@@ -228,7 +228,7 @@ search = st.button("Search")
 st.session_state.keep = keep_query(search)
 st.write(st.session_state.keep)
 if st.session_state.keep:
-    top_results = return_best_drugs(query_text_keep, collection)
+    top_results = return_best_drugs(st.session_state.keep, collection)
 
      
     # st.write(top_results)
