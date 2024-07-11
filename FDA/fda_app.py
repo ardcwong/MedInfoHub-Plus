@@ -224,7 +224,7 @@ user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
 search = st.button("Search")
-query_text_keep = keep_query()
+query_text_keep = keep_query(search)
 
 if query_text_keep:
     top_results = return_best_drugs(query_text_keep, collection)
