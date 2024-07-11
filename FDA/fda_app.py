@@ -101,7 +101,7 @@ def disable_openai(x):
     return disable
 
 def extract_keywords(text):
-    x = "Yes"
+    x = "No"
 
     disable = disable_openai(x)
     if disable == 1:
