@@ -175,9 +175,9 @@ with tab2:
     #     vote()    
     # else:
     #     f"You voted for {st.session_state.vote['item']} because {st.session_state.vote['reason']}"
-with st.container(border = True):  
+with st.divider()
     aa, bb, cc = st.columns([1,3,1])
-    st.markdown("<h1 style='text-align: center;'>Ask ⚕️PharmaPal</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
     a, b = st.columns([1,2])
        
     st.write(st.session_state.role)
