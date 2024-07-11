@@ -62,33 +62,33 @@ flattened_data = pd.DataFrame(flattened_data)
 
 st.write(flattened_data)
 
-def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
-    query_result = collection.query(query_texts=[user_input], n_results=n_results)
+# def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
+#     query_result = collection.query(query_texts=[user_input], n_results=n_results)
     
-    if not query_result['ids'] or not query_result['ids'][0]:
-        print("No drugs found matching the query.")
-        return []  # No results found
+#     if not query_result['ids'] or not query_result['ids'][0]:
+#         print("No drugs found matching the query.")
+#         return []  # No results found
 
-    top_results = []
+#     top_results = []
     
-    for i in range(min(n_results, len(query_result['ids'][0]))):  # UPDATED
-        result_id = query_result['ids'][0][i]
-        result_metadata = query_result['metadatas'][0][i]
-        result_document = query_result['documents'][0][i]
+#     for i in range(min(n_results, len(query_result['ids'][0]))):  # UPDATED
+#         result_id = query_result['ids'][0][i]
+#         result_metadata = query_result['metadatas'][0][i]
+#         result_document = query_result['documents'][0][i]
         
-        drug_name = result_metadata.get('drug', 'Unknown Drug')
-        drug_description = result_document
+#         drug_name = result_metadata.get('drug', 'Unknown Drug')
+#         drug_description = result_document
         
-        print(f"Drug {i+1}:")
-        print("---------------")
-        print(f"Name: {drug_name}")
-        print("\nDrug Description:")
-        print("-----------------")
-        print(drug_description)
+#         print(f"Drug {i+1}:")
+#         print("---------------")
+#         print(f"Name: {drug_name}")
+#         print("\nDrug Description:")
+#         print("-----------------")
+#         print(drug_description)
         
-        top_results.append((drug_name, drug_description, result_id))  # UPDATED
+#         top_results.append((drug_name, drug_description, result_id))  # UPDATED
     
-    return top_results  # CHANGED
+#     return top_results  # CHANGED
 
 # # Extracting keywords function
 # def extract_keywords(drug_document):
