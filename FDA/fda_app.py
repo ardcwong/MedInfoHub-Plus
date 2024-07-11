@@ -184,11 +184,11 @@ with tab3:
     # Example usage
     user_profile = st.session_state.role # patient or healthcare_provider
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
-    search = b.button("Search")
+    search = st.button("Search")
     if search:
         top_results = return_best_drugs(query_text, collection)
-        st.write(top_results)
-        df = pd.DataFrame(data, columns=["Drug_Name", "Details", "ID"])
+        # st.write(top_results)
+        df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
         drug_names = df["Drug_Name"].tolist()
         choose = b.selectbox(
                 "Results",
