@@ -180,15 +180,24 @@ with tab3:
        
     st.write(st.session_state.role)
     
-    query_text = st.text_input("Please enter a medical condition or drug name: ")
+    query_text = a.text_input("Please enter a medical condition or drug name: ")
     # Example usage
     user_profile = st.session_state.role # patient or healthcare_provider
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
-
-    if query_text:
+    search = b.button("Search")
+    if search:
         top_results = return_best_drugs(query_text, collection)
-        
         st.write(top_results)
+        df = pd.DataFrame(data, columns=["Drug_Name", "Details", "ID"])
+        drug_names = df["Drug_Name"].tolist()
+        choose = b.selectbox(
+                "Results",
+                (drug_names), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
+
+    else:
+        
+        
+        
         # summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
     
