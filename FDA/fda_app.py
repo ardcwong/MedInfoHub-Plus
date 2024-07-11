@@ -49,29 +49,33 @@ collection = client_chromadb.get_or_create_collection(
 
 
 
-def return_best_drug(user_input, collection, n_results=1):
+def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
     
     if not query_result['ids'] or not query_result['ids'][0]:
-        print("No drug found matching the query.")
-        return None, None  # No results found
+        print("No drugs found matching the query.")
+        return []  # No results found
 
-    # Get the top result
-    top_result_id = query_result['ids'][0][0]
-    top_result_metadata = query_result['metadatas'][0][0]
-    top_result_document = query_result['documents'][0][0]
+    top_results = []
+
+    for i in range(min(n_results, len(query_result['ids'][0]))):  # UPDATED
+        result_id = query_result['ids'][0][i]
+        result_metadata = query_result['metadatas'][0][i]
+        result_document = query_result['documents'][0][i]
+        
+        drug_name = result_metadata.get('drug', 'Unknown Drug')
+        drug_description = result_document
+        
+        print(f"Drug {i+1}:")
+        print("---------------")
+        print(f"Name: {drug_name}")
+        print("\nDrug Description:")
+        print("-----------------")
+        print(drug_description)
+        
+        top_results.append((drug_name, drug_description, result_id))  # UPDATED
     
-    # Print query results in a readable and formatted manner
-    print("Top Drug Found:")
-    print("---------------")
-    print(f"Name: {top_result_metadata.get('drug', 'Unknown Drug')}")
-    print("\nDrug Description:")
-    print("-----------------")
-    print(top_result_document)
-    # print("\nRecommendation:")
-    # print("----------------")
-    
-    return top_result_metadata.get('drug', 'Unknown Drug'), top_result_document, top_result_id
+    return top_results  # CHANGED
 
 # Extracting keywords function
 def extract_keywords(drug_document):
@@ -189,8 +193,9 @@ with tab3:
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
     if query_text:
-        summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
-        st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
+        return_best_drugs(query_text, collection, n_results=10)
+        # summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
+        # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
     
     # if query_text:
     #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
