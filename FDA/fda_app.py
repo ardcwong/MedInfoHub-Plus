@@ -93,16 +93,16 @@ def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
 #     except Exception as e:
 #         print(f"Error extracting keywords: {e}")
 #         return []
-
-
-def extract_keywords(text):
-    x = "Yes"
-    def disable_openai(x):
+def disable_openai(x):
     if x == "Yes":
         disable = 1
     else:
         disable = 0
     return disable
+
+def extract_keywords(text):
+    x = "Yes"
+
     disable = disable_openai(x)
     if disable == 1:
         return []
