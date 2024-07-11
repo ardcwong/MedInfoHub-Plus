@@ -236,8 +236,8 @@ if search:
     
     st.write(selected_drug_details)
     keywords = extract_keywords(selected_drug_details["Details"])
-    drug_name = selected_drug_details["Drug_Name"]
-    drug_document = selected_drug_details["Details"]
+    drug_name = list(selected_drug_details["Drug_Name"])
+    drug_document = list(selected_drug_details["Details"])
 
     
     # st.write(keywords)
