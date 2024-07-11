@@ -219,6 +219,7 @@ query_text = a.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 search = st.button("Search")
+
 if search:
     top_results = return_best_drugs(query_text, collection)
 
@@ -226,14 +227,18 @@ if search:
     
     # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    st.write(df.iloc[0]["Details"])
-    keywords = extract_keywords(df.iloc[0]["Details"])
-    st.write(keywords)
+    
+    
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
-            (drug_names), help = f'Drug Names related to {query_text}')
+            (df["Drug_Name"]), help = f'Drug Names related to {query_text}')
 
+    if choose:
+        Retrieving Resu
+    st.write(df.iloc[0]["Details"])
+    keywords = extract_keywords(df.iloc[0]["Details"])
+    st.write(keywords)
 
         
         
