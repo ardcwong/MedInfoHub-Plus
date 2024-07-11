@@ -236,8 +236,12 @@ if search:
     
     st.write(selected_drug_details)
     keywords = extract_keywords(selected_drug_details["Details"])
+    drug_name = selected_drug_details["Drug_Name"]
+    drug_document = selected_drug_details["Details"]
+
+    
     # st.write(keywords)
-    summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
+    summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
     st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
     
     # if query_text:
