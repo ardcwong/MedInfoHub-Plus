@@ -25,6 +25,10 @@ import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
 
+
+st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. ⚠️</strong></p>', unsafe_allow_html=True)
+
+
 api_key = st.secrets['api_key']
 openai.api_key = api_key
 client = OpenAI(api_key=api_key)
@@ -33,7 +37,6 @@ client = OpenAI(api_key=api_key)
 CHROMA_DATA_PATH = 'fda-drug-revised-4'
 COLLECTION_NAME = "fda-drug"
 
-st.markdown('<p style="font-size: 18px; color: red;"><strong>⚠️ PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. ⚠️</strong></p>', unsafe_allow_html=True)
 
 
 # Initialize ChromaDB client
@@ -226,14 +229,14 @@ user_profile = st.session_state.role # patient or healthcare_provider
 
 if query_text:
     top_results = return_best_drugs(query_text, collection)
-    # st.write(top_results)
-    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    st.write(df)
-    drug_names = df["Drug_Name"].tolist()
-    choose = b.selectbox(
-            f'Results Related to "***{query_text}***"',
-            (drug_names), help = f'Any Info', index = None)
-    selected_drug_details = df[df["Drug_Name"] == choose]
+    # # st.write(top_results)
+    # df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+    # st.write(df)
+    # drug_names = df["Drug_Name"].tolist()
+    # choose = b.selectbox(
+    #         f'Results Related to "***{query_text}***"',
+    #         (drug_names), help = f'Any Info', index = None)
+    # selected_drug_details = df[df["Drug_Name"] == choose]
 
 
 # # Initialize session state variables
