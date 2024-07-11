@@ -263,9 +263,20 @@ if st.session_state.search_clicked:
             # st.write(keywords)
             summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
             st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
-# Display the selected options
-if st.session_state.options_selected:
-    st.write("You selected:", st.session_state.options_selected)
+
+
+
+
+
+
+
+
+
+
+
+# # Display the selected options
+# if st.session_state.options_selected:
+#     st.write("You selected:", st.session_state.options_selected)
 
 
     
