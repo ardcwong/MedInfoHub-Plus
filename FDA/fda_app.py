@@ -49,7 +49,7 @@ collection = client_chromadb.get_or_create_collection(
 
 
 
-def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
+def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
     
     if not query_result['ids'] or not query_result['ids'][0]:
@@ -186,7 +186,8 @@ with tab3:
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
     if query_text:
-        top_results = return_best_drugs(query_text, collection, n_results=10)
+        top_results = return_best_drugs(query_text, collection)
+        
         st.write(top_results)
         # summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
