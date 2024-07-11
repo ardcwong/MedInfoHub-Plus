@@ -213,11 +213,11 @@ st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow
 a, b = st.columns([1,2])
    
 st.write(st.session_state.role)
-def keep_query(search):
-    if search:
-        query_text_keep = query_text
-        st.session_state.keep = query_text_keep
-        return st.session_state.keep 
+# def keep_query(search):
+#     if search:
+#         query_text_keep = query_text
+#         st.session_state.keep = query_text_keep
+#         return st.session_state.keep 
 
 query_text = a.text_input("Please enter a medical condition or drug name: ")
 # Example usage
