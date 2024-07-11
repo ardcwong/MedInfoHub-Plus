@@ -38,7 +38,7 @@ def login():
     if "vote" not in st.session_state:
             vote()
     else:
-        col2.button("Enter MedInfoHub+"):
+        # col2.button("Enter MedInfoHub+"):
 
         st.session_state.role = role
         st.rerun()
