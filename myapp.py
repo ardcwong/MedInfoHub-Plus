@@ -144,7 +144,7 @@ if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neithe
 #     page_dict["Admin"] = admin_pages
 
 if len(page_dict) > 0:
-    pg = st.navigation({"Session": account_pages} | page_dict)
+    pg = st.navigation(page_dict | {"Session": account_pages})
 else:
     pg = st.navigation([st.Page(login)]) #defaults to login page if no acceptable role is selected
 
