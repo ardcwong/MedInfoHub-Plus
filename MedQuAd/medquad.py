@@ -345,12 +345,15 @@ with tab3:
     
     keyword = a.text_input("Enter a keyword to search:", help = 'Type the keyword you want to search for. (e.g. headache, stomach, cancer, psoriasis, ...)' )
     st.title(keyword)
-    if keyword:
     
-        choose_method = b.selectbox(
+    choose_method = b.selectbox(
                 "Choose Keyword Search Method",
                 ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
     
+    
+    
+    if keyword:
+       
         if choose_method == 'Exact Word':
             filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
             focus_area_choose = c.selectbox(
