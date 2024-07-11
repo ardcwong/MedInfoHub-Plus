@@ -231,13 +231,14 @@ if search:
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
-            (drug_names), help = f'Drug Names related to {query_text}')
+            (drug_names), help = f'Any Info', index = None)
     selected_drug_details = df[df["Drug_Name"] == choose]
-    
-    st.write(selected_drug_details)
-    keywords = extract_keywords(selected_drug_details["Details"])
-    drug_name = list(selected_drug_details["Drug_Name"])
-    drug_document = list(selected_drug_details["Details"])
+    view = st.button("View")
+    if view: 
+        st.write(selected_drug_details)
+        keywords = extract_keywords(selected_drug_details["Details"])
+        drug_name = list(selected_drug_details["Drug_Name"])
+        drug_document = list(selected_drug_details["Details"])
 
     
     # st.write(keywords)
