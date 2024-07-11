@@ -193,7 +193,8 @@ with tab3:
     # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
     if query_text:
-        return_best_drugs(query_text, collection, n_results=10)
+        top_results = return_best_drugs(query_text, collection, n_results=10)
+        st.write(top_results)
         # summary, usage_guidelines, keywords = generate_user_conversational_response(query_text, collection, user_profile) 
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
     
