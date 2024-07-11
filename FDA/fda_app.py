@@ -3,7 +3,7 @@ import streamlit as st
 # __import__('pysqlite3')
 # import sys
 
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import pandas as pd
 import matplotlib.pyplot as plt
