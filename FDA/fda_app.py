@@ -229,7 +229,7 @@ if query_text:
         drug_document = selected_drug_details["Details"].tolist()
 
         # st.write(keywords)
-        summary, usage_guidelines = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+        combined_text = generate_user_conversational_response(drug_name, drug_document, user_profile) 
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
 
         with st.container():
