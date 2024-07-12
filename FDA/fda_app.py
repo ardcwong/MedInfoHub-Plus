@@ -66,7 +66,7 @@ collection = collection
     
 
 
-def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
+def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
     
     if not query_result['ids'] or not query_result['ids'][0]:
