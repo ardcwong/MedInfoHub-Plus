@@ -105,6 +105,7 @@ def contactus():
 def medinfohubplus():
     st.markdown("<h1 style='text-align: center;'>Welcome to MedInfoHub+ ✨</h1>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align: center;'><b><i>MedInfoHub</b></i><i> is your ultimate resource for accessible, reliable, and easy-to-understand medical information. Our platform is designed to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. MedInfoHub+ features two powerful applications: HealthPlus and PharmaPal.</i></h4>", unsafe_allow_html=True)
+    st.divider()
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("➕HealthPlus")
