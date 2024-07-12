@@ -18,6 +18,15 @@ if "vote" not in st.session_state:
     st.session_state.vote = None
 ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
+
+def role_print_none():
+    if st.session_state.role:
+        st.sidebar.markdown(f"Hi, {st.session_state.role}")
+        
+    return []
+
+role_print_none()
+
 @st.experimental_dialog("❗Important Reminder",width="large")
 def vote(role):
     st.markdown("""While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. 
@@ -141,8 +150,7 @@ def medinfohubplus():
     
 role = st.session_state.role
 
-def role_print_none():
-    return []
+
 
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
@@ -181,7 +189,7 @@ fda_app = st.Page(
 about_us_pages = [medinfohubplus_info,about_us]
 account_pages = [logout_page]
 data_apps = [medquad, fda_app]
-user_info = []
+# user_info = []
 
 
 # respond_pages = [respond_1, respond_2]
@@ -204,8 +212,8 @@ user_info = []
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
          
 page_dict = {}
-if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
-    page_dict["Hi",role] = user_info
+# if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
+#     page_dict["Hi",role] = user_info
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
