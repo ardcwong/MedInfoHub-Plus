@@ -227,7 +227,7 @@ if query_text:
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
 
         with st.container():
-            st.write(drug_name)
+            # st.write(drug_name)
             st.markdown(f"<h2 style='text-align: center;'><b><i>{st.session_state.choose}</i></h2>", unsafe_allow_html=True)
             column1, column2 = st.columns([1,1])
             column1.subheader("Summary")
