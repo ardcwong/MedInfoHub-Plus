@@ -3,8 +3,7 @@ import streamlit as st
 
 st.set_page_config(layout='wide')
 
-with st.sidebar:
-    st.write("Hi!, ", role)
+
 
 # col2.write("")
 
@@ -198,7 +197,10 @@ data_apps = [medquad, fda_app]
 #     st.markdown(contactinfo, unsafe_allow_html=True)
 # st.title("Request manager")
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
-
+def print_role(role):
+    with st.sidebar:
+    st.write("Hi!, ", role)
+print_role(st.state_session.role)    
 page_dict = {}
 
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
