@@ -242,16 +242,23 @@ if query_text:
                 column1.markdown(highlighted_tkw, unsafe_allow_html=True)
             
             if summary:
+                column1.subheader("Summary")
                 column1.markdown(summary)
 
             else:
                 highlighted_summ = ""
-                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable. Showing all info.'}</span>"
+                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
-                column1.markdown(all_answers_text)
-                column1.caption("SOURCE")
-                source = filtered_df['source'].iloc[0]
-                column1.markdown(source)
+
+            if usage_guidelines:
+                column1.subheader("Usage and Guidelines")
+                column1.markdown(usage_guidelines)
+
+            else:
+                highlighted_summ = ""
+                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{''Usage and Guidelines' is unavailable.'}</span>"
+                column1.markdown(highlighted_summ, unsafe_allow_html=True)
+
 
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary)
             st.session_state['wordcloud'] = wordcloud
@@ -260,4 +267,5 @@ if query_text:
             plt.figure(figsize=(10, 5))
             plt.imshow(wordcloud, interpolation='bilinear')
             plt.axis('off')
+            column2.subheader("Word Cloud")
             column2.pyplot(plt)
