@@ -19,13 +19,7 @@ if "vote" not in st.session_state:
 ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
 
-def role_print_none():
-    if st.session_state.role:
-        st.sidebar.markdown(f"Hi, {st.session_state.role}")
-        
-    return []
 
-role_print_none()
 
 @st.experimental_dialog("❗Important Reminder",width="large")
 def vote(role):
@@ -225,6 +219,13 @@ if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neithe
 #     page_dict["Admin"] = admin_pages
 
 if len(page_dict) > 0:
+    def role_print_none():
+        if st.session_state.role:
+            st.sidebar.markdown(f"Hi, {st.session_state.role}")
+            
+        return []
+
+    role_print_none()
     pg = st.navigation(page_dict | {"Session": account_pages})
 else:
     pg = st.navigation([st.Page(login)]) #defaults to login page if no acceptable role is selected
