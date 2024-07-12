@@ -228,7 +228,11 @@ data_apps = [medquad, fda_app]
 #     st.markdown(contactinfo, unsafe_allow_html=True)
 # st.title("Request manager")
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
-         
+st.logo(
+    "data/mihplus.png",
+    ,
+)
+
 page_dict = {}
 # if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
 #     page_dict["Hi",role] = user_info
