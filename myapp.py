@@ -61,11 +61,12 @@ def login():
     role = col2.radio("I am a ",ROLES, index = None, label_visibility = "collapsed",captions = ["Empowering you with reliable medical knowledge to manage health better and offer clear explanations to care for your loved ones.", "Providing quick access to accurate medical information and resources to support your practice."] )
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == None: 
-        if role:
-            if col2.button("Next"):
+        
+        if col2.button("Next"):
+            if role:
                 vote(role)
-        else:
-            st.error("Please Select Your Profile in order to proceed.")
+            else:
+                col2.error("Please Select Your Profile in order to proceed.")
     else:
         st.session_state.role = st.session_state.vote['role']
 
