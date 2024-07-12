@@ -131,7 +131,7 @@ def generate_user_conversational_response(drug_name, drug_document, user_profile
     combined_messages = [
         {"role": "system", "content": "You are a medical assistant bot that generates both a summary and usage guidelines based on retrieved drug information."},
         {"role": "user", "content": f"This is the retrieved information about the drug {drug_name}: {drug_document}"},
-        {"role": "user", "content": user_tone + " Generate both a summary and usage guidelines without any unnecessary formatting. Summary should not be in bullet-form."}
+        {"role": "user", "content": user_tone + " Generate both a summary (paragraph) and usage guidelines (bullet form) without any unnecessary formatting."}
     ]
     
     combined_response = client.chat.completions.create(
