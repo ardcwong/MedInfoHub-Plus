@@ -24,7 +24,7 @@ def vote(role):
     Always consult a healthcare professional before starting or changing any medication. <br><br>If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. 
     For your convenience, we have partnered with trusted clinics. <br><br>Find a Partner Clinic Here.""", unsafe_allow_html=True
                )
-    col1, col2, col3 = st.columns([1,1,1])
+    col1, col2, col3 = st.columns(3)
     col2.link_button("Now Serving", "https://nowserving.ph")
     col2.link_button("Konsulta MD", "https://konsulta.md/")
     col2.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
