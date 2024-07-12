@@ -18,8 +18,7 @@ if "vote" not in st.session_state:
     st.session_state.vote = None
 ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
-if st.session_state.role:
-    st.markdown(f"Hi, {st.session_state.role}")
+
 
 
 
@@ -108,6 +107,28 @@ def contactus():
     # Display formatted text with st.markdown
     st.markdown(contactinfo, unsafe_allow_html=True)
 def medinfohubplus():
+    if st.session_state.role:
+        # st.markdown("<h5 style='text-align: center;'>Hi, </h5>", unsafe_allow_html=True)
+        html_code = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                .bold-text {
+                    font-weight: bold;
+                }
+            </style>
+        </head>
+        <body>
+            <p>Hi, <span class="bold-text">Patient/Caregiver!</span></p>
+        </body>
+        </html>
+        """
+        
+        st.markdown(html_code, unsafe_allow_html=True)
+
+
+        
     st.markdown("<h1 style='text-align: center;'>Welcome to MedInfoHub+ ✨</h1>", unsafe_allow_html=True)
     st.divider()
     st.markdown("<h4 style='text-align: center;'><b><i>MedInfoHub</b></i><i> is your ultimate resource for accessible, reliable, and easy-to-understand medical information. Our platform is designed to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. MedInfoHub+ features two powerful applications: HealthPlus and PharmaPal.</i></h4>", unsafe_allow_html=True)
