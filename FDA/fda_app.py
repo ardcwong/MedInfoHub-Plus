@@ -222,7 +222,7 @@ user_profile = st.session_state.role # patient or healthcare_provider
 df_lemmatized = pd.read_csv('data/lemmatized_fda.csv')
 
 df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df_lemmatized['lemmatized_indications_and_usage_tokens']]
-st.write(df_lemmatized)
+# st.write(df_lemmatized)
 
 if query_text:
     top_results = return_best_drugs(query_text, collection)
@@ -238,15 +238,14 @@ if query_text:
     if a.button("View Information", use_container_width = True, type = "primary"):
         selected_drug_details = df[df["Drug_Name"] == choose]
 
-        st.write(selected_drug_details["ID"].values[0])
+        # st.write(selected_drug_details["ID"].values[0])
         location = int(selected_drug_details["ID"].values[0])
-        
-        df_lemmatized_selected = df_lemmatized.iloc[location]
+        df_lemmatized_selected = " ".join(df_lemmatized.iloc[location][10].tolist())
         st.write(df_lemmatized_selected)
 
         
         # st.write(selected_drug_details)
-        top_keywords = extract_keywords(selected_drug_details["Details"])
+        top_keywords = extract_keywords(df_lemmatized_selected)
         drug_name = selected_drug_details["Drug_Name"].tolist()
         drug_document = selected_drug_details["Details"].tolist()
 
@@ -275,7 +274,7 @@ if query_text:
             if combined_text:
 
                 column1.markdown(combined_text)
-                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_text)
+                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(df_lemmatized_selected)
                 st.session_state['wordcloud'] = wordcloud
                 # Display the word cloud
                 plt.figure(figsize=(10, 5))
@@ -290,7 +289,7 @@ if query_text:
                 
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.write(selected_drug_details)
-                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(" ".join(selected_drug_details["Details"].tolist()))
+                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(df_lemmatized_selected)
                 st.session_state['wordcloud'] = wordcloud
                 # Display the word cloud
                 plt.figure(figsize=(10, 5))
