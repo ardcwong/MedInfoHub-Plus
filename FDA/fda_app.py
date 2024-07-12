@@ -25,6 +25,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
 
+x = "Yes"
 
 st.markdown('<p style="font-size: 14px; color: red; text-align: center;"><strong>⚠️ PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. ⚠️</strong></p>', unsafe_allow_html=True)
 
@@ -97,7 +98,7 @@ def disable_openai(x):
     return disable
 
 def extract_keywords(drug_document):
-    x = "No"
+    
 
     disable = disable_openai(x)
     if disable == 1:
@@ -120,44 +121,52 @@ def extract_keywords(drug_document):
 
 # Summary and usage guidelines function based on user input and profile
 def generate_user_conversational_response(drug_name, drug_document, user_profile):  # UPDATED
-    if user_profile == "Patient/Caregiver":
-        user_tone = "Explain the information in layman terms, focusing on the essential points a patient should know."
-    elif user_profile == "Healthcare Provider":
-        user_tone = "Provide detailed and technical information suitable for a healthcare provider."
+    
+    disable = disable_openai(x)
+    if disable == 1:
+        return []
     else:
-        return "Please input healthcare_provider or patient."
-
-    # Combined prompts for generating both the summary and usage guidelines based on user tone
-    combined_messages = [
-        {"role": "system", "content": "You are a medical assistant bot that generates both a summary and usage guidelines based on retrieved drug information."},
-        {"role": "user", "content": f"This is the retrieved information about the drug {drug_name}: {drug_document}"},
-        {"role": "user", "content": user_tone + " Generate both a summary (paragraph) and usage guidelines (bullet form) without any unnecessary formatting."}
-    ]
-    
-    combined_response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=combined_messages,
-        max_tokens=500
-    )
-    
-    combined_text = combined_response.choices[0].message.content
-    combined_text = combined_text.replace("Summary:", "").strip()
-    # Separate the clinical summary and usage guidelines based on markers
-    # split_text = combined_text.split("Usage Guidelines:")
-    
-    # if len(split_text) != 2:
-    #     return combined_text  # Asked GPT to split text and to return the combined text if splitting doesn't work as expected
-    
-    # summary = split_text[0].strip()
-    # usage_guidelines = split_text[1].strip()
-
-    # # Remove the "Summary:" marker (if present) after splitting text
-    # summary = summary.replace("Summary:", "").strip()
-
-    # Extract top five keywords from the relevant_drug_document
-    # keywords = extract_keywords(drug_document)
-    return combined_text
-    # summary, usage_guidelines
+        try:
+            if user_profile == "Patient/Caregiver":
+                user_tone = "Explain the information in layman terms, focusing on the essential points a patient should know."
+            elif user_profile == "Healthcare Provider":
+                user_tone = "Provide detailed and technical information suitable for a healthcare provider."
+            else:
+                return "Please input healthcare_provider or patient."
+        
+            # Combined prompts for generating both the summary and usage guidelines based on user tone
+            combined_messages = [
+                {"role": "system", "content": "You are a medical assistant bot that generates both a summary and usage guidelines based on retrieved drug information."},
+                {"role": "user", "content": f"This is the retrieved information about the drug {drug_name}: {drug_document}"},
+                {"role": "user", "content": user_tone + " Generate both a summary (paragraph) and usage guidelines (bullet form) without any unnecessary formatting."}
+            ]
+            
+            combined_response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=combined_messages,
+                max_tokens=500
+            )
+            
+            combined_text = combined_response.choices[0].message.content
+            combined_text = combined_text.replace("Summary:", "").strip()
+            # Separate the clinical summary and usage guidelines based on markers
+            # split_text = combined_text.split("Usage Guidelines:")
+            
+            # if len(split_text) != 2:
+            #     return combined_text  # Asked GPT to split text and to return the combined text if splitting doesn't work as expected
+            
+            # summary = split_text[0].strip()
+            # usage_guidelines = split_text[1].strip()
+        
+            # # Remove the "Summary:" marker (if present) after splitting text
+            # summary = summary.replace("Summary:", "").strip()
+        
+            # Extract top five keywords from the relevant_drug_document
+            # keywords = extract_keywords(drug_document)
+            return combined_text
+        except:
+            return []
+            # summary, usage_guidelines
 
 #-------------MAIN PROGRAM---------------#
 ## GENERAL INFO AND INSTRUCTIONS
@@ -257,7 +266,9 @@ if query_text:
             else:
                 highlighted_summ = ""
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
+                
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
+                column1.markdown(drug_document)
 
             # if usage_guidelines:
             #     column1.subheader("Usage and Guidelines")
