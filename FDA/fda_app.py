@@ -222,11 +222,42 @@ if query_text:
         drug_document = selected_drug_details["Details"].tolist()
 
         # st.write(keywords)
-        summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+        summary, usage_guidelines, top_keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
 
         with st.container():
             st.markdown(f"<h4 style='text-align: center;'><b><i>{drug_name}</i></h4>", unsafe_allow_html=True)
+            column1, column2 = st.columns([1,1])
+            column1.caption('TOP KEYWORDS')
+            if top_keywords:
+                highlighted_keywords = ""
+                for i, keyword in enumerate(top_keywords):
+                    highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
+
+                column1.markdown(highlighted_keywords, unsafe_allow_html=True)
+
+            else:
+                highlighted_tkw = ""
+                highlighted_tkw += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
+                column1.markdown(highlighted_tkw, unsafe_allow_html=True)
             
+            if summary:
+                column1.markdown(summary)
 
+            else:
+                highlighted_summ = ""
+                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable. Showing all info.'}</span>"
+                column1.markdown(highlighted_summ, unsafe_allow_html=True)
+                column1.markdown(all_answers_text)
+                column1.caption("SOURCE")
+                source = filtered_df['source'].iloc[0]
+                column1.markdown(source)
 
+            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary)
+            st.session_state['wordcloud'] = wordcloud
+
+            # Display the word cloud
+            plt.figure(figsize=(10, 5))
+            plt.imshow(wordcloud, interpolation='bilinear')
+            plt.axis('off')
+            column2.pyplot(plt)
