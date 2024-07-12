@@ -309,7 +309,7 @@ def telemedicine():
 # ENTER KEYWORD FOR SEMANTIC SIMILARITIES MATCHING WITH FOCUS AREA
 st.subheader("Welcome to ➕HealthPlus!")
 
-tab1, tab2, tab3 = st.tabs(["About the App    ", "How to Use    ","HealthPlus Search    "])
+tab1, tab2 = st.tabs(["About the App    ", "How to Use    ","HealthPlus Search    "])
 with tab1:
     col1, col2 = st.columns([1,1])
     col1.image('data/art.png')
@@ -340,44 +340,44 @@ with tab2:
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
 # st.write("Instructions:", help = "(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area")
 
-with tab3:
-    
-    a, b, c = st.columns([1,1,1])
 
-    keyword = a.text_input("Enter a keyword to search:")
-    st.title(keyword)
-    if keyword:
+st.markdown("<h1 style='text-align: center;'>➕HealthPlus</h1>", unsafe_allow_html=True)    
+a, b, c = st.columns([1,1,1])
 
-        choose_method = b.selectbox(
-                "Choose Keyword Search Method",
-                ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
-        st.session_state.choosemethod = choose_method
-        if st.session_state.choosemethod == 'Exact Word':
-            filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
-            focus_area_choose = c.selectbox(
-                    "Choose (1) from matched Focus Area/s",
-                    filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
-            st.session_state.fac = focus_area_choose
-            # if a.button("View Information", type = "primary", use_container_width = True):
-            
-            if focus_area_choose:
-                focus_area, summary, filtered_df = process_keyword(keyword, df, st.session_state.fac)
-                select_questions(filtered_df)
-                # doctor_recommendation = specialty_doctor_recommendation(summary)
-                # column2.markdown(doctor_recommendation)
-                telemedicine()
-      
-        elif st.session_state.choosemethod == 'Best Match':
-            # if a.button("View Information", type = "primary", use_container_width = True):
-            # # Filter questions containing the keyword
-            # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
-            best_match_focus_area = search_keyword(keyword, df['focus_area'])
-            focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+keyword = a.text_input("Enter a keyword to search:")
+st.title(keyword)
+if keyword:
+
+    choose_method = b.selectbox(
+            "Choose Keyword Search Method",
+            ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
+    st.session_state.choosemethod = choose_method
+    if st.session_state.choosemethod == 'Exact Word':
+        filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
+        focus_area_choose = c.selectbox(
+                "Choose (1) from matched Focus Area/s",
+                filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
+        st.session_state.fac = focus_area_choose
+        # if a.button("View Information", type = "primary", use_container_width = True):
+        
+        if focus_area_choose:
+            focus_area, summary, filtered_df = process_keyword(keyword, df, st.session_state.fac)
             select_questions(filtered_df)
+            # doctor_recommendation = specialty_doctor_recommendation(summary)
+            # column2.markdown(doctor_recommendation)
             telemedicine()
-            # else:
-            #     if st.session_state.fac == None:
-            #         st.error("Please choose a focus area first.")
-    # else:
-    #     st.info("Please enter a keyword to search.")
-            
+  
+    elif st.session_state.choosemethod == 'Best Match':
+        # if a.button("View Information", type = "primary", use_container_width = True):
+        # # Filter questions containing the keyword
+        # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
+        best_match_focus_area = search_keyword(keyword, df['focus_area'])
+        focus_area, summary, filtered_df = process_keyword(keyword, df, best_match_focus_area)
+        select_questions(filtered_df)
+        telemedicine()
+        # else:
+        #     if st.session_state.fac == None:
+        #         st.error("Please choose a focus area first.")
+# else:
+#     st.info("Please enter a keyword to search.")
+        
