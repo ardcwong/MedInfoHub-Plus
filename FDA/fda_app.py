@@ -189,7 +189,7 @@ with tab2:
 # with tab3:
 
 st.divider()
-aa, bb, cc = st.columns([1,3,1])
+aa, bb, cc = st.columns([2,3,1])
 st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
 a, b = st.columns([1,2])
    
@@ -200,7 +200,7 @@ a, b = st.columns([1,2])
 #         st.session_state.keep = query_text_keep
 #         return st.session_state.keep 
 
-query_text = a.text_input("Please enter a medical condition or drug name: ")
+query_text = aa.text_input("Please enter a medical condition or drug name: ")
 # Example usage
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
@@ -211,11 +211,11 @@ if query_text:
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     # st.write(df)
     drug_names = df["Drug_Name"].tolist()
-    choose = b.selectbox(
+    choose = bb.selectbox(
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
     st.session_state.choose = choose
-    if b.button("View"):
+    if cc.button("View"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
@@ -261,6 +261,8 @@ if query_text:
                 highlighted_summ = ""
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
+    else:
+        st.error("Choose one from results to view")
 
 # " ".join(drug_document)
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary+usage_guidelines)
