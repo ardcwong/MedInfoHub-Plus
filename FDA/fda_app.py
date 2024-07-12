@@ -79,22 +79,7 @@ def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
     
     return top_results  # CHANGED
 
-# # Extracting keywords function
-# def extract_keywords(drug_document):
-#     try:
-#         response = client.chat.completions.create(
-#             model='gpt-3.5-turbo',
-#             messages=[
-#                 {"role": "system", "content": "You are a medical assistant bot tasked to extract keywords from the retrieved drug information."},
-#                 {"role": "assistant", "content": f"This is the retrieved information about the drug: {json.dumps(drug_document)}"},
-#                 {"role": "user", "content": "Extract the five most crucial keywords from the retrieved drug information. Extracted keywords must be listed in a comma-separated list."}
-#             ]
-#         )
-#         top_keywords = response.choices[0].message.content
-#         return [kw.strip() for kw in top_keywords.split(',')]
-#     except Exception as e:
-#         print(f"Error extracting keywords: {e}")
-#         return []
+
 def disable_openai(x):
     if x == "Yes":
         disable = 1
@@ -123,10 +108,6 @@ def extract_keywords(drug_document):
 
         except:
             return []
-
-
-
-
 
 # Summary and usage guidelines function based on user input and profile
 def generate_user_conversational_response(drug_name, drug_document, user_profile):  # UPDATED
@@ -215,28 +196,37 @@ query_text = a.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
-# if query_text:
-#     top_results = return_best_drugs(query_text, collection)
-#     # st.write(top_results)
-#     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-#     st.write(df)
-#     drug_names = df["Drug_Name"].tolist()
-#     choose = b.selectbox(
-#             f'Results Related to "***{query_text}***"',
-#             (drug_names), help = f'Any Info', index = None)
-#     selected_drug_details = df[df["Drug_Name"] == choose]
+if query_text:
+    top_results = return_best_drugs(query_text, collection)
+    # st.write(top_results)
+    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
+    st.write(df)
+    drug_names = df["Drug_Name"].tolist()
+    choose = b.selectbox(
+            f'Results Related to "***{query_text}***"',
+            (drug_names), help = f'Any Info', index = None)
+    if st.button("View")
+        selected_drug_details = df[df["Drug_Name"] == choose]
+        # st.write(selected_drug_details)
+        keywords = extract_keywords(selected_drug_details["Details"])
+        drug_name = list(selected_drug_details["Drug_Name"])
+        drug_document = list(selected_drug_details["Details"])
+
+    
+        # st.write(keywords)
+        summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+        st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
+
+# # Initialize session state variables
+# if "search_clicked" not in st.session_state:
+#     st.session_state.search_clicked = False
+# if "options_selected" not in st.session_state:
+#     st.session_state.options_selected = []
 
 
-# Initialize session state variables
-if "search_clicked" not in st.session_state:
-    st.session_state.search_clicked = False
-if "options_selected" not in st.session_state:
-    st.session_state.options_selected = []
-
-
-# Search button
-if st.button("Search"):
-    st.session_state.search_clicked = True
+# # Search button
+# if st.button("Search"):
+#     st.session_state.search_clicked = True
 
 
 # Display the select box if the search button is clicked
@@ -252,18 +242,7 @@ if st.session_state.search_clicked:
 
     # Save the selected options to the session state
     st.session_state.options_selected = choose
-    if choose:
-        view = st.button("View")
-        if view: 
-            st.write(selected_drug_details)
-            keywords = extract_keywords(selected_drug_details["Details"])
-            drug_name = list(selected_drug_details["Drug_Name"])
-            drug_document = list(selected_drug_details["Details"])
     
-        
-            # st.write(keywords)
-            summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-            st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}\n\nKeywords:\n{', '.join(keywords)}")
 
 
 
