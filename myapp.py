@@ -10,10 +10,12 @@ st.set_page_config(layout='wide')
 # # col2.write("MedInfoHub is a comprehensive healthcare app designed to provide accessible medical information to patients and healthcare providers. Leveraging the power of the MedQuAD dataset* and advanced AI, MedInfoHub offers reliable answers to medical questions, supports telemedicine consultations, and enhances public health literacy. Whether you’re a patient seeking to understand your health better or a healthcare provider in need of quick, reliable information, MedInfoHub is your go-to resource for trusted medical knowledge.")
 # col2.write("*Do you agree that ")
 # col2.write("Press the 'Activate MedInfoHub' Button to begin exploring MedInfoHub.")
-st.session_state.role = None
+
 if "role" not in st.session_state:
     st.session_state.role = None
 
+if "vote" not in st.session_state:
+    st.session_state.vote = None
 ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
 @st.experimental_dialog("Important Reminder",width="large")
@@ -34,9 +36,10 @@ def login():
     col2.markdown('<p style="font-size: 18px; color: black;"><strong> While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here. </strong></p>', unsafe_allow_html=True)
     role = col2.radio("Choose your role", ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
-    if "vote" not in st.session_state:
-        if col2.button("Go"):
-            vote(role)
+    if st.session_state.vote == []: 
+        col2.button("Go"):
+        vote(role)
+    
     else:
         st.session_state.role = st.session_state.vote['role']
 
