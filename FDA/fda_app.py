@@ -34,21 +34,29 @@ openai.api_key = api_key
 client = OpenAI(api_key=api_key)
 # SKLLMConfig.set_openai_key(api_key)
 # Constants
+
 CHROMA_DATA_PATH = 'fda_drugs_v6'
 COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
 
+if "client_chromadb" not in st.session_state:
+    st.session_state.client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
 
-# Initialize ChromaDB client
-client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
-openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
+if "embed_func" not in st.session_state:
+    st.session_state.embed_func = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
 
-# Create or get the collection
-collection = client_chromadb.get_or_create_collection(
+if "collection" not in st.session_state:
+    # Create or get the collection
+    st.session_state.collection = client_chromadb.get_or_create_collection(
     name=COLLECTION_NAME,
     embedding_function=openai_ef,
     metadata={"hnsw:space": "cosine"}
-)
+    )
+
+client_chromadb = st.session_state.client_chromad
+openai_ef = st.session_state.embed_func
+collection = st.session_state.collection
+
 
 
 def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
@@ -209,8 +217,8 @@ if query_text:
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
-        drug_name = list(selected_drug_details["Drug_Name"])
-        drug_document = list(selected_drug_details["Details"])
+        drug_name = selected_drug_details["Drug_Name"].tolist()
+        drug_document = selected_drug_details["Details"].tolist()
 
         # st.write(keywords)
         summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
@@ -218,6 +226,6 @@ if query_text:
 
         with st.container():
             st.markdown(f"<h4 style='text-align: center;'><b><i>{drug_name}</i></h4>", unsafe_allow_html=True)
-            st.divider()
+            
 
 
