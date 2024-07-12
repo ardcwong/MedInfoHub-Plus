@@ -36,7 +36,7 @@ def login():
     col2.markdown('<p style="font-size: 18px; color: black;"><strong> While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here. </strong></p>', unsafe_allow_html=True)
     role = col2.radio("Choose your role", ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
-    if st.session_state.vote == []: 
+    if st.session_state.vote == None: 
         if col2.button("Go"):
             vote(role)
     
