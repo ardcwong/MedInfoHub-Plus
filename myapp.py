@@ -31,7 +31,7 @@ def vote(role):
     
     agree = st.checkbox("I acknowledge that I understand the importance of consulting a healthcare professional.")
    
-    if st.button("Enter MedInfoHub+"):
+    if st.button("Enter MedInfoHub+", type = "primary"):
         if agree:
             st.session_state.vote = {"role": role}
             st.rerun()
