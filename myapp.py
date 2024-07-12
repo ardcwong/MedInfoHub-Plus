@@ -40,8 +40,8 @@ def login():
         if col2.button("Go"):
             vote(role)
     
-        else:
-            st.session_state.role = st.session_state.vote['role']
+    else:
+        st.session_state.role = st.session_state.vote['role']
 
     
     
