@@ -334,7 +334,7 @@ with tab2:
         """
         st.markdown(content_inst, unsafe_allow_html=True)
         annotated_text(("Focus Area", ""),": A category or specific subject within a broader topic that helps refine and target the search results more effectively.",)
-    
+st.divider()    
 # inst1, inst2 = st.columns([1,10])
 # inst1.caption("Instructions:")
 # inst2.caption("""(1) Enter a Keyword to Search, (2) Choose Keyword Search Method, (3) Choose Focus Area (Applicable for Exact Word Search Method, (4) Retrieve Information about Focus Area""")
