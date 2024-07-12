@@ -44,7 +44,7 @@ def login():
     
     col2.image('data/MIHv2.png')
 
-    col2.header("Welcome to MedInfoHubPlus+!")
+    col2.header("Welcome to MedInfoHub+!")
     # col1.image('data/art.png')
     # st.header("Log in")
     content = """
@@ -61,9 +61,11 @@ def login():
     role = col2.radio("I am a ",ROLES, index = None, label_visibility = "collapsed",captions = ["Empowering you with reliable medical knowledge to manage health better and offer clear explanations to care for your loved ones.", "Providing quick access to accurate medical information and resources to support your practice."] )
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == None: 
-        if col2.button("Next"):
-            vote(role)
-    
+        if role:
+            if col2.button("Next"):
+                vote(role)
+        else:
+            st.error("Please Select Your Profile in order to proceed.")
     else:
         st.session_state.role = st.session_state.vote['role']
 
@@ -82,7 +84,7 @@ def logout():
     st.rerun()
 
 def contactus():
-    st.title('MedInfoHub')
+    st.title('MedInfoHub+')
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
     st.subheader("CONTACT US")
@@ -101,6 +103,8 @@ def contactus():
     st.markdown(contactinfo, unsafe_allow_html=True)
 def medinfohubplus():
     st.title('MedInfoHub+')
+    
+    
     if st.button('HealthPlus'):
         st.switch_page("MedQuAd/medquad.py")
     if st.button('PharmaPal'):
