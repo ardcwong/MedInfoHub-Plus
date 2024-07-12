@@ -236,11 +236,11 @@ if query_text:
     if a.button("View Information", use_container_width = True, type = "primary"):
         selected_drug_details = df[df["Drug_Name"] == choose]
 
-
+        st.write(selected_drug_details)
 
         
         df_lemmatized_selected = df_lemmatized[df_lemmatized["fda_drug_id"]==selected_drug_details["ID"]]
-        st.write("df_lemmatized_selected")
+        st.write(df_lemmatized_selected)
 
         
         # st.write(selected_drug_details)
