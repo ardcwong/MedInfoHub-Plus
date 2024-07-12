@@ -189,10 +189,10 @@ with tab2:
 # with tab3:
 
 st.divider()
-aa, bb, cc = st.columns([2,3,1])
+
 st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
 a, b = st.columns([1,2])
-   
+aa, bb, cc = st.columns([2,3,1])   
 # st.write(st.session_state.role)
 # def keep_query(search):
 #     if search:
@@ -215,7 +215,7 @@ if query_text:
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
     st.session_state.choose = choose
-    if st.button(f"View Information for {st.session_state.choose}", use_container_width = True):
+    if bb.button("View Information", use_container_width = True):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
@@ -290,4 +290,5 @@ if query_text:
                     st.markdown(text, unsafe_allow_html=True)
                 telemedicine()
     else:
-        st.error("Choose one from results to view")
+        if st.session_state.choose == []:
+            st.error("Choose one from results to view")
