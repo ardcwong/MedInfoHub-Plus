@@ -366,10 +366,7 @@ with tab3:
                 # doctor_recommendation = specialty_doctor_recommendation(summary)
                 # column2.markdown(doctor_recommendation)
                 telemedicine()
-            
-            else:
-                if st.session_state.fac == None:
-                    st.error("Please choose a focus area first.")
+      
         elif st.session_state.choosemethod == 'Best Match':
             # if a.button("View Information", type = "primary", use_container_width = True):
             # # Filter questions containing the keyword
