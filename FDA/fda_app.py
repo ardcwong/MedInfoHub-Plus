@@ -34,8 +34,8 @@ openai.api_key = api_key
 client = OpenAI(api_key=api_key)
 # SKLLMConfig.set_openai_key(api_key)
 # Constants
-CHROMA_DATA_PATH = 'fda-drug-revised-4'
-COLLECTION_NAME = "fda-drug"
+CHROMA_DATA_PATH = 'fda_drugs_v6'
+COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
 
 
@@ -49,46 +49,35 @@ collection = client_chromadb.get_or_create_collection(
     embedding_function=openai_ef,
     metadata={"hnsw:space": "cosine"}
 )
-def return_best_drugs(user_input, collection, n_results=5):
-    query_result = collection.query(query_texts=["zombie"], n_results=10)
-    flattened_data = {
-        'ids': query_result['ids'][0],
-        'openfda_generic_name': [item['openfda_generic_name'] for item in query_result['metadatas'][0]],
-        'distances': query_result['distances'][0],
-        'documents': [item['document'] for item in query_result['metadatas'][0]],
-    }
-    
-    flattened_data = pd.DataFrame(flattened_data)
-    return flattened_data
-# st.write(flattened_data)
 
-# def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
-#     query_result = collection.query(query_texts=[user_input], n_results=n_results)
-    
-#     if not query_result['ids'] or not query_result['ids'][0]:
-#         print("No drugs found matching the query.")
-#         return []  # No results found
 
-#     top_results = []
+def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
+    query_result = collection.query(query_texts=[user_input], n_results=n_results)
     
-#     for i in range(min(n_results, len(query_result['ids'][0]))):  # UPDATED
-#         result_id = query_result['ids'][0][i]
-#         result_metadata = query_result['metadatas'][0][i]
-#         result_document = query_result['documents'][0][i]
-        
-#         drug_name = result_metadata.get('drug', 'Unknown Drug')
-#         drug_description = result_document
-        
-#         print(f"Drug {i+1}:")
-#         print("---------------")
-#         print(f"Name: {drug_name}")
-#         print("\nDrug Description:")
-#         print("-----------------")
-#         print(drug_description)
-        
-#         top_results.append((drug_name, drug_description, result_id))  # UPDATED
+    if not query_result['ids'] or not query_result['ids'][0]:
+        print("No drugs found matching the query.")
+        return []  # No results found
+
+    top_results = []
     
-#     return top_results  # CHANGED
+    for i in range(min(n_results, len(query_result['ids'][0]))):  # UPDATED
+        result_id = query_result['ids'][0][i]
+        result_metadata = query_result['metadatas'][0][i]
+        result_document = query_result['documents'][0][i]
+        
+        drug_name = result_metadata.get('drug', 'Unknown Drug')
+        drug_description = result_document
+        
+        print(f"Drug {i+1}:")
+        print("---------------")
+        print(f"Name: {drug_name}")
+        print("\nDrug Description:")
+        print("-----------------")
+        print(drug_description)
+        
+        top_results.append((drug_name, drug_description, result_id))  # UPDATED
+    
+    return top_results  # CHANGED
 
 # # Extracting keywords function
 # def extract_keywords(drug_document):
