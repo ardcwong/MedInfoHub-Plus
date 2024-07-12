@@ -156,7 +156,7 @@ def generate_user_conversational_response(drug_name, drug_document, user_profile
 
     # Extract top five keywords from the relevant_drug_document
     # keywords = extract_keywords(drug_document)
-    return summary, usage_guidelines, keywords
+    return summary, usage_guidelines
 
 #-------------MAIN PROGRAM---------------#
 ## GENERAL INFO AND INSTRUCTIONS
@@ -223,12 +223,12 @@ if query_text:
     if a.button("View Information", use_container_width = True, type = "primary"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
-        keywords = extract_keywords(selected_drug_details["Details"])
+        top_keywords = extract_keywords(selected_drug_details["Details"])
         drug_name = selected_drug_details["Drug_Name"].tolist()
         drug_document = selected_drug_details["Details"].tolist()
 
         # st.write(keywords)
-        summary, usage_guidelines, top_keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+        summary, usage_guidelines = generate_user_conversational_response(drug_name, drug_document, user_profile) 
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
 
         with st.container():
