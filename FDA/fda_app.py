@@ -277,7 +277,7 @@ if query_text:
                 
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.write(selected_drug_details)
-                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(selected_drug_details["Details"])
+                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(selected_drug_details["Details"].tolist())
                 st.session_state['wordcloud'] = wordcloud
                 # Display the word cloud
                 plt.figure(figsize=(10, 5))
