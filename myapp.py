@@ -147,7 +147,7 @@ role = st.session_state.role
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
 medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="📱", default=(role == role))
-role_print = st.Page(title=role,default=True)
+role_print = st.Page("",title=role,default=True)
 
 # settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
 medquad = st.Page(
