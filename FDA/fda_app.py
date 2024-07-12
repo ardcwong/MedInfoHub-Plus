@@ -268,7 +268,7 @@ if query_text:
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
                 
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
-                column1.markdown(drug_document)
+                column1.markdown(selected_drug_details)
 
             # if usage_guidelines:
             #     column1.subheader("Usage and Guidelines")
