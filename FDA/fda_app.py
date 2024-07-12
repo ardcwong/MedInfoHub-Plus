@@ -256,7 +256,7 @@ if query_text:
 
             else:
                 highlighted_summ = ""
-                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{''Usage and Guidelines' is unavailable.'}</span>"
+                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'"Usage and Guidelines" is unavailable.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
 
 
