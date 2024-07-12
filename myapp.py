@@ -116,6 +116,7 @@ def medinfohubplus():
             <style>
                 .bold-text {
                     font-weight: bold;
+                    text-align: center;
                 }
             </style>
         </head>
