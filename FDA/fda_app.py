@@ -200,7 +200,7 @@ if query_text:
     top_results = return_best_drugs(query_text, collection)
     # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    st.write(df)
+    # st.write(df)
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
@@ -212,9 +212,12 @@ if query_text:
         drug_name = list(selected_drug_details["Drug_Name"])
         drug_document = list(selected_drug_details["Details"])
 
-    
         # st.write(keywords)
         summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-        st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
+        # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
+
+        with st.container():
+            st.markdown(f"<h4 style='text-align: center;'><b><i>{drug_name}</i></h4>", unsafe_allow_html=True)
+            st.divider()
 
 
