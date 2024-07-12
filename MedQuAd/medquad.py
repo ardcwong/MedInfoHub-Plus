@@ -344,7 +344,7 @@ st.divider()
 st.markdown("<h1 style='text-align: center;'>➕HealthPlus</h1>", unsafe_allow_html=True)    
 a, b, c = st.columns([1,1,1])
 
-keyword = a.text_input("Enter a keyword to search:")
+keyword = a.text_input("Enter a keyword to search:", help = "Type the keyword you want to search for. (e.g. diabetes, cancer, Stomach pain, psoriasis, ...)")
 st.title(keyword)
 if keyword:
 
@@ -356,7 +356,7 @@ if keyword:
         filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
         focus_area_choose = c.selectbox(
                 "Choose (1) from matched Focus Area/s",
-                filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None)
+                filtered_df["focus_area"].sort_values(ascending = True).str.lower().unique().tolist(), index=None, help = "Select one of the focus areas that match your search keyword.")
         st.session_state.fac = focus_area_choose
         # if a.button("View Information", type = "primary", use_container_width = True):
         
