@@ -141,7 +141,7 @@ def generate_user_conversational_response(drug_name, drug_document, user_profile
     )
     
     combined_text = combined_response.choices[0].message.content
-    
+    combined_text = combined_text.replace("Summary:", "").strip()
     # Separate the clinical summary and usage guidelines based on markers
     # split_text = combined_text.split("Usage Guidelines:")
     
