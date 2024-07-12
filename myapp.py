@@ -21,13 +21,13 @@ ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 @st.experimental_dialog("❗Important Reminder",width="large")
 def vote(role):
     st.markdown("""While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. 
-    Always consult a healthcare professional before starting or changing any medication. <br>If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. 
-    For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.""", unsafe_allow_html=True
+    Always consult a healthcare professional before starting or changing any medication. <br><br>If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. 
+    For your convenience, we have partnered with trusted clinics. <br><br>Find a Partner Clinic Here.""", unsafe_allow_html=True
                )
     col1, col2, col3 = st.columns([1,1,1])
-    col1.link_button("Now Serving", "https://nowserving.ph")
+    col2.link_button("Now Serving", "https://nowserving.ph")
     col2.link_button("Konsulta MD", "https://konsulta.md/")
-    col3.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
+    col2.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
     
     agree = st.checkbox("I acknowledge that I understand the importance of consulting a healthcare professional.")
    
