@@ -228,6 +228,7 @@ if query_text:
         with st.container():
             st.markdown(f"<h4 style='text-align: center;'><b><i>{drug_name}</i></h4>", unsafe_allow_html=True)
             column1, column2 = st.columns([1,1])
+            column1.subheader("Summary")
             column1.caption('TOP KEYWORDS')
             if top_keywords:
                 highlighted_keywords = ""
@@ -242,7 +243,7 @@ if query_text:
                 column1.markdown(highlighted_tkw, unsafe_allow_html=True)
             
             if summary:
-                column1.subheader("Summary")
+
                 column1.markdown(summary)
 
             else:
