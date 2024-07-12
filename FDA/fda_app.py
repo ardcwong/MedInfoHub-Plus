@@ -51,7 +51,7 @@ openai_ef = st.session_state.embed_func
 
 if "collection" not in st.session_state:
     # Create or get the collection
-    st.session_state.collection = client_chromadb.get_or_create_collection(
+    st.session_state.collection = client_chromadb.get_collection(
     name=COLLECTION_NAME,
     embedding_function=openai_ef,
     metadata={"hnsw:space": "cosine"}
