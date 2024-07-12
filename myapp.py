@@ -139,7 +139,7 @@ def medinfohubplus():
     # # Display formatted text with st.markdown
     # st.markdown(contactinfo, unsafe_allow_html=True)
     
-
+role = st.session_state.role
 
 
 
