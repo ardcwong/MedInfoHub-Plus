@@ -240,7 +240,7 @@ if query_text:
 
         # st.write(selected_drug_details["ID"].values[0])
         location = int(selected_drug_details["ID"].values[0])
-        df_lemmatized_selected = " ".join(df_lemmatized.iloc[location][10])
+        df_lemmatized_selected = df_lemmatized.iloc[location][10]
         st.write(df_lemmatized_selected)
 
         
