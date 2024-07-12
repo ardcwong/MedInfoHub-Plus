@@ -41,9 +41,12 @@ COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
 if "client_chromadb" not in st.session_state:
     st.session_state.client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
+    client_chromadb = st.session_state.client_chromad
 
 if "embed_func" not in st.session_state:
     st.session_state.embed_func = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
+    openai_ef = st.session_state.embed_func
+
 
 if "collection" not in st.session_state:
     # Create or get the collection
@@ -53,10 +56,8 @@ if "collection" not in st.session_state:
     metadata={"hnsw:space": "cosine"}
     )
 
-client_chromadb = st.session_state.client_chromad
-openai_ef = st.session_state.embed_func
-collection = st.session_state.collection
-
+    collection = st.session_state.collection
+    
 
 
 def return_best_drugs(user_input, collection, n_results=5):  # UPDATED
