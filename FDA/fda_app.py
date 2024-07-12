@@ -282,9 +282,9 @@ if query_text:
                 
                     <b>NowServing</b>: https://nowserving.ph/<br><b>Konsulta MD</b>: https://konsulta.md/<br><b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
                     """
-                    st.link_button("Now Serving", "https://nowserving.ph")
-                    st.link_button("Konsulta MD", "https://konsulta.md/")
-                    st.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
+                    # st.link_button("Now Serving", "https://nowserving.ph")
+                    # st.link_button("Konsulta MD", "https://konsulta.md/")
+                    # st.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
                     # Display formatted text with st.markdown
                     st.markdown(text, unsafe_allow_html=True)
                 telemedicine()
