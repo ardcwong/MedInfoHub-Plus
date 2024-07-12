@@ -140,6 +140,13 @@ def medinfohubplus():
     # st.markdown(contactinfo, unsafe_allow_html=True)
     
 role = st.session_state.role
+def print_role(role):
+    with st.sidebar:
+        st.write("Hi!, ", role)
+        
+print_role(role)    
+
+
 
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
@@ -197,11 +204,7 @@ data_apps = [medquad, fda_app]
 #     st.markdown(contactinfo, unsafe_allow_html=True)
 # st.title("Request manager")
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
-def print_role(role):
-    with st.sidebar:
-        st.write("Hi!, ", role)
-        
-print_role(role)    
+
 page_dict = {}
 
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
