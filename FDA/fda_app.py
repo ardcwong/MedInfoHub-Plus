@@ -214,6 +214,7 @@ if query_text:
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
+    st.session_state.choose = choose
     if st.button("View"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
@@ -226,7 +227,8 @@ if query_text:
         # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
 
         with st.container():
-            st.markdown(f"<h2 style='text-align: center;'><b><i>{str(drug_name)}</i></h2>", unsafe_allow_html=True)
+            st.write(drug_name)
+            st.markdown(f"<h2 style='text-align: center;'><b><i>{st.session_state.choose}</i></h2>", unsafe_allow_html=True)
             column1, column2 = st.columns([1,1])
             column1.subheader("Summary")
             column1.caption('TOP KEYWORDS')
