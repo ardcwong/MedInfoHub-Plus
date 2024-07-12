@@ -50,6 +50,7 @@ def login():
  
 def logout():
     st.session_state.role = None
+    st.session_state.vote = None
     st.rerun()
 
 def contactus():
