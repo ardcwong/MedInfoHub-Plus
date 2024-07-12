@@ -36,9 +36,9 @@ def login():
     # col1.image('data/art.png')
     # st.header("Log in")
     content = """
-    '<p style="font-size: 18px; color: black;"><strong> Welcome to MedInfoHub+, your comprehensive source for accessible, reliable, and easy-to-understand medical information. 
+    Welcome to MedInfoHub+, your comprehensive source for accessible, reliable, and easy-to-understand medical information. 
     We aim to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. 
-    Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub+ is your go-to resource.</strong></p>'
+    Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub+ is your go-to resource.
 
     """
     col2.markdown(content, unsafe_allow_html=True)
@@ -47,7 +47,7 @@ def login():
     col2.markdown("To provide you with the best experience, please select your profile:")
 
     
-    role = col2.radio(ROLES, index = None)
+    role = col2.radio("I am a ",ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == None: 
         if col2.button("Go"):
