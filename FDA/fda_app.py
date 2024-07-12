@@ -261,7 +261,7 @@ if query_text:
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
 
 
-            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary)
+            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary+usage_guidelines)
             st.session_state['wordcloud'] = wordcloud
 
             # Display the word cloud
