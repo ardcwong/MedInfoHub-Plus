@@ -260,8 +260,8 @@ if query_text:
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
 
-
-            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(" ".join(drug_document))
+# " ".join(drug_document)
+            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary+usage_guidelines)
             st.session_state['wordcloud'] = wordcloud
 
             # Display the word cloud
