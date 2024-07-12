@@ -106,13 +106,13 @@ def medinfohubplus():
     st.title('MedInfoHub+')
     col1, col2 = st.columns(2)
     with col1:
-        st.tabs("HealthPlus")
+        st.tabs(["HealthPlus"])
         st.image('data/healthplus.png')
         if st.button('HealthPlus'):
             st.switch_page("MedQuAd/medquad.py")
 
     with col2:
-        st.tabs("PharmaPal")
+        st.tabs(["PharmaPal"])
         st.image('data/pharmapal.png')
         if st.button('PharmaPal'):
             st.switch_page("FDA/fda_app.py")
