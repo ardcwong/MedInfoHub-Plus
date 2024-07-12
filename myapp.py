@@ -25,9 +25,9 @@ def vote(role):
     For your convenience, we have partnered with trusted clinics. <br><br>Find a Partner Clinic Here.""", unsafe_allow_html=True
                )
     col1, col2, col3 = st.columns(3)
-    col1.link_button("Now Serving", "https://nowserving.ph")
-    col2.link_button("Konsulta MD", "https://konsulta.md/")
-    col3.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
+    col1.link_button("Now Serving", "https://nowserving.ph", use_container_width = True)
+    col2.link_button("Konsulta MD", "https://konsulta.md/", use_container_width = True)
+    col3.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines", use_container_width = True)
     
     agree = st.checkbox("I acknowledge that I understand the importance of consulting a healthcare professional.")
    
