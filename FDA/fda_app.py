@@ -192,7 +192,7 @@ st.divider()
 
 st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
 a, b = st.columns([1,2])
-aa, bb, cc = st.columns([2,3,1])   
+aa, bb, cc = st.columns([1,1,1])   
 # st.write(st.session_state.role)
 # def keep_query(search):
 #     if search:
@@ -215,7 +215,7 @@ if query_text:
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
     st.session_state.choose = choose
-    if bb.button("View Information", use_container_width = True):
+    if bb.button("View Information", use_container_width = True, type = primary):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
