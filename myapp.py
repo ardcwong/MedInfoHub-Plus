@@ -141,7 +141,7 @@ def medinfohubplus():
     
 role = st.session_state.role
 
-def role_print_none()
+def role_print_none():
     
 
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
