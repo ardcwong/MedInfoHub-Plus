@@ -230,7 +230,7 @@ data_apps = [medquad, fda_app]
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
 st.logo(
     "data/mihplus.png",
-    icon_image= "data/logo",
+    icon_image= "data/logo.png",
 )
 
 page_dict = {}
