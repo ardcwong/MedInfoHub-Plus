@@ -215,7 +215,7 @@ if query_text:
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
     st.session_state.choose = choose
-    if st.button("View"):
+    if b.button("View"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
