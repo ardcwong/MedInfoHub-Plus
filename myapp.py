@@ -139,12 +139,7 @@ def medinfohubplus():
     # # Display formatted text with st.markdown
     # st.markdown(contactinfo, unsafe_allow_html=True)
     
-role = st.session_state.role
-def print_role(role):
-    with st.sidebar:
-        st.write("Hi!, ", role)
-        
-print_role(role)    
+
 
 
 
@@ -185,6 +180,7 @@ fda_app = st.Page(
 about_us_pages = [medinfohubplus_info,about_us]
 account_pages = [logout_page]
 data_apps = [medquad, fda_app]
+user_inf = [print_role]
 
 # respond_pages = [respond_1, respond_2]
 # admin_pages = [admin_1, admin_2]
@@ -204,9 +200,14 @@ data_apps = [medquad, fda_app]
 #     st.markdown(contactinfo, unsafe_allow_html=True)
 # st.title("Request manager")
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
-
+role = st.session_state.role
+def print_role(role):
+    with st.sidebar:
+        st.write("Hi!, ", role)
+         
 page_dict = {}
-
+if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
+    page_dict["User"] = user_inf
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
