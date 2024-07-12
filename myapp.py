@@ -105,16 +105,17 @@ def contactus():
 def medinfohubplus():
     st.title('MedInfoHub+')
     col1, col2 = st.columns(2)
-    col1.tabs("HealthPlus")
-    col1.image('data/healthplus.png')
-    if col1.button('HealthPlus'):
-        col1.switch_page("MedQuAd/medquad.py")
+    with col1:
+        st.tabs("HealthPlus")
+        st.image('data/healthplus.png')
+        if st.button('HealthPlus'):
+            st.switch_page("MedQuAd/medquad.py")
 
-
-    col2.tabs("PharmaPal")
-    col2.image('data/pharmapal.png')
-    if col2.button('PharmaPal'):
-        col2.switch_page("FDA/fda_app.py")
+    with col2:
+        st.tabs("PharmaPal")
+        st.image('data/pharmapal.png')
+        if st.button('PharmaPal'):
+            st.switch_page("FDA/fda_app.py")
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
     # st.subheader("CONTACT US")
