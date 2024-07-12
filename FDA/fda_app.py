@@ -239,9 +239,9 @@ if query_text:
         selected_drug_details = df[df["Drug_Name"] == choose]
 
         st.write(selected_drug_details["ID"].values[0])
-
+        location = int(selected_drug_details["ID"].values[0])
         
-        df_lemmatized_selected = df_lemmatized[df_lemmatized["fda_drug_id"]==selected_drug_details["ID"].values[0]]
+        df_lemmatized_selected = df_lemmatized.iloc[location]
         st.write(df_lemmatized_selected)
 
         
