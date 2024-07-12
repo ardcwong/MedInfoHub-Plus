@@ -18,7 +18,10 @@ if "vote" not in st.session_state:
     st.session_state.vote = None
 ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
+if st.session_state.role:
+    st.markdown(f"Hi, {st.session_state.role}")
 
+return []
 
 
 @st.experimental_dialog("❗Important Reminder",width="large")
@@ -143,7 +146,13 @@ def medinfohubplus():
     # st.markdown(contactinfo, unsafe_allow_html=True)
     
 role = st.session_state.role
+# def role_print_none():
+#     if st.session_state.role:
+#         st.sidebar.markdown(f"Hi, {st.session_state.role}")
+        
+#     return []
 
+# role_print_none()
 
 
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
@@ -219,13 +228,6 @@ if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neithe
 #     page_dict["Admin"] = admin_pages
 
 if len(page_dict) > 0:
-    def role_print_none():
-        if st.session_state.role:
-            st.sidebar.markdown(f"Hi, {st.session_state.role}")
-            
-        return []
-
-    role_print_none()
     pg = st.navigation(page_dict | {"Session": account_pages})
 else:
     pg = st.navigation([st.Page(login)]) #defaults to login page if no acceptable role is selected
