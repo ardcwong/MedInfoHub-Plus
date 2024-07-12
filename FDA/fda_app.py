@@ -272,7 +272,7 @@ if query_text:
                 column1.markdown(combined_text)
                 
                 stop_words = set(stopwords.words('english'))
-                stop_words.update(["indications", "usage"])
+                stop_words.update(["indications", "usage","indicate"])
                 
                 wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stop_words).generate(df_lemmatized_selected)
                 
@@ -291,7 +291,7 @@ if query_text:
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.write(selected_drug_details)
                 stop_words = set(stopwords.words('english'))
-                stop_words.update(["indications", "usage"])
+                stop_words.update(["indications", "usage","indicate"])
                 wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stop_words).generate(df_lemmatized_selected)
                 st.session_state['wordcloud'] = wordcloud
                 # Display the word cloud
