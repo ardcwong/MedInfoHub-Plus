@@ -120,7 +120,7 @@ def extract_keywords(drug_document):
 
 # Summary and usage guidelines function based on user input and profile
 def generate_user_conversational_response(drug_name, drug_document, user_profile):  # UPDATED
-    if user_profile == "Patient":
+    if user_profile == "Patient/Caregiver":
         user_tone = "Explain the information in layman terms, focusing on the essential points a patient should know."
     elif user_profile == "Healthcare Provider":
         user_tone = "Provide detailed and technical information suitable for a healthcare provider."
