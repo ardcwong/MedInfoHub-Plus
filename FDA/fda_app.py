@@ -25,7 +25,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
 
-x = "Yes"
+x = "No"
 
 st.markdown('<p style="font-size: 14px; color: red; text-align: center;"><strong>⚠️ PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. ⚠️</strong></p>', unsafe_allow_html=True)
 
@@ -220,15 +220,12 @@ user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
 df_lemmatized = pd.read_csv('data/lemmatized_fda.csv')
-
 df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df_lemmatized['lemmatized_indications_and_usage_tokens']]
-# st.write(df_lemmatized)
+
 
 if query_text:
     top_results = return_best_drugs(query_text, collection)
-    # st.write(top_results)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    # st.write(df)
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
@@ -241,8 +238,6 @@ if query_text:
         # st.write(selected_drug_details["ID"].values[0])
         location = int(selected_drug_details["ID"].values[0])
         df_lemmatized_selected = df_lemmatized.iloc[location][10]
-        st.write(df_lemmatized_selected)
-
         
         # st.write(selected_drug_details)
         top_keywords = extract_keywords(df_lemmatized_selected)
