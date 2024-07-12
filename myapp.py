@@ -37,8 +37,8 @@ def login():
     role = col2.radio("Choose your role", ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == []: 
-        col2.button("Go"):
-        vote(role)
+        if col2.button("Go"):
+            vote(role)
     
     else:
         st.session_state.role = st.session_state.vote['role']
