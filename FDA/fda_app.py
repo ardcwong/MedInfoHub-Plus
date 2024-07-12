@@ -169,8 +169,12 @@ with tab1:
     col2.write("")
     col2.write("")
     col2.write("")
+#     <b style='color:#0C3974;'>provision of 
+# accessible and easy-to-understand medical information</b>
     content = """
-<b style='color:#0C3974;'>HealthPlus</b> empowers you with reliable medical knowledge, making healthcare information accessible to all through the <b style='color:#0C3974;'>provision of accessible and easy-to-understand medical information</b>. Leveraging the power of the MedQuAD dataset and advanced AI, it <b style='color:#0C3974;'>enhances public health literacy and supports telemedicine consultations.</b> Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub is your go-to resource for trusted medical knowledge.
+<b style='color:#0C3974;'>PharmaPal</b> is an innovative Streamlit application designed to bridge the gap between drug knowledge and patient understanding. 
+Leveraging the power of the FDA Dataset through the Retrieval-Augmented Generation (RAG), this app provides clear, reliable, and accessible information about the drug that 
+is tailor-fit on the user profile, whether a healthcare provider or a patient. 
 """
     col2.markdown(content, unsafe_allow_html=True)
     col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
@@ -182,7 +186,7 @@ with tab2:
     col2.write("")
     col2.title("Instructions:")
     content_inst = """
-    (1) Enter a Keyword to Search<br>(2) Choose Keyword Search Method<br>(3) Choose Focus Area (Applicable for Exact Word Search Method<br>(4) Retrieve Information about Focus Area<br><br>Focus Area: A category or specific subject within a broader topic that helps refine and target the search results more effectively.
+    (1) Enter a drug name or medical condition<br>(2) Choose a drug name from the results<br>(3) Press the "View Information" Button<br>(4) Retrieve Information about the chosen drug<br>
     """
     col2.markdown(content_inst, unsafe_allow_html=True)
 
