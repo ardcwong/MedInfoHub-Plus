@@ -147,7 +147,7 @@ def role_print_none():
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
 medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="📱", default=(role == role))
-role_print = st.Page(role_print_none,title=role)
+# role_print = st.Page(role_print_none,title=role)
 
 # settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
 medquad = st.Page(
@@ -181,7 +181,7 @@ fda_app = st.Page(
 about_us_pages = [medinfohubplus_info,about_us]
 account_pages = [logout_page]
 data_apps = [medquad, fda_app]
-user_info = [role_print]
+user_info = []
 
 
 # respond_pages = [respond_1, respond_2]
@@ -205,7 +205,7 @@ user_info = [role_print]
          
 page_dict = {}
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
-    page_dict["User Profile"] = user_info
+    page_dict["Hi",role] = user_info
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
