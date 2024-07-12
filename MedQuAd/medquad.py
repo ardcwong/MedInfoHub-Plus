@@ -351,8 +351,8 @@ with tab3:
         choose_method = b.selectbox(
                 "Choose Keyword Search Method",
                 ("Exact Word","Best Match"), help = 'Exact Word: Returns every focus area that contains the word in "Enter a keyword to search:" | Best Match utilizes Sentence Transformers for words matching.')
-
-        if choose_method == 'Exact Word':
+        st.session_state.choosemethod = choose_method
+        if st.session_state.choosemethod == 'Exact Word':
             filtered_df = df[df['focus_area'].str.lower().str.contains(keyword, case=False, na=False)]
             focus_area_choose = c.selectbox(
                     "Choose (1) from matched Focus Area/s",
@@ -370,7 +370,7 @@ with tab3:
                 else:
                     if st.session_state.fac == None:
                         st.error("Please choose a focus area first.")
-        elif choose_method == 'Best Match':
+        elif st.session_state.choosemethod == 'Best Match':
             if a.button("View Information", type = "primary", use_container_width = True):
                 # # Filter questions containing the keyword
                 # filtered_df = df[df['question'].str.contains(keyword, case=False, na=False)]
