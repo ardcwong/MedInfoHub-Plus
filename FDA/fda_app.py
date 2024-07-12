@@ -205,7 +205,7 @@ if query_text:
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
-    if st.button("View")
+    if st.button("View"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
@@ -216,58 +216,5 @@ if query_text:
         # st.write(keywords)
         summary, usage_guidelines, keywords = generate_user_conversational_response(drug_name, drug_document, user_profile) 
         st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
-
-# # Initialize session state variables
-# if "search_clicked" not in st.session_state:
-#     st.session_state.search_clicked = False
-# if "options_selected" not in st.session_state:
-#     st.session_state.options_selected = []
-
-
-# # Search button
-# if st.button("Search"):
-#     st.session_state.search_clicked = True
-
-
-# Display the select box if the search button is clicked
-if st.session_state.search_clicked:
-    top_results = return_best_drugs(query_text, collection)
-    df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
-    drug_names = df["Drug_Name"].tolist()
-    choose = b.selectbox(
-            f'Results Related to "***{query_text}***"',
-            (drug_names), help = f'Any Info', index = None)
-    selected_drug_details = df[df["Drug_Name"] == choose]
-    # selected_options = st.multiselect("Select up to 3 options", selectbox_items, max_selections=3)
-
-    # Save the selected options to the session state
-    st.session_state.options_selected = choose
-    
-
-
-
-
-
-
-
-
-
-
-
-# # Display the selected options
-# if st.session_state.options_selected:
-#     st.write("You selected:", st.session_state.options_selected)
-
-
-    
-
-    # if query_text:
-    #     relevant_drug_name, relevant_drug_document, top_result_id = return_best_drug(query_text, collection)
-    #     formatted_output = generate_user_conversational_response(query_text, collection, user_profile)
-    #     st.write(formatted_output)
-    #     st.write(top_result_id)
-    # # st.write(collection.count())
-    #     st.write(collection.get(ids=[str(top_result_id)]))
-
 
 
