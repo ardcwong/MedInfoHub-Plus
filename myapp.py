@@ -32,7 +32,7 @@ def login():
     
     col2.image('data/MIHv2.png')
 
-    st.subheader("Welcome to MedInfoPlus!")
+    col2.header("Welcome to MedInfoPlus!")
     # col1.image('data/art.png')
     # st.header("Log in")
     content = """
@@ -42,7 +42,12 @@ def login():
 
     """
     col2.markdown(content, unsafe_allow_html=True)
-    role = col2.radio("Choose your role", ROLES, index = None)
+
+    col2.subheader("Get Started")
+    col2.markdown("To provide you with the best experience, please select your profile:")
+
+    
+    role = col2.radio(ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == None: 
         if col2.button("Go"):
