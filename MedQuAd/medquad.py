@@ -360,12 +360,12 @@ with tab3:
             st.session_state.fac = focus_area_choose
             if a.button("View Information", type = "primary", use_container_width = True):
             
-                
-                focus_area, summary, filtered_df = process_keyword(keyword, df, st.session_state.fac)
-                select_questions(filtered_df)
-                # doctor_recommendation = specialty_doctor_recommendation(summary)
-                # column2.markdown(doctor_recommendation)
-                telemedicine()
+                if fcous_area_choose:
+                    focus_area, summary, filtered_df = process_keyword(keyword, df, st.session_state.fac)
+                    select_questions(filtered_df)
+                    # doctor_recommendation = specialty_doctor_recommendation(summary)
+                    # column2.markdown(doctor_recommendation)
+                    telemedicine()
                 
             else:
                 if st.session_state.fac == []:
