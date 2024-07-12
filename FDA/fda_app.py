@@ -137,26 +137,27 @@ def generate_user_conversational_response(drug_name, drug_document, user_profile
     combined_response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=combined_messages,
-        max_tokens=400
+        max_tokens=500
     )
     
     combined_text = combined_response.choices[0].message.content
     
     # Separate the clinical summary and usage guidelines based on markers
-    split_text = combined_text.split("Usage Guidelines:")
+    # split_text = combined_text.split("Usage Guidelines:")
     
-    if len(split_text) != 2:
-        return combined_text  # Asked GPT to split text and to return the combined text if splitting doesn't work as expected
+    # if len(split_text) != 2:
+    #     return combined_text  # Asked GPT to split text and to return the combined text if splitting doesn't work as expected
     
-    summary = split_text[0].strip()
-    usage_guidelines = split_text[1].strip()
+    # summary = split_text[0].strip()
+    # usage_guidelines = split_text[1].strip()
 
-    # Remove the "Summary:" marker (if present) after splitting text
-    summary = summary.replace("Summary:", "").strip()
+    # # Remove the "Summary:" marker (if present) after splitting text
+    # summary = summary.replace("Summary:", "").strip()
 
     # Extract top five keywords from the relevant_drug_document
     # keywords = extract_keywords(drug_document)
-    return summary, usage_guidelines
+    return combined_text
+    # summary, usage_guidelines
 
 #-------------MAIN PROGRAM---------------#
 ## GENERAL INFO AND INSTRUCTIONS
@@ -249,27 +250,27 @@ if query_text:
                 highlighted_tkw += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
                 column1.markdown(highlighted_tkw, unsafe_allow_html=True)
             
-            if summary:
+            if combined_text:
 
-                column1.markdown(summary)
+                column1.markdown(combined_text)
 
             else:
                 highlighted_summ = ""
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
 
-            if usage_guidelines:
-                column1.subheader("Usage and Guidelines")
-                column1.markdown(usage_guidelines)
+            # if usage_guidelines:
+            #     column1.subheader("Usage and Guidelines")
+            #     column1.markdown(usage_guidelines)
 
-            else:
-                highlighted_summ = ""
-                highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
-                column1.markdown(highlighted_summ, unsafe_allow_html=True)
+            # else:
+            #     highlighted_summ = ""
+            #     highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
+            #     column1.markdown(highlighted_summ, unsafe_allow_html=True)
     
 
 # " ".join(drug_document)
-            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary+usage_guidelines)
+            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_text)
             st.session_state['wordcloud'] = wordcloud
 
             # Display the word cloud
