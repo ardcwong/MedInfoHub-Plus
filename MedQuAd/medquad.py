@@ -381,6 +381,6 @@ with tab3:
             else:
                 if st.session_state.fac == []:
                     st.error("Please choose a focus area first.")
-    else:
-        st.info("Please enter a keyword to search.")
+    # else:
+    #     st.info("Please enter a keyword to search.")
             
