@@ -24,7 +24,12 @@ import ast #built in
 import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
-nltk.download('stopwords')
+
+
+if "stop" not in session_state:
+    st.session_state.stop = True
+    nltk.download('stopwords')
+
 x = "No"
 
 st.markdown('<p style="font-size: 14px; color: red; text-align: center;"><strong>⚠️ PharmaPal is designed to supplement, not replace, professional medical and pharmaceutical advice. We strongly encourage consulting a healthcare professional before making any medical decision. ⚠️</strong></p>', unsafe_allow_html=True)
