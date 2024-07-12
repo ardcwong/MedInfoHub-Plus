@@ -180,7 +180,7 @@ is tailor-fit on the user profile, whether a healthcare provider or a patient.
     col2.write("*The MedQuAD dataset aggregates content from reputable sources like the National Institutes of Health (NIH), National Library of Medicine (NLM), and other authoritative medical organizations.")
 with tab2:
     col1, col2 = st.columns([1,1])
-    col1.image('data/art.png')
+    col1.image('data/Pharma.png')
     col2.write("")
     col2.write("")
     col2.write("")
