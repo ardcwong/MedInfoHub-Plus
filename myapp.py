@@ -229,8 +229,7 @@ data_apps = [medquad, fda_app]
 # st.title("Request manager")
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
 st.logo(
-    "data/mihplus.png",
-    ,
+    "data/mihplus.png"
 )
 
 page_dict = {}
