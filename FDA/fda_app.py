@@ -262,14 +262,29 @@ if query_text:
             if combined_text:
 
                 column1.markdown(combined_text)
-
+                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_text)
+                st.session_state['wordcloud'] = wordcloud
+                # Display the word cloud
+                plt.figure(figsize=(10, 5))
+                plt.imshow(wordcloud, interpolation='bilinear')
+                plt.axis('off')
+                column2.subheader("Word Cloud")
+                column2.pyplot(plt)
+                
             else:
                 highlighted_summ = ""
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
                 
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
                 column1.write(selected_drug_details)
-
+                wordcloud = WordCloud(width=800, height=400, background_color='white').generate(selected_drug_details["Details"])
+                st.session_state['wordcloud'] = wordcloud
+                # Display the word cloud
+                plt.figure(figsize=(10, 5))
+                plt.imshow(wordcloud, interpolation='bilinear')
+                plt.axis('off')
+                column2.subheader("Word Cloud")
+                column2.pyplot(plt)
             # if usage_guidelines:
             #     column1.subheader("Usage and Guidelines")
             #     column1.markdown(usage_guidelines)
@@ -281,15 +296,10 @@ if query_text:
     
 
 # " ".join(drug_document)
-            wordcloud = WordCloud(width=800, height=400, background_color='white').generate(combined_text)
-            st.session_state['wordcloud'] = wordcloud
+            
+            
 
-            # Display the word cloud
-            plt.figure(figsize=(10, 5))
-            plt.imshow(wordcloud, interpolation='bilinear')
-            plt.axis('off')
-            column2.subheader("Word Cloud")
-            column2.pyplot(plt)
+            
             with column2:
                 def telemedicine():
                     st.subheader('Telemedicine and Specialty Doctors')
