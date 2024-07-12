@@ -220,7 +220,7 @@ user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
 df_lemmatized = pd.read_csv('data/lemmatized_fda.csv')
-df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df_lemmatized['lemmatized_tokens']]
+df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df_lemmatized['lemmatized_indications_and_usage_tokens']]
 
 if query_text:
     top_results = return_best_drugs(query_text, collection)
