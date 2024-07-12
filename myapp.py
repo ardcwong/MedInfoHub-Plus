@@ -103,8 +103,8 @@ def contactus():
     # Display formatted text with st.markdown
     st.markdown(contactinfo, unsafe_allow_html=True)
 def medinfohubplus():
-    st.markdown("<h1 style='text-align: center;'>MedInfoHub+</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center;'><b>MedInfoHub+<b><i> is your ultimate resource for accessible, reliable, and easy-to-understand medical information. Our platform is designed to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. MedInfoHub+ features two powerful applications: HealthPlus and PharmaPal.</h3>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Welcome to MedInfoHub+ ✨</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'><i><b>MedInfoHub+<b> is your ultimate resource for accessible, reliable, and easy-to-understand medical information. Our platform is designed to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. MedInfoHub+ features two powerful applications: HealthPlus and PharmaPal.</h3>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("➕HealthPlus")
