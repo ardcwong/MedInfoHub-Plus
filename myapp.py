@@ -115,12 +115,12 @@ def medinfohubplus():
     #     </div>
     #     """, unsafe_allow_html=True)
 
-    if st.session_state.role:
-        st.markdown(f"""
-        <div style="text-align: center; background-color: #C4E8F3; padding: 5px; border-radius: 5px; margin-right: 5px;">
-            Hi, <span style="font-weight: bold;">{st.session_state.role}</span>
-        </div>
-        """, unsafe_allow_html=True)
+    # if st.session_state.role:
+    #     st.markdown(f"""
+    #     <div style="text-align: center; background-color: #C4E8F3; padding: 5px; border-radius: 5px; margin-right: 5px;">
+    #         Hi, <span style="font-weight: bold;">{st.session_state.role}</span>
+    #     </div>
+    #     """, unsafe_allow_html=True)
 
     
         
