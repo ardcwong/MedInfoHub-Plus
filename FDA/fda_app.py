@@ -215,7 +215,7 @@ if query_text:
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
     st.session_state.choose = choose
-    a.caption(f"Press to View Information for {st.session_state.choose}.")
+    # a.caption(f"Press to View Information for {st.session_state.choose}.")
     if a.button("View Information", use_container_width = True, type = "primary"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
