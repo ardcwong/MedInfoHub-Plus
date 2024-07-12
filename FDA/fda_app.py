@@ -200,7 +200,7 @@ aa, bb, cc = st.columns([1,1,1])
 #         st.session_state.keep = query_text_keep
 #         return st.session_state.keep 
 
-query_text = a.text_input("Please enter a medical condition or drug name: ")
+query_text = aa.text_input("Please enter a medical condition or drug name: ")
 # Example usage
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
@@ -211,11 +211,12 @@ if query_text:
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     # st.write(df)
     drug_names = df["Drug_Name"].tolist()
-    choose = b.selectbox(
+    choose = bb.selectbox(
             f'Results Related to "***{query_text}***"',
             (drug_names), help = f'Any Info', index = None)
     st.session_state.choose = choose
-    if bb.button("View Information", use_container_width = True, type = "primary"):
+    cc.markdown(f"Press to View Information for {st.session_state.choose}.")
+    if cc.button("View Information", use_container_width = True, type = "primary"):
         selected_drug_details = df[df["Drug_Name"] == choose]
         # st.write(selected_drug_details)
         keywords = extract_keywords(selected_drug_details["Details"])
