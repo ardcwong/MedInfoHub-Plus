@@ -31,9 +31,17 @@ def login():
     col1, col2, col3 = st.columns([1,3,1])
     
     col2.image('data/MIHv2.png')
+
+    st.subheader("Welcome to MedInfoPlus!")
     # col1.image('data/art.png')
     # st.header("Log in")
-    col2.markdown('<p style="font-size: 18px; color: black;"><strong> While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here. </strong></p>', unsafe_allow_html=True)
+    content = """
+    '<p style="font-size: 18px; color: black;"><strong> Welcome to MedInfoHub+, your comprehensive source for accessible, reliable, and easy-to-understand medical information. 
+    We aim to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. 
+    Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub+ is your go-to resource.</strong></p>'
+
+    """
+    col2.markdown(content, unsafe_allow_html=True)
     role = col2.radio("Choose your role", ROLES, index = None)
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == None: 
