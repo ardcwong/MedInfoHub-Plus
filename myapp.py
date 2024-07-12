@@ -180,7 +180,7 @@ fda_app = st.Page(
 about_us_pages = [medinfohubplus_info,about_us]
 account_pages = [logout_page]
 data_apps = [medquad, fda_app]
-user_inf = [print_role]
+
 
 # respond_pages = [respond_1, respond_2]
 # admin_pages = [admin_1, admin_2]
@@ -206,8 +206,6 @@ def print_role(role):
         st.write("Hi!, ", role)
          
 page_dict = {}
-if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
-    page_dict["User"] = user_inf
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
