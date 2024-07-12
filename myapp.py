@@ -142,11 +142,12 @@ def medinfohubplus():
 role = st.session_state.role
 
 
+    
 
 logout_page = st.Page(logout, title="End Session", icon=":material/logout:")
 about_us = st.Page(contactus, title="Contact Us", icon="✉️")
 medinfohubplus_info = st.Page(medinfohubplus, title="About Our Data App", icon="📱", default=(role == role))
-
+role_print = st.Page(title=role,default=True)
 
 # settings = st.Page("settings.py", title="Settings", icon=":material/settings:")
 medquad = st.Page(
@@ -180,6 +181,7 @@ fda_app = st.Page(
 about_us_pages = [medinfohubplus_info,about_us]
 account_pages = [logout_page]
 data_apps = [medquad, fda_app]
+user_info = [role_print]
 
 
 # respond_pages = [respond_1, respond_2]
@@ -202,6 +204,8 @@ data_apps = [medquad, fda_app]
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
          
 page_dict = {}
+if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
+    page_dict["User Profile"] = user_info
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
     page_dict["Application"] = data_apps
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
