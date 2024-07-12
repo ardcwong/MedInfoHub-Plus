@@ -20,11 +20,20 @@ ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 
 @st.experimental_dialog("Important Reminder",width="large")
 def vote(role):
-    st.write("While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here.")
-    reason = st.text_input("Because...")
+    st.markdown("""While our app provides information about illnesses and medications, it is not a substitute for professional medical advice. Self-medicating can be dangerous and may lead to serious health issues. 
+    Always consult a healthcare professional before starting or changing any medication. <br> If you are experiencing symptoms, please seek medical advice from a qualified healthcare provider. 
+    For your convenience, we have partnered with trusted clinics. Find a Partner Clinic Here."""
+               )
+    
+    
+    agree = st.checkbox("I acknowledge that I understand the importance of consulting a healthcare professional.")
+   
     if st.button("Enter MedInfoHub+"):
-        st.session_state.vote = {"role": role}
-        st.rerun()
+        if agree:
+            st.session_state.vote = {"role": role}
+            st.rerun()
+        else: 
+            st.error("It is important to acknowledge the need for professional medical advice.")
 
         
 def login():
