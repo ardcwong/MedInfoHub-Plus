@@ -161,7 +161,7 @@ def process_keyword(keyword, df, best_match_focus_area):
     # column2.caption(best_match_focus_area.upper())
     focus_area = best_match_focus_area
 
-    if focus_area:d
+    if focus_area:
 
         # Filter answers by the selected focus area
         filtered_df = df[df['focus_area'].str.lower().str.contains(focus_area, case=False, na=False)]
