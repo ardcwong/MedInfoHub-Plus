@@ -199,7 +199,7 @@ data_apps = [medquad, fda_app]
 # st.logo("images/horizontal_blue.png", icon_image="images/icon_blue.png")
 def print_role(role):
     with st.sidebar:
-    st.write("Hi!, ", role)
+        st.write("Hi!, ", role)
 print_role(st.state_session.role)    
 page_dict = {}
 
