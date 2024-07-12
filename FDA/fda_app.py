@@ -219,6 +219,9 @@ query_text = a.text_input("Please enter a medical condition or drug name: ")
 user_profile = st.session_state.role # patient or healthcare_provider
 # on streamlit: user_profile = st.radio("I am a: ", ("patient", "healthcare_provider"))
 
+df_lemmatized = pd.read_csv('data/lemmatized_fda.csv')
+df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df_lemmatized['lemmatized_tokens']]
+
 if query_text:
     top_results = return_best_drugs(query_text, collection)
     # st.write(top_results)
@@ -232,6 +235,14 @@ if query_text:
     # a.caption(f"Press to View Information for {st.session_state.choose}.")
     if a.button("View Information", use_container_width = True, type = "primary"):
         selected_drug_details = df[df["Drug_Name"] == choose]
+
+
+
+        
+        df_lemmatized_selected = df_lemmatized[df_lemmatized["fda_drug_id"]==selected_drug_details["ID"]]
+        st.write("df_lemmatized_selected")
+
+        
         # st.write(selected_drug_details)
         top_keywords = extract_keywords(selected_drug_details["Details"])
         drug_name = selected_drug_details["Drug_Name"].tolist()
