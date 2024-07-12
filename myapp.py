@@ -110,8 +110,8 @@ def medinfohubplus():
     if st.session_state.role:
         # st.markdown("<h5 style='text-align: center;'>Hi, </h5>", unsafe_allow_html=True)
         st.markdown("""
-        <h5>
-            Hi, <b>Patient/Caregiver!</b>
+        <h5 style="text-align: center; background-color: green;padding: 5px; border-radius: 5px; margin-right: 5px;">
+            Hi, <b>{role}</b>
         </h5>
         """, unsafe_allow_html=True)
 
