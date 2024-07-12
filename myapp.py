@@ -106,15 +106,19 @@ def medinfohubplus():
     st.title('MedInfoHub+')
     col1, col2 = st.columns(2)
     with col1:
-        st.tabs(["HealthPlus"])
-        st.image('data/healthplus.png')
-        if st.button('HealthPlus'):
+        st.subheader("➕HealthPlus")
+        st.markdown("***Empowering you with reliable medical knowledge***")
+        st.markdwown("HealthPlus leverages the power of the MedQuAD dataset and advanced AI to provide you with accurate and easy-to-understand medical information. Our goal is to make healthcare information accessible to everyone, enhancing public health literacy and advocating telemedicine consultations.")
+        # st.image('data/healthplus.png')
+        if st.button('HealthPlus', type = "primary"):
             st.switch_page("MedQuAd/medquad.py")
 
     with col2:
-        st.tabs(["PharmaPal"])
-        st.image('data/pharmapal.png')
-        if st.button('PharmaPal'):
+        st.subheader("⚕️PharmaPal")
+        st.markdown("***Bridging the gap between drug knowledge and patient understanding***")
+        st.markdown("PharmaPal is an innovative Streamlit application designed to bridge the gap between drug knowledge and patient understanding. Leveraging the power of the FDA Dataset through the Retrieval-Augmented Generation (RAG), this app provides clear, reliable, and accessible information about the drug that is tailor-fit on the user profile, whether a healthcare provider or a patient.")
+        # st.image('data/pharmapal.png')
+        if st.button('PharmaPal', type = "primary"):
             st.switch_page("FDA/fda_app.py")
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
