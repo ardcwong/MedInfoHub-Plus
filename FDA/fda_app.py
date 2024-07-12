@@ -193,7 +193,7 @@ aa, bb, cc = st.columns([1,3,1])
 st.markdown("<h1 style='text-align: center;'>⚕️PharmaPal</h1>", unsafe_allow_html=True)
 a, b = st.columns([1,2])
    
-st.write(st.session_state.role)
+# st.write(st.session_state.role)
 # def keep_query(search):
 #     if search:
 #         query_text_keep = query_text
@@ -272,3 +272,19 @@ if query_text:
             plt.axis('off')
             column2.subheader("Word Cloud")
             column2.pyplot(plt)
+            with column2:
+                def telemedicine():
+                    st.subheader('Telemedicine and Specialty Doctors')
+                
+                    # Original text with website titles and URLs
+                    text = """
+                    For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
+                
+                    <b>NowServing</b>: https://nowserving.ph/<br><b>Konsulta MD</b>: https://konsulta.md/<br><b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
+                    """
+                    st.link_button("Now Serving", "https://nowserving.ph")
+                    st.link_button("Konsulta MD", "https://konsulta.md/")
+                    st.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
+                    # Display formatted text with st.markdown
+                    st.markdown(text, unsafe_allow_html=True)
+                telemedicine()
