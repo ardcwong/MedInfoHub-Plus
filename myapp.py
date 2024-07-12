@@ -21,7 +21,6 @@ ROLES = ["Patient/Caregiver", "Healthcare Provider"]
 if st.session_state.role:
     st.markdown(f"Hi, {st.session_state.role}")
 
-return []
 
 
 @st.experimental_dialog("❗Important Reminder",width="large")
