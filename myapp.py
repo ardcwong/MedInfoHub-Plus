@@ -109,26 +109,13 @@ def contactus():
 def medinfohubplus():
     if st.session_state.role:
         # st.markdown("<h5 style='text-align: center;'>Hi, </h5>", unsafe_allow_html=True)
-        html_code = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <style>
-                .bold-text {
-                    font-weight: bold;
-                    text-align: center;
-                }
-            </style>
-        </head>
-        <body>
-            <p>Hi, <span class="bold-text">Patient/Caregiver!</span></p>
-        </body>
-        </html>
-        """
-        
-        st.markdown(html_code, unsafe_allow_html=True)
+        st.markdown("""
+        <div style="text-align: center;">
+            Hi, <b>Patient/Caregiver!</b>
+        </div>
+        """, unsafe_allow_html=True)
 
-
+    
         
     st.markdown("<h1 style='text-align: center;'>Welcome to MedInfoHub+ ✨</h1>", unsafe_allow_html=True)
     st.divider()
