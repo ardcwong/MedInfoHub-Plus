@@ -46,7 +46,7 @@ def vote(role):
 def login():
     col1, col2, col3 = st.columns([1,3,1])
     
-    col2.image('data/MIHv2.png')
+    col2.image('data/mihplus.png')
 
     col2.header("Welcome to MedInfoHub+!")
     # col1.image('data/art.png')
