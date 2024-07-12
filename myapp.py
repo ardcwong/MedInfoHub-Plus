@@ -200,7 +200,8 @@ data_apps = [medquad, fda_app]
 def print_role(role):
     with st.sidebar:
         st.write("Hi!, ", role)
-print_role(st.state_session.role)    
+        
+print_role(role)    
 page_dict = {}
 
 if st.session_state.role in ["Patient/Caregiver", "Healthcare Provider", "Neither"]:
