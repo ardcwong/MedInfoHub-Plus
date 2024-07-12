@@ -110,16 +110,20 @@ def medinfohubplus():
         st.markdown("***Empowering you with reliable medical knowledge***")
         st.markdown("HealthPlus leverages the power of the MedQuAD dataset and advanced AI to provide you with accurate and easy-to-understand medical information. Our goal is to make healthcare information accessible to everyone, enhancing public health literacy and advocating telemedicine consultations.")
         # st.image('data/healthplus.png')
-        if st.button('HealthPlus', type = "primary", use_container_width = True):
-            st.switch_page("MedQuAd/medquad.py")
+        
 
     with col2:
         st.subheader("⚕️PharmaPal")
         st.markdown("***Bridging the gap between drug knowledge and patient understanding***")
         st.markdown("PharmaPal is an innovative Streamlit application designed to bridge the gap between drug knowledge and patient understanding. Leveraging the power of the FDA Dataset through the Retrieval-Augmented Generation (RAG), this app provides clear, reliable, and accessible information about the drug that is tailor-fit on the user profile, whether a healthcare provider or a patient.")
         # st.image('data/pharmapal.png')
-        if st.button('PharmaPal', type = "primary", use_container_width = True):
-            st.switch_page("FDA/fda_app.py")
+        
+    col3, col4 = st.columns(2)
+    if col3.button('HealthPlus', type = "primary", use_container_width = True):
+        st.switch_page("MedQuAd/medquad.py")
+    if col4.button('PharmaPal', type = "primary", use_container_width = True):
+        st.switch_page("FDA/fda_app.py")
+
     # st.subheader("WHAT WE OFFER")
     # st.image('data/use.png')
     # st.subheader("CONTACT US")
