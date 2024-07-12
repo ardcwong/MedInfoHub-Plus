@@ -99,7 +99,7 @@ def contactus():
     General Inquiries: info@medinfohub.com<br>
     Support: support@medinfohub.com<br>
 
-    Follow us on Social Media Platforms:
+    Follow us on Social Media Platforms:<br>
     Facebook: facebook.com/medinfohub<br>
     Twitter: twitter.com/medinfohub<br>
     Instagram: instagram.com/medinfohub
@@ -126,7 +126,7 @@ def medinfohubplus():
         
     st.markdown(f"<h1 style='text-align: center;'>Welcome to MedInfoHub+, {role} ✨</h1>", unsafe_allow_html=True)
     st.divider()
-    st.markdown("<h4 style='text-align: center;'><b><i>MedInfoHub</b></i><i> is your ultimate resource for accessible, reliable, and easy-to-understand medical information. Our platform is designed to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. MedInfoHub+ features two powerful applications: HealthPlus and PharmaPal.</i></h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align: center;color: #e76f51;'><b><i>MedInfoHub</b></i><i> is your ultimate resource for accessible, reliable, and easy-to-understand medical information. Our platform is designed to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. MedInfoHub+ features two powerful applications: HealthPlus and PharmaPal.</i></h4>", unsafe_allow_html=True)
     st.divider()
     col1, col2 = st.columns(2)
     with col1:
