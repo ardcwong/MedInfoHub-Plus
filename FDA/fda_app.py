@@ -26,7 +26,7 @@ from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
 
 
-if "stop" not in session_state:
+if "stop" not in st.session_state:
     st.session_state.stop = True
     nltk.download('stopwords')
 
