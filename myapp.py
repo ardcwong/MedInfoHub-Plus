@@ -44,7 +44,7 @@ def login():
     
     col2.image('data/MIHv2.png')
 
-    col2.header("Welcome to MedInfoPlus!")
+    col2.header("Welcome to MedInfoHubPlus+!")
     # col1.image('data/art.png')
     # st.header("Log in")
     content = """
@@ -58,14 +58,10 @@ def login():
     col2.subheader("Get Started")
     col2.markdown("To provide you with the best experience, please select your profile:")
 
- 
-
-
-    
     role = col2.radio("I am a ",ROLES, index = None, label_visibility = "collapsed",captions = ["Empowering you with reliable medical knowledge to manage health better and offer clear explanations to care for your loved ones.", "Providing quick access to accurate medical information and resources to support your practice."] )
     # role = col2.selectbox("Choose your role", ROLES)
     if st.session_state.vote == None: 
-        if col2.button("Go"):
+        if col2.button("Next"):
             vote(role)
     
     else:
