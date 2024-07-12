@@ -261,8 +261,7 @@ if query_text:
                 highlighted_summ = ""
                 highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
                 column1.markdown(highlighted_summ, unsafe_allow_html=True)
-    else:
-        st.error("Choose one from results to view")
+    
 
 # " ".join(drug_document)
             wordcloud = WordCloud(width=800, height=400, background_color='white').generate(summary+usage_guidelines)
@@ -290,3 +289,5 @@ if query_text:
                     # Display formatted text with st.markdown
                     st.markdown(text, unsafe_allow_html=True)
                 telemedicine()
+    else:
+        st.error("Choose one from results to view")
