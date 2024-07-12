@@ -368,7 +368,7 @@ with tab3:
                     telemedicine()
                 
             else:
-                if st.session_state.fac == []:
+                if st.session_state.fac == None:
                     st.error("Please choose a focus area first.")
         elif choose_method == 'Best Match':
             if a.button("View Information", type = "primary", use_container_width = True):
@@ -379,7 +379,7 @@ with tab3:
                 select_questions(filtered_df)
                 telemedicine()
             else:
-                if st.session_state.fac == []:
+                if st.session_state.fac == None:
                     st.error("Please choose a focus area first.")
     # else:
     #     st.info("Please enter a keyword to search.")
