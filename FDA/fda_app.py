@@ -231,7 +231,7 @@ df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df
 
 
 if query_text:
-    top_results = return_best_drugs(query_text, collection)
+    top_results = return_best_drugs(query_text, load_collection)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
