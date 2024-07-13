@@ -234,7 +234,7 @@ if query_text:
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
             f'Results Related to "***{query_text}***"',
-            (drug_names), help = f'Choose one from the list to view its information.', index = None)
+            (drug_names), help = f'Choose one (drug) from the list to view its information.', index = None)
     st.session_state.choose = choose
     # st.write(top_results)
     # a.caption(f"Press to View Information for {st.session_state.choose}.")
