@@ -338,8 +338,8 @@ if query_text:
                         st.markdown(text, unsafe_allow_html=True)
                     telemedicine()
         else:
-            if st.session_state.choose == []:
-                st.error("Choose one from results to view")
+            # if st.session_state.choose == []:
+            st.error("Choose one from results to view")
                 
 
         # else:
