@@ -256,7 +256,10 @@ if query_text:
             combined_text = generate_user_conversational_response(drug_name, drug_document, user_profile) 
             # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
         
-            
+        else:
+            if st.session_state.choose == []:
+                st.error("Choose one from results to view")
+                
         with st.container():
             # st.write(drug_name)
             st.markdown(f"<h2 style='text-align: center;'><b><i>{st.session_state.choose}</i></h2>", unsafe_allow_html=True)
@@ -342,6 +345,4 @@ if query_text:
         # else:
         #     if st.session_state.choose == []:
         #         st.error("Choose one from results to view")
-        else:
-            if st.session_state.choose == []:
-                st.error("Choose one from results to view")
+        
