@@ -242,18 +242,21 @@ if query_text:
         selected_drug_details = df[df["Drug_Name"] == choose]
 
         # st.write(selected_drug_details["ID"].values[0])
-        location = int(selected_drug_details["ID"].values[0])
-        df_lemmatized_selected = df_lemmatized.iloc[location][10]
-        
-        # st.write(selected_drug_details)
-        top_keywords = extract_keywords(df_lemmatized_selected)
-        drug_name = selected_drug_details["Drug_Name"].tolist()
-        drug_document = selected_drug_details["Details"].tolist()
-
-        # st.write(keywords)
-        combined_text = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-        # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
-
+        if st.session_state.choose:
+            
+            location = int(selected_drug_details["ID"].values[0])
+            df_lemmatized_selected = df_lemmatized.iloc[location][10]
+            
+            # st.write(selected_drug_details)
+            top_keywords = extract_keywords(df_lemmatized_selected)
+            drug_name = selected_drug_details["Drug_Name"].tolist()
+            drug_document = selected_drug_details["Details"].tolist()
+    
+            # st.write(keywords)
+            combined_text = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+            # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
+        else:
+            st.error("Choose one from results to view")
         with st.container():
             # st.write(drug_name)
             st.markdown(f"<h2 style='text-align: center;'><b><i>{st.session_state.choose}</i></h2>", unsafe_allow_html=True)
