@@ -57,7 +57,7 @@ def load_collection():
     
     # if "collection" not in st.session_state:
         # Create or get the collection
-    collection = st.session_state.client_chromadb.get_or_create_collection(
+    collection = client_chromadb.get_or_create_collection(
     name=COLLECTION_NAME,
     embedding_function=openai_ef,
     metadata={"hnsw:space": "cosine"}
