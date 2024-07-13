@@ -41,9 +41,21 @@ client = OpenAI(api_key=api_key)
 # SKLLMConfig.set_openai_key(api_key)
 # Constants
 
-CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
-COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
+
+# # OPTION 1
+# client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
+# openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
+# CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
+# COLLECTION_NAME = "fda_drugs_embeddings_v6"
+# collection = client_chromadb.get_or_create_collection(
+#     name=COLLECTION_NAME,
+#     embedding_function=openai_ef,
+#     metadata={"hnsw:space": "cosine"}
+#     )
+
+
+# OPTION 2
 @st.cache_resource
 def load_collection():
     # if "client_chromadb" not in st.session_state:
@@ -240,111 +252,112 @@ if query_text:
     st.session_state.choose = choose
     # st.write(top_results)
     # a.caption(f"Press to View Information for {st.session_state.choose}.")
-    if a.button("View Information", use_container_width = True, type = "primary"):
-        selected_drug_details = df[df["Drug_Name"] == choose]
-
-        # st.write(selected_drug_details["ID"].values[0])
-        if st.session_state.choose:
-            
-            location = int(selected_drug_details["ID"].values[0])
-            df_lemmatized_selected = df_lemmatized.iloc[location][10]
-            
-            # st.write(selected_drug_details)
-            top_keywords = extract_keywords(df_lemmatized_selected)
-            drug_name = selected_drug_details["Drug_Name"].tolist()
-            drug_document = selected_drug_details["Details"].tolist()
+    if st.session_state.choose:
+        if a.button("View Information", use_container_width = True, type = "primary"):
+            selected_drug_details = df[df["Drug_Name"] == choose]
     
-            # st.write(keywords)
-            combined_text = generate_user_conversational_response(drug_name, drug_document, user_profile) 
-            # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
-            with st.container():
-                # st.write(drug_name)
-                st.markdown(f"<h2 style='text-align: center;'><b><i>{st.session_state.choose}</i></h2>", unsafe_allow_html=True)
-                column1, column2 = st.columns([1,1])
-                column1.subheader("Summary")
-                column1.caption('TOP KEYWORDS')
-                if top_keywords:
-                    highlighted_keywords = ""
-                    for i, keyword in enumerate(top_keywords):
-                        highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
-    
-                    column1.markdown(highlighted_keywords, unsafe_allow_html=True)
-    
-                else:
-                    highlighted_tkw = ""
-                    highlighted_tkw += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
-                    column1.markdown(highlighted_tkw, unsafe_allow_html=True)
+            # st.write(selected_drug_details["ID"].values[0])
+            if st.session_state.choose:
                 
-                if combined_text:
-    
-                    column1.markdown(combined_text)
-                    
-                    stop_words = set(stopwords.words('english'))
-                    stop_words.update(["indications", "usage","indicate"])
-                    
-                    wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stop_words).generate(df_lemmatized_selected)
-                    
-                    st.session_state['wordcloud'] = wordcloud
-                    # Display the word cloud
-                    plt.figure(figsize=(10, 5))
-                    plt.imshow(wordcloud, interpolation='bilinear')
-                    plt.axis('off')
-                    column2.subheader("Word Cloud")
-                    column2.pyplot(plt)
-                    
-                else:
-                    highlighted_summ = ""
-                    highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
-                    
-                    column1.markdown(highlighted_summ, unsafe_allow_html=True)
-                    column1.write(selected_drug_details)
-                    stop_words = set(stopwords.words('english'))
-                    stop_words.update(["indications", "usage","indicate"])
-                    wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stop_words).generate(df_lemmatized_selected)
-                    st.session_state['wordcloud'] = wordcloud
-                    # Display the word cloud
-                    plt.figure(figsize=(10, 5))
-                    plt.imshow(wordcloud, interpolation='bilinear')
-                    plt.axis('off')
-                    column2.subheader("Word Cloud")
-                    column2.pyplot(plt)
-                # if usage_guidelines:
-                #     column1.subheader("Usage and Guidelines")
-                #     column1.markdown(usage_guidelines)
-    
-                # else:
-                #     highlighted_summ = ""
-                #     highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
-                #     column1.markdown(highlighted_summ, unsafe_allow_html=True)
+                location = int(selected_drug_details["ID"].values[0])
+                df_lemmatized_selected = df_lemmatized.iloc[location][10]
+                
+                # st.write(selected_drug_details)
+                top_keywords = extract_keywords(df_lemmatized_selected)
+                drug_name = selected_drug_details["Drug_Name"].tolist()
+                drug_document = selected_drug_details["Details"].tolist()
         
-    
-    # " ".join(drug_document)
-                
-                
-    
-                
-                with column2:
-                    def telemedicine():
-                        st.subheader('Telemedicine and Specialty Doctors')
-                    
-                        # Original text with website titles and URLs
-                        text = """
-                        For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
-                    
-                        <b>NowServing</b>: https://nowserving.ph/<br><b>Konsulta MD</b>: https://konsulta.md/<br><b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
-                        """
-                        # st.link_button("Now Serving", "https://nowserving.ph")
-                        # st.link_button("Konsulta MD", "https://konsulta.md/")
-                        # st.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
-                        # Display formatted text with st.markdown
-                        st.markdown(text, unsafe_allow_html=True)
-                    telemedicine()
-        else:
-            # if st.session_state.choose == []:
-            st.error("Choose one from results to view")
-                
-
-        # else:
-        #     if st.session_state.choose == []:
-        #         st.error("Choose one from results to view")
+                # st.write(keywords)
+                combined_text = generate_user_conversational_response(drug_name, drug_document, user_profile) 
+                # st.write(f"Summary:\n-----------------\n{summary}\n\nUsage Guidelines:\n-----------------\n{usage_guidelines}")
+                with st.container():
+                    # st.write(drug_name)
+                    st.markdown(f"<h2 style='text-align: center;'><b><i>{st.session_state.choose}</i></h2>", unsafe_allow_html=True)
+                    column1, column2 = st.columns([1,1])
+                    column1.subheader("Summary")
+                    column1.caption('TOP KEYWORDS')
+                    if top_keywords:
+                        highlighted_keywords = ""
+                        for i, keyword in enumerate(top_keywords):
+                            highlighted_keywords += f"<span style='background-color:#FFD3D3;padding: 5px; border-radius: 5px; margin-right: 5px;'>{keyword}</span>"
         
+                        column1.markdown(highlighted_keywords, unsafe_allow_html=True)
+        
+                    else:
+                        highlighted_tkw = ""
+                        highlighted_tkw += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Top Keywords is unavailable.'}</span>"
+                        column1.markdown(highlighted_tkw, unsafe_allow_html=True)
+                    
+                    if combined_text:
+        
+                        column1.markdown(combined_text)
+                        
+                        stop_words = set(stopwords.words('english'))
+                        stop_words.update(["indications", "usage","indicate"])
+                        
+                        wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stop_words).generate(df_lemmatized_selected)
+                        
+                        st.session_state['wordcloud'] = wordcloud
+                        # Display the word cloud
+                        plt.figure(figsize=(10, 5))
+                        plt.imshow(wordcloud, interpolation='bilinear')
+                        plt.axis('off')
+                        column2.subheader("Word Cloud")
+                        column2.pyplot(plt)
+                        
+                    else:
+                        highlighted_summ = ""
+                        highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Summarizer is unavailable.'}</span>"
+                        
+                        column1.markdown(highlighted_summ, unsafe_allow_html=True)
+                        column1.write(selected_drug_details)
+                        stop_words = set(stopwords.words('english'))
+                        stop_words.update(["indications", "usage","indicate"])
+                        wordcloud = WordCloud(width=800, height=400, background_color='white', stopwords=stop_words).generate(df_lemmatized_selected)
+                        st.session_state['wordcloud'] = wordcloud
+                        # Display the word cloud
+                        plt.figure(figsize=(10, 5))
+                        plt.imshow(wordcloud, interpolation='bilinear')
+                        plt.axis('off')
+                        column2.subheader("Word Cloud")
+                        column2.pyplot(plt)
+                    # if usage_guidelines:
+                    #     column1.subheader("Usage and Guidelines")
+                    #     column1.markdown(usage_guidelines)
+        
+                    # else:
+                    #     highlighted_summ = ""
+                    #     highlighted_summ += f"<span style='background-color:#96BAC5;padding: 5px; border-radius: 5px; margin-right: 5px;'>{'Usage and Guidelines is unavailable.'}</span>"
+                    #     column1.markdown(highlighted_summ, unsafe_allow_html=True)
+            
+        
+        # " ".join(drug_document)
+                    
+                    
+        
+                    
+                    with column2:
+                        def telemedicine():
+                            st.subheader('Telemedicine and Specialty Doctors')
+                        
+                            # Original text with website titles and URLs
+                            text = """
+                            For telemedicine consultations or to find the nearest specialty doctor near you, you may visit:
+                        
+                            <b>NowServing</b>: https://nowserving.ph/<br><b>Konsulta MD</b>: https://konsulta.md/<br><b>SeriousMD</b>: https://seriousmd.com/healthcare-super-app-philippines
+                            """
+                            # st.link_button("Now Serving", "https://nowserving.ph")
+                            # st.link_button("Konsulta MD", "https://konsulta.md/")
+                            # st.link_button("SeriousMD", "https://seriousmd.com/healthcare-super-app-philippines")
+                            # Display formatted text with st.markdown
+                            st.markdown(text, unsafe_allow_html=True)
+                        telemedicine()
+            else:
+                # if st.session_state.choose == []:
+                st.error("Choose one from results to view")
+                    
+    
+            # else:
+            #     if st.session_state.choose == []:
+            #         st.error("Choose one from results to view")
+            
