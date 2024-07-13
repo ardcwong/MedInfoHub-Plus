@@ -53,7 +53,7 @@ def login():
     # st.header("Log in")
     content = """
     Welcome to MedInfoHub+, your comprehensive source for accessible, reliable, and easy-to-understand medical information. 
-    We aim to enhance public health literacy, support telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. 
+    We aim to enhance public health literacy, advocate telemedicine consultations, and bridge the gap between drug knowledge and patient understanding. 
     Whether you’re a patient managing a chronic condition, a caregiver needing clear explanations, a healthcare provider requiring quick and reliable information, or a health enthusiast looking for health tips, MedInfoHub+ is your go-to resource.
 
     """
