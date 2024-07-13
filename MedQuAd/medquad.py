@@ -96,9 +96,14 @@ def generate_response(summary, prompt):
 
 
 def specialty_doctor_recommendation(summary):
-    prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
-    doctor_recommendation = generate_response(summary, prompt)
-    return doctor_recommendation
+    try:
+    
+        prompt = f'Which specialty doctor should I consult?:\n\n{summary}'
+        doctor_recommendation = generate_response(summary, prompt)
+        return doctor_recommendation
+    except:
+        return []
+    
 
 def initializing():
         msg = st.toast('Getting Ready...')
