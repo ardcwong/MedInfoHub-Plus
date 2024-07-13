@@ -41,7 +41,7 @@ client = OpenAI(api_key=api_key)
 # SKLLMConfig.set_openai_key(api_key)
 # Constants
 
-CHROMA_DATA_PATH = 'fda_drugs_v6'
+CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
 COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
 
