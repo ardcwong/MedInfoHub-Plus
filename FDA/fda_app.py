@@ -44,26 +44,27 @@ client = OpenAI(api_key=api_key)
 CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
 COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
-# @st.cache_resource
-
-if "client_chromadb" not in st.session_state:
-    st.session_state.client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
-client_chromadb = st.session_state.client_chromadb
-
-if "embed_func" not in st.session_state:
-    st.session_state.embed_func = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
-openai_ef = st.session_state.embed_func
-
-
-if "collection" not in st.session_state:
-    # Create or get the collection
-    st.session_state.collection = st.session_state.client_chromadb.get_or_create_collection(
-    name=COLLECTION_NAME,
-    embedding_function=openai_ef,
-    metadata={"hnsw:space": "cosine"}
-    )
-
-collection = st.session_state.collection
+@st.cache_resource
+def load_collection()
+    if "client_chromadb" not in st.session_state:
+        st.session_state.client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
+    client_chromadb = st.session_state.client_chromadb
+    
+    if "embed_func" not in st.session_state:
+        st.session_state.embed_func = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
+    openai_ef = st.session_state.embed_func
+    
+    
+    if "collection" not in st.session_state:
+        # Create or get the collection
+        st.session_state.collection = st.session_state.client_chromadb.get_or_create_collection(
+        name=COLLECTION_NAME,
+        embedding_function=openai_ef,
+        metadata={"hnsw:space": "cosine"}
+        )
+    
+    collection = st.session_state.collection
+    return collection
     
 
 
