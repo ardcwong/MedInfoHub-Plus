@@ -44,6 +44,7 @@ client = OpenAI(api_key=api_key)
 CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
 COLLECTION_NAME = "fda_drugs_embeddings_v6"
 
+# @st.cache_resource
 
 if "client_chromadb" not in st.session_state:
     st.session_state.client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
