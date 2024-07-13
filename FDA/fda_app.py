@@ -342,6 +342,6 @@ if query_text:
         # else:
         #     if st.session_state.choose == []:
         #         st.error("Choose one from results to view")
-    else:
-        if st.session_state.choose == []:
-            st.error("Choose one from results to view")
+        else:
+            if st.session_state.choose == []:
+                st.error("Choose one from results to view")
