@@ -66,9 +66,9 @@ def load_collection():
     collection = st.session_state.collection
     return collection
     
+collection = load_collection()
 
-
-def return_best_drugs(user_input, load_collection, n_results=10):  # UPDATED
+def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
     
     if not query_result['ids'] or not query_result['ids'][0]:
@@ -231,7 +231,7 @@ df_lemmatized['lemmatized_tokens'] = [' '.join(ast.literal_eval(x)) for x in  df
 
 
 if query_text:
-    top_results = return_best_drugs(query_text, load_collection)
+    top_results = return_best_drugs(query_text, collection)
     df = pd.DataFrame(top_results, columns=["Drug_Name", "Details", "ID"])
     drug_names = df["Drug_Name"].tolist()
     choose = b.selectbox(
