@@ -46,8 +46,8 @@ client = OpenAI(api_key=api_key)
 # # OPTION 1
 # client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
 # openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
-# CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
-# COLLECTION_NAME = "fda_drugs_embeddings_v6"
+CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
+COLLECTION_NAME = "fda_drugs_embeddings_v6"
 # collection = client_chromadb.get_or_create_collection(
 #     name=COLLECTION_NAME,
 #     embedding_function=openai_ef,
