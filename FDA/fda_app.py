@@ -24,7 +24,7 @@ import ast #built in
 import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
-from chromadb import Chroma
+from langchain.vectorstores import Chroma
 
 if "stop" not in st.session_state:
     st.session_state.stop = True
