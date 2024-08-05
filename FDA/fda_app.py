@@ -90,7 +90,7 @@ if collection:
         results = collection.similarity_search(query, k=3)
         st.write(results)
         docs = results[0].page_content
-        metadatas = results['metadatas'][0]
+        metadatas = results[0].drug
         st.write([{"text": doc, "metadata": meta} for doc, meta in zip(docs, metadatas)])
 
 def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
