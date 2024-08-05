@@ -24,7 +24,8 @@ import ast #built in
 import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import OpenAIEmbeddings
 
 if "stop" not in st.session_state:
     st.session_state.stop = True
@@ -70,7 +71,7 @@ def load_collection():
 
     
     try:
-        vector_store = Chroma(persist_directory='FDA/fda_drugs_v6')
+        vector_store = Chroma(persist_directory='FDA/fda_drugs_v6', embeddings = OpenAIEmbeddings(api_key=openai.api_key))
         return vector_store
     except Exception as e:
         st.error(f"Error loading vector store: {e}")
