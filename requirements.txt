@@ -21,4 +21,4 @@ torch
 torchvision
 pysqlite3-binary
 st-annotated-text
-langchain
+langchain-chroma
