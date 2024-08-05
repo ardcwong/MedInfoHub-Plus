@@ -70,7 +70,7 @@ def load_collection():
 
     
     try:
-        vector_store = Chroma(persist_directory=fda_drugs_v6)
+        vector_store = Chroma(persist_directory=fda_drugs_embeddings_v6)
         return vector_store
     except Exception as e:
         st.error(f"Error loading vector store: {e}")
