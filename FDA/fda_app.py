@@ -59,39 +59,39 @@ client = OpenAI(api_key=api_key)
 # OPTION 2
 @st.cache_resource
 def load_collection():
-    # CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
-    # COLLECTION_NAME = "fda_drugs_embeddings_v6"
-    # client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
-    # openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
-    # collection = client_chromadb.get_or_create_collection(
-    # name=COLLECTION_NAME,
-    # embedding_function=openai_ef,
-    # metadata={"hnsw:space": "cosine"}
-    # )
+    CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
+    COLLECTION_NAME = "fda_drugs_embeddings_v6"
+    client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
+    openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
+    collection = client_chromadb.get_or_create_collection(
+    name=COLLECTION_NAME,
+    embedding_function=openai_ef,
+    metadata={"hnsw:space": "cosine"}
+    )
 
     
-    try:
-        vector_store = Chroma(collection_name = 'fda_drugs_embeddings_v6',persist_directory='FDA/fda_drugs_v6', embedding_function  = OpenAIEmbeddings(api_key=openai.api_key))
-        return vector_store
-    except Exception as e:
-        st.error(f"Error loading vector store: {e}")
-        return None
+    # try:
+    #     vector_store = Chroma(collection_name = 'fda_drugs_embeddings_v6',persist_directory='FDA/fda_drugs_v6', embedding_function  = OpenAIEmbeddings(api_key=openai.api_key))
+    #     return vector_store
+    # except Exception as e:
+    #     st.error(f"Error loading vector store: {e}")
+    #     return None
 
 
     
-    # return collection
+    return collection
     
 collection = load_collection()
-st.write(collection)
+# st.write(collection)
 
-if collection:
-    query = st.text_input("type")
-    if query:
-        results = collection.similarity_search(query, k=3)
-        st.write(results)
-        docs = results[0].page_content
-        metadatas = results[0].metadata
-        st.write([{"text": doc, "metadata": meta} for doc, meta in zip(docs, metadatas)])
+# if collection:
+#     query = st.text_input("type")
+#     if query:
+#         results = collection.similarity_search(query, k=3)
+#         st.write(results)
+#         docs = results[0].page_content
+#         metadatas = results[0].metadata
+#         st.write([{"text": doc, "metadata": meta} for doc, meta in zip(docs, metadatas)])
 
 def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
