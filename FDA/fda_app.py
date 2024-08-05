@@ -89,7 +89,7 @@ if collection:
     if query:
         results = collection.similarity_search(query, k=3)
         st.write(results)
-        docs = results[0].documents.[0]
+        docs = results[0].documents[0]
         metadatas = results['metadatas'][0]
         st.write([{"text": doc, "metadata": meta} for doc, meta in zip(docs, metadatas)])
 
