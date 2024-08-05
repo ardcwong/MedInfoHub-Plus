@@ -85,7 +85,7 @@ collection = load_collection()
 st.write(collection)
 query = st.text_input("type")
 if collection:
-    results = collection.query(query_texts=[query], n_results=3)
+    results = collection..similarity_search(query_texts=[query], n_results=3)
     docs = results['documents'][0]
     metadatas = results['metadatas'][0]
     st.write([{"text": doc, "metadata": meta} for doc, meta in zip(docs, metadatas)])
