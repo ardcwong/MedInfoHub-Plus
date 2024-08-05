@@ -24,7 +24,7 @@ import ast #built in
 import chromadb
 from chromadb.utils import embedding_functions
 from annotated_text import annotated_text
-
+from chromadb import Chroma
 
 if "stop" not in st.session_state:
     st.session_state.stop = True
@@ -58,32 +58,50 @@ client = OpenAI(api_key=api_key)
 # OPTION 2
 @st.cache_resource
 def load_collection():
-    CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
-    COLLECTION_NAME = "fda_drugs_embeddings_v6"
-    # if "client_chromadb" not in st.session_state:
-    client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
-    # client_chromadb = st.session_state.client_chromadb
+    # CHROMA_DATA_PATH = 'FDA/fda_drugs_v6'
+    # COLLECTION_NAME = "fda_drugs_embeddings_v6"
+    # client_chromadb = chromadb.PersistentClient(path=CHROMA_DATA_PATH)
+    # openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
+    # collection = client_chromadb.get_or_create_collection(
+    # name=COLLECTION_NAME,
+    # embedding_function=openai_ef,
+    # metadata={"hnsw:space": "cosine"}
+    # )
+
     
-    # if "embed_func" not in st.session_state:
-    openai_ef = embedding_functions.OpenAIEmbeddingFunction(api_key=openai.api_key, model_name="text-embedding-ada-002")
-    # openai_ef = st.session_state.embed_func
+    try:
+        vector_store = Chroma(persist_directory=FDA/fda_drugs_v6)
+        return vector_store
+    except Exception as e:
+        st.error(f"Error loading vector store: {e}")
+        return None
+
+
     
-    
-    # if "collection" not in st.session_state:
-        # Create or get the collection
-    collection = client_chromadb.get_or_create_collection(
-    name=COLLECTION_NAME,
-    embedding_function=openai_ef,
-    metadata={"hnsw:space": "cosine"}
-    )
-    
-    # collection = st.session_state.collection
     return collection
     
 collection = load_collection()
 
+query = st.text_input("type")
+if collection:
+    results = collection.query(query_texts=[query], n_results=3)
+    docs = results['documents'][0]
+    metadatas = results['metadatas'][0]
+    st.write([{"text": doc, "metadata": meta} for doc, meta in zip(docs, metadatas)])
+
 def return_best_drugs(user_input, collection, n_results=10):  # UPDATED
     query_result = collection.query(query_texts=[user_input], n_results=n_results)
+
+# def retrieve_documents(query, collection):
+#     # Perform similarity search
+#     results = collection.similarity_search(query, k=3)
+    
+#     docs = [result.page_content for result in results]
+#     metadatas = [result.metadata for result in results] 
+
+#     return [{'text': doc, 'metadata': meta} for doc, meta in zip(docs, metadatas)]
+
+    
     
     if not query_result['ids'] or not query_result['ids'][0]:
         print("No drugs found matching the query.")
