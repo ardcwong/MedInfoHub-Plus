@@ -78,7 +78,7 @@ def load_collection():
 
 
     
-    return collection
+    # return collection
     
 collection = load_collection()
 
