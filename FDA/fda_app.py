@@ -71,7 +71,7 @@ def load_collection():
 
     
     try:
-        vector_store = Chroma(collection_name = fda_drugs_embeddings_v6,persist_directory='FDA/fda_drugs_v6', embedding_function  = OpenAIEmbeddings(api_key=openai.api_key))
+        vector_store = Chroma(collection_name = 'fda_drugs_embeddings_v6',persist_directory='FDA/fda_drugs_v6', embedding_function  = OpenAIEmbeddings(api_key=openai.api_key))
         return vector_store
     except Exception as e:
         st.error(f"Error loading vector store: {e}")
