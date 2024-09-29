@@ -17,3 +17,26 @@
 - **ChromaDB**: Vector store for efficient similarity search within the knowledge base.
 - **OpenAI's ChatGPT**: Utilized for NLP and generating context-aware responses.
 - **FDA and MedQuAD Datasets**: Trusted data sources for drugs and healthcare information.
+
+
+## Usage
+To use MedInfoHub Plus:
+1. **Search for Medical Information**: Enter a medical query (e.g., symptoms, treatments, or drug information) and the app will return relevant medical data.
+2. **Get Patient-Friendly Summaries**: The platform offers easy-to-understand summaries for patients, providing clear and concise information on medical topics.
+3. **Healthcare Provider Mode**: For more in-depth and technical details, use the healthcare provider mode to access detailed drug usage guidelines and other professional resources.
+4. **Teleconsultation Recommendations**: The app suggests teleconsultation services and nearby clinics based on your needs.
+
+## Limitations
+- **Data Coverage**: The platform's dataset may not include new diseases, treatments, or drugs discovered after 2022.
+- **API Token Limits**: The use of OpenAI’s API for NLP and RAG is limited by token constraints, which may affect the complexity and length of the responses.
+- **Internet Dependency**: A stable internet connection is required to query the OpenAI API and retrieve external data.
+
+## Acknowledgments
+Special thanks to the team behind MedInfoHub Plus:
+- Austine Wong
+- Japhet Pamonag
+- Kate Ponce
+- Nicole Barrion
+- Sam Nicasio
+
+For more details and to try the live app, visit: [MedInfoHub Plus](https://bit.ly/dsfc13-g1s4-mihplus)
